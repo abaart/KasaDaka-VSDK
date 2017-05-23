@@ -17,6 +17,7 @@ class CallSession(models.Model):
     service = models.ForeignKey(VoiceService, on_delete = models.SET_NULL, null = True)
     _language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
 
+
     def __str__(self):
         from django.template import defaultfilters
         start_date = defaultfilters.date(self.start, "SHORT_DATE_FORMAT")
@@ -79,12 +80,48 @@ class CallSessionStep(models.Model):
         return VoiceServiceElement.objects.get_subclass(id = self._visited_element.id)
 
 
+class EndUserCallSession(CallSession):
+
+    category = models.CharField(max_length=100, blank=True, null=True)
+    listened = models.BooleanField(blank=True, default=False)
+
+
+class JournalistCallSession(CallSession):
+
+    last_session = models.ForeignKey(EndUserCallSession, on_delete=models.SET_NULL, null=True)
+
 def lookup_or_create_session(voice_service, session_id=None, caller_id = None):
-    if session_id:
-        session = get_object_or_404(CallSession, pk = session_id)
+
+    if voice_service.radio_journalist_service:
+        if session_id:
+            if session_id:
+                session = get_object_or_404(JournalistCallSession, pk=session_id)
+                return session
+        else:
+            session = JournalistCallSession.objects.create(
+                service=voice_service,
+                caller_id=caller_id)
+            session.save()
+            return session
+
+    if voice_service.end_user_service:
+        if session_id:
+            if session_id:
+                session = get_object_or_404(EndUserCallSession, pk=session_id)
+                return session
+        else:
+            session = EndUserCallSession.objects.create(
+                service=voice_service,
+                caller_id=caller_id)
+            session.save()
+            return session
     else:
-        session = CallSession.objects.create(
-                service = voice_service,
-                caller_id = caller_id) 
-        session.save()
-    return session
+        if session_id:
+            session = get_object_or_404(CallSession, pk = session_id)
+            return session
+        else:
+            session = CallSession.objects.create(
+                    service = voice_service,
+                    caller_id = caller_id)
+            session.save()
+            return session

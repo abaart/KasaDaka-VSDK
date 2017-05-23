@@ -17,6 +17,7 @@ def choice_options_resolve_voice_labels(choice_options, language):
     choice_options_voice_labels = []
     for choice_option in choice_options:
         choice_options_voice_labels.append(choice_option.get_voice_fragment_url(language))
+
     return choice_options_voice_labels
 
 def choice_generate_context(choice_element, session):
@@ -41,9 +42,34 @@ def choice_generate_context(choice_element, session):
 
 def choice(request, element_id, session_id):
     choice_element = get_object_or_404(Choice, pk=element_id)
-    session = get_object_or_404(CallSession, pk=session_id)
+    voice_service = choice_element.service
+    session = lookup_or_create_session(voice_service, session_id)
+
+    if request.method == "POST":
+        value = request.POST['field1']
+
+        value = list(choice_element.choice_options.all())[int(value) -1].name
+
+
+        result = Result()
+
+        result.session = session
+        result.name = choice_element.description
+        result.value = value
+
+        result.save()
+
+        if choice_element.map_to_call_session_property in vars(session).keys():
+            setattr(session, choice_element.map_to_call_session_property, value)
+            session.save()
+
+        # redirect to next element
+        return redirect(request.POST['redirect'])
+
     session.record_step(choice_element)
     context = choice_generate_context(choice_element, session)
+
+    context['url'] = request.get_full_path(False)
     
     return render(request, 'choice.xml', context, content_type='text/xml')
 

@@ -18,10 +18,15 @@ class VoiceServiceSubElement(models.Model):
             help_text="The service to which this element belongs")
     creation_date = models.DateTimeField('date created', auto_now_add = True)
     modification_date = models.DateTimeField('date last modified', auto_now = True)
+
     name = models.CharField(max_length=100)
+
     description = models.CharField(
             max_length = 1000,
             blank = True)
+
+    map_to_call_session_property = models.CharField(max_length=100, default='', null=True, blank=True)
+
     voice_label = models.ForeignKey(
             VoiceLabel,
             on_delete = models.SET_NULL,
@@ -74,4 +79,5 @@ class VoiceServiceElement(VoiceServiceSubElement):
         """
         Returns the url at which this element is accessible through VoiceXML.
         """
-        return reverse(self._urls_name, kwargs= {'element_id':str(self.id), 'session_id':session.id})
+        url_name = self._urls_name
+        return reverse(url_name, kwargs= {'element_id':str(self.id), 'session_id':session.id})

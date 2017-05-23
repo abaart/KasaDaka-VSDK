@@ -95,3 +95,6 @@ ENV/
 uploads/*
 #vsdk/settings.py
 vsdk/staticfiles
+
+# pycharm
+.idea/workspace.xml

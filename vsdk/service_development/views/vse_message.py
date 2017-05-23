@@ -21,7 +21,9 @@ def message_presentation_generate_context(message_presentation_element,session):
 
 def message_presentation(request, element_id, session_id):
     message_presentation_element = get_object_or_404(MessagePresentation, pk=element_id)
-    session = get_object_or_404(CallSession, pk=session_id)
+
+    voice_service = message_presentation_element.service
+    session = lookup_or_create_session(voice_service, session_id)
     session.record_step(message_presentation_element)
     context = message_presentation_generate_context(message_presentation_element, session)
     

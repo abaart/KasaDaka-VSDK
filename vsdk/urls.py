@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
-admin.site.site_header = "KasaDaka Voice Services"
+admin.site.site_header = "Foroba Blon (for Radio Journalists)"
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
