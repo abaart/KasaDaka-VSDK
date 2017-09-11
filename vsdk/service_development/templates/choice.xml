@@ -1,7 +1,7 @@
 {% extends "base.xml" %}
 {% block content%}
-<form  id="{{ choice.name }}">
-	<field name="field1">
+<form  id="{{ choice.name|slugify }}">
+	<field name="choice">
 		<prompt>
 			<audio src="{{ choice_voice_label }}"/>
 			{% for option_voice_label in choice_options_voice_labels %}
