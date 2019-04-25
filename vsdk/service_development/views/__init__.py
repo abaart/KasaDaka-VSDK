@@ -5,3 +5,5 @@ from .vse_record import *
 from .user import *
 from .voiceservice import *
 from .language import *
+from .farmer import *
+from .advertisement import *
