@@ -13,3 +13,6 @@ class Advertisement(models.Model):
     seed = models.CharField(_('Seed'), max_length = 100, blank = True)
     amount = models.IntegerField(_('Amount'), default = 0, blank = True)
     price = models.IntegerField(_('Price'), default = 0, blank = True)
+
+    def __str__(self):
+        return self.seed

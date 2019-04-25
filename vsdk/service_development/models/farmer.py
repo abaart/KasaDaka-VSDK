@@ -16,3 +16,6 @@ class Farmer(models.Model):
     language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
     region = models.CharField(_('Region'), max_length = 100, blank = True)
     place = models.CharField(_('Place'), max_length = 100, blank = True)
+
+    def __str__(self):
+        return self.name
