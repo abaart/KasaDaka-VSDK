@@ -1,0 +1,14 @@
+{% extends "base.xml" %}
+{# asks the user to choose to add or change an advertisement #}
+
+{% block content %}
+<form>
+    <field name="action-selection">
+        <prompt>
+            {% for action in actions %}
+			<audio src="{{ action.get_interface_action_label_url_dict.select_action }}"/>
+			{% endfor %}
+        </prompt>
+    </field>
+</form>
+{% endblock %}
