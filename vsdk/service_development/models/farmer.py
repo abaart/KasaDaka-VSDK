@@ -1,8 +1,4 @@
 from django.db import models
-from django.utils import timezone
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
 from . import Language
