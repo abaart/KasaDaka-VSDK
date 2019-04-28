@@ -20,6 +20,7 @@ class VoiceLabel(models.Model):
 
     def is_valid(self):
         return len(self.validator()) == 0
+
     is_valid.boolean = True
     is_valid.short_description = _('Is valid')
 

@@ -10,37 +10,34 @@
 				<audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
 			{% for number in language.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
 			{% endfor %}
-</prompt>
+        </prompt>
 
-{# all possible inputs from the user #}
-<grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
-      <rule id="MYRULE" scope = "public">
-        <one-of>
-          {% for option in choice_options %}
-            <item>{{ forloop.counter }}</item>
-          {% endfor %}
-        </one-of>
-       </rule>
-</grammar>
+        {# all possible inputs from the user #}
+        <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+              <rule id="MYRULE" scope = "public">
+                <one-of>
+                  {% for option in choice_options %}
+                    <item>{{ forloop.counter }}</item>
+                  {% endfor %}
+                </one-of>
+               </rule>
+        </grammar>
 
-{# when there has been input, redirect the user to the corresponding URL #}
-<filled>
-    {% for option_redirect in choice_options_redirect_urls %}
-      {% if forloop.counter == 1 %}
-      <if cond="choice == '{{ forloop.counter }}'">
-	      {% comment %} TODO hoe doe je een url opzoeken als je nog niet weet welke class object je naar refereert? {% endcomment %}
-      <goto next="{{ option_redirect }}"/>
-      {% else %}
-      <elseif cond="choice == '{{ forloop.counter }}'" />
-      <goto next="{{ option_redirect }}"/>
-      {% endif %}
-    {% endfor %}
-
-
-    <else/>
-    </if>
-  </filled>
-
-</field>
+        {# when there has been input, redirect the user to the corresponding URL #}
+        <filled>
+            {% for option_redirect in choice_options_redirect_urls %}
+              {% if forloop.counter == 1 %}
+              <if cond="choice == '{{ forloop.counter }}'">
+                  {% comment %} TODO hoe doe je een url opzoeken als je nog niet weet welke class object je naar refereert? {% endcomment %}
+              <goto next="{{ option_redirect }}"/>
+              {% else %}
+              <elseif cond="choice == '{{ forloop.counter }}'" />
+              <goto next="{{ option_redirect }}"/>
+              {% endif %}
+            {% endfor %}
+            <else/>
+            </if>
+        </filled>
+    </field>
 </form>
 {% endblock %}
