@@ -1,31 +1,5 @@
 {% extends "base.xml" %}
 {% block content%}
-<!--<form id="greeting">-->
-  <!--<block>-->
-     <!--&lt;!&ndash;say greeting&ndash;&gt;-->
-     <!--<prompt>-->
-        <!--<audio src="wavs/Hello_8KHz.wav"> &lt;!&ndash;Audio file: 'Hello!'&ndash;&gt;-->
-           <!--<break time="1000"/>-->
-        <!--</audio>-->
-        <!--<voice xml:lang="fr">Bonjour!</voice>-->
-     <!--</prompt>-->
-     <!--<goto next="#language selection"/>-->
-  <!--</block>-->
-<!--</form>-->
-
-<!--&lt;!&ndash;language selection&ndash;&gt;-->
-<!--<menu id="language selection" dtmf="true">-->
-  <!--<prompt>-->
-     <!--<audio src="wavs/Select_English_8KHz.wav"> &lt;!&ndash;Audio file: 'For English, please press 1.'&ndash;&gt;-->
-        <!--<break time="1000"/>-->
-     <!--</audio>-->
-     <!--<voice xml:lang="fr">Pour le français, veuillez appuyer sur 2.</voice>-->
-  <!--</prompt>-->
-  <!--<choice dtmf="1" next="http://webhosting.voxeo.net/205779/www/english.vxml">English</choice>-->
-  <!--<choice dtmf="2" next="http://webhosting.voxeo.net/205779/www/french.vxml ">French</choice>-->
-<!--</menu>-->
-
-
 <form id="language_form">
 	<field name="select_language">
 		<prompt>
@@ -36,12 +10,12 @@
 
             <!--Language Selection-->
             {% for language in languages %}
-			    <audio src="{{ language.get_interface_voice_label_url_dict.select_language }}"/>
+			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+                <audio src="{{ language.get_interface_voice_label_url_dict.voice_label }}"/>
+                <audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
 			    {% for number in language.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
 			{% endfor %}
 		</prompt>
-
-
 
         <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
             <rule id="MYRULE" scope = "public">
@@ -63,8 +37,6 @@
                     <assign name="language_id" expr="'{{ language.id }}'"/>
                 {% endif %}
             {% endfor %}
-
-
             <else/>
             </if>
 
@@ -75,13 +47,13 @@
 
 
 <form id="submit_form">
-<block>
-	{# include the variables in the dictionary 'pass_on_variables' as POST variables #}
-	{% for key, value in pass_on_variables.items %}
-	<assign name="{{ key }}" expr="'{{ value }}'"/>
-	{% endfor %}
-	<submit next="{{ redirect_url }}" method="post" namelist="language_id {% for key, value in pass_on_variables.items %} {{ key }} {% endfor %}"/>
-</block>
+    <block>
+        {# include the variables in the dictionary 'pass_on_variables' as POST variables #}
+        {% for key, value in pass_on_variables.items %}
+        <assign name="{{ key }}" expr="'{{ value }}'"/>
+        {% endfor %}
+        <submit next="{{ redirect_url }}" method="post" namelist="language_id {% for key, value in pass_on_variables.items %} {{ key }} {% endfor %}"/>
+    </block>
 </form>
 
 {% endblock %}

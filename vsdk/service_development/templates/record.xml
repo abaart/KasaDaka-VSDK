@@ -2,72 +2,63 @@
 {% block content %}
 
 <form id="record_form">
+	<record name="recording" beep="true" maxtime="{{ max_time_input }}s" finalsilence="4s" dtmfterm="true">
+        <prompt>
+            <audio src="{{ voice_label }}"/>
+        </prompt>
 
-	<record name="recording" beep="true" maxtime="{{ max_time_input }}s"
-  finalsilence="4s" dtmfterm="true">
-<prompt>
-<audio src="{{ voice_label }}"/>
-</prompt>
+        <noinput>
+             <audio src="{{ did_not_hear_voice_label }}"/>
+             <reprompt/>
+        </noinput>
+    </record>
 
-    <noinput>
-         <audio src="{{ did_not_hear_voice_label }}"/>
-         <reprompt/>
-    </noinput>
+    {% if record.repeat_recording_to_caller %}
+        <block>
+            <prompt>
+                <audio src="{{ repeat_voice_label }}"/> <audio expr="recording"/>
+            </prompt>
+        </block>
+    {% endif %}
 
-</record>
+
+    {%  if record.ask_confirmation %}
+
+        <field name="confirm">
+            <prompt>
+                <audio src="{{ask_confirmation_voice_label}}"/>
+            </prompt>
+            <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+                <rule id="MYRULE" scope = "public">
+                    <one-of>
+                        <item>1</item>
+                        <item>2</item>
+                    </one-of>
+                </rule>
+            </grammar>
+            <filled>
+                <if cond="confirm == '1'">
+                    <prompt>
+                        <audio src="{{final_voice_label}}"/>
+                    </prompt>
+                    <assign name="redirect" expr="'{{ redirect_url }}'"/>
+                    <submit next="{{ url }}" enctype="multipart/form-data" method="post" namelist="redirect recording"/>
+               </if>
+
+                <if cond="confirm == '2'">
+                    <goto next="{{ url }}"/>
+                </if>
+            </filled>
+        </field>
+    {% endif %}
 
 
-
-{% if record.repeat_recording_to_caller %}
     <block>
         <prompt>
-        <audio src="{{ repeat_voice_label }}"/> <audio expr="recording"/>
+            <audio src="{{final_voice_label}}"/>
         </prompt>
+        <goto next="{{ redirect_url }}" />
     </block>
-{% endif %}
-
-
-{%  if record.ask_confirmation %}
-
-    <field name="confirm">
-        <prompt>
-        <audio src="{{ask_confirmation_voice_label}}"/>
-        </prompt>
-        <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
-              <rule id="MYRULE" scope = "public">
-                <one-of>
-                    <item>1</item>
-                    <item>2</item>
-                </one-of>
-               </rule>
-             </grammar>
-          <filled>
-              <if cond="confirm == '1'">
-                  <prompt>
-                      <audio src="{{final_voice_label}}"/>
-                  </prompt>
-                  <assign name="redirect" expr="'{{ redirect_url }}'"/>
-                  <submit next="{{ url }}" enctype="multipart/form-data" method="post" namelist="redirect recording"/>
-           </if>
-              <if cond="confirm == '2'">
-            <goto next="{{ url }}"/>
-           </if>
-          </filled>
- </field>
-
-{% endif %}
-
-
-<block>
-    <prompt>
-        <audio src="{{final_voice_label}}"/>
-    </prompt>
-    <goto next="{{ redirect_url }}" />
-</block>
-
-
-
-
 </form>
 
 {% endblock %}
