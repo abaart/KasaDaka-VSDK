@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from . import Farmer
+from . import KasaDakaUser, Seed
 
 
 class Advertisement(models.Model):
-    farmer = models.ForeignKey(Farmer,on_delete = models.SET_NULL, null = True)
-    product = models.CharField(_('Product'), max_length = 100, blank = True)
+    farmer = models.ForeignKey(KasaDakaUser,on_delete = models.SET_NULL, null = True)
+    seed = models.ForeignKey(Seed,on_delete = models.SET_NULL, null = True)
     quantity = models.IntegerField(_('Quantity'), default = 0, blank = True)
     price = models.IntegerField(_('Price'), default = 0, blank = True)
 
@@ -15,15 +15,3 @@ class Advertisement(models.Model):
 
     def __str__(self):
         return self.seed
-
-def lookup_advertisement_by_farmer(farmer, service):
-    """
-    If farmer for current voice_service exists, returns Advertisement objects.
-    If farmer does not exist, returns None.
-    """
-    if farmer:
-        try:
-            return Advertisement.objects.get(farmer = farmer, service = service)
-        except Advertisement.DoesNotExist:
-            return None
-    return None

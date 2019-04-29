@@ -6,7 +6,7 @@ from .vs_element import *
 from .vse_choice import *
 from .vse_message import *
 from .vse_record import *
-from .user_input import *
-from .farmer import *
-from .advertisement import *
 from .vse_key_input import *
+from .user_input import *
+from .seed import *
+from .advertisement import *

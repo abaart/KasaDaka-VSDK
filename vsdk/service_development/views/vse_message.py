@@ -2,13 +2,13 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 
 from ..models import *
 
+
 def message_presentation_get_redirect_url(message_presentation_element,session):
     if not message_presentation_element.final_element:
         return message_presentation_element.redirect.get_absolute_url(session)
     else:
         return None
     
-
 
 def message_presentation_generate_context(message_presentation_element,session):
     language = session.language

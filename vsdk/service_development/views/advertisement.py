@@ -7,7 +7,7 @@ from ..models import Advertisement, CallSession, Language
 from . import base
 
 
-class FarmerRegistration(TemplateView):
+class Advertisement(TemplateView):
 
     def create_new(self, request, session):
         # TODO: expand function that can add a new advertisment
@@ -29,4 +29,4 @@ class FarmerRegistration(TemplateView):
 
     def get(self, request, session_id):
         session = get_object_or_404(CallSession, pk = session_id)
-        return self.registration_process(request, session)
+        return self.create_new(request, session)

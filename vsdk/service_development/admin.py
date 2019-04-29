@@ -169,9 +169,12 @@ class CallSessionAdmin(admin.ModelAdmin):
 class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Message Presentation'), {'fields': ['_redirect','final_element']})]
 
+class SeedPresentationAdmin(VoiceServiceElementAdmin):
+    fieldsets = VoiceServiceElementAdmin.fieldsets
+
 class KasaDakaUserAdmin(admin.ModelAdmin):
-    list_filter = ['service','language','caller_id']
-    list_display = ('__str__','caller_id', 'service', 'language')
+    list_filter = ['service','language','caller_id', 'place', 'region']
+    list_display = ('__str__','caller_id', 'service', 'language', 'place', 'region')
 
 class SpokenUserInputAdmin(admin.ModelAdmin):
     list_display = ('__str__','category','description','audio_file_player')
@@ -198,5 +201,5 @@ admin.site.register(VoiceLabel, VoiceLabelAdmin)
 # admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
 # admin.site.register(UserInputCategory)
 # admin.site.register(Record)
-admin.site.register(Farmer, KasaDakaUserAdmin)
 admin.site.register(Advertisement)
+admin.site.register(Seed, SeedPresentationAdmin)
