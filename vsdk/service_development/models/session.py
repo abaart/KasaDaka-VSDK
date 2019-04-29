@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
-from . import KasaDakaUser
+from . import Farmer
 from . import VoiceService, VoiceServiceElement
 from . import Language
 
@@ -13,7 +13,7 @@ class CallSession(models.Model):
     start = models.DateTimeField(_('Starting time'),auto_now_add = True)
     #TODO: make some kind of handler when the Asterisk connection is closed, to officially end the session.
     end = models.DateTimeField(_('Ending time'),null = True, blank = True)
-    user = models.ForeignKey(KasaDakaUser, on_delete = models.SET_NULL, null = True, blank = True)
+    farmer = models.ForeignKey(Farmer, on_delete = models.SET_NULL, null = True, blank = True)
     caller_id = models.CharField(_('Caller ID'),max_length = 100, blank = True, null = True)
     service = models.ForeignKey(VoiceService, on_delete = models.SET_NULL, null = True)
     _language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
@@ -25,8 +25,8 @@ class CallSession(models.Model):
         from django.template import defaultfilters
         start_date = defaultfilters.date(self.start, "SHORT_DATE_FORMAT")
         start_time = defaultfilters.time(self.start, "TIME_FORMAT")
-        if self.user:
-            return "%s (%s %s)" % (str(self.user), str(start_date), str(start_time))
+        if self.farmer:
+            return "%s (%s %s)" % (str(self.farmer), str(start_date), str(start_time))
         else:
             return "%s (%s %s)" % (str(self.caller_id), str(start_date), str(start_time))
 
@@ -34,7 +34,7 @@ class CallSession(models.Model):
     def language(self):
         """
         Tries to determine the language of the session, taking into account
-        the voice service, user preferences and possibly an already set language
+        the voice service, farmer preferences and possibly an already set language
         for the session. 
         Returns a determined to be valid Language for the Session.
         Returns None if the language cannot be determined.
@@ -42,8 +42,8 @@ class CallSession(models.Model):
         if self.service:
             if self.service.supports_single_language:
                 self._language = self.service.supported_languages.all()[0]
-            elif self.user and self.user.language in self.service.supported_languages.all(): 
-                    self._language = self.user.language
+            elif self.farmer and self.farmer.language in self.service.supported_languages.all():
+                    self._language = self.farmer.language
             elif self._language and not self._language in self.service.supported_languages.all():
                     self._language = None
         else:
@@ -59,8 +59,8 @@ class CallSession(models.Model):
         step.save()
         return
 
-    def link_to_user(self, user):
-        self.user = user
+    def link_to_farmer(self, farmer):
+        self.farmer = farmer
         self.save()
         return self
 

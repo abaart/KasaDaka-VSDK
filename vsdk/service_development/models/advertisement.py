@@ -7,13 +7,13 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from enum import Enum
 
-from . import KasaDakaUser
+from . import Farmer
 
 class Advertisement(models.Model):
     """
     Advertisement that belongs to a farmer
     """
-    farmer = models.ForeignKey(KasaDakaUser, on_delete=models.CASCADE)
+    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
     seed = models.CharField(max_length=200)
     description = models.TextField(default="", blank=True)
     quantity = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])

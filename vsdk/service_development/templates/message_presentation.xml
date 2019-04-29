@@ -1,6 +1,6 @@
 {% extends "base.xml" %}
 {#
-plays back a message, then sends the user to the redirect
+plays back a message, then sends the farmer to the redirect
 #}
 
 {% block content %}

@@ -6,7 +6,7 @@ from .vs_element import VoiceServiceElement
 
 class MessagePresentation(VoiceServiceElement):
     """
-    An element that presents a Voice Label to the user.
+    An element that presents a Voice Label to the farmer.
     """
     _urls_name = 'service-development:message-presentation'
     final_element = models.BooleanField(_('This element will terminate the call'),default = False)

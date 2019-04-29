@@ -12,7 +12,7 @@
 			{% endfor %}
 </prompt>
 
-{# all possible inputs from the user #}
+{# all possible inputs from the farmer #}
 <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
       <rule id="MYRULE" scope = "public">
         <one-of>
@@ -23,7 +23,7 @@
        </rule>
 </grammar>
 
-{# when there has been input, redirect the user to the corresponding URL #}
+{# when there has been input, redirect the farmer to the corresponding URL #}
 <filled>
     {% for option_redirect in choice_options_redirect_urls %}
       {% if forloop.counter == 1 %}
