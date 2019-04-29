@@ -4,11 +4,11 @@ from django.utils.translation import ugettext
 
 from .vs_element import VoiceServiceElement
 
-class KeyInputPresentation(VoiceServiceElement):
+class KeyInput(VoiceServiceElement):
     """
     An element that presents a Voice Label to the farmer.
     """
-    _urls_name = 'service-development:key-input-presentation'
+    _urls_name = 'service-development:key-input'
     final_element = models.BooleanField(_('This element will terminate the call'),default = False)
     _redirect = models.ForeignKey(
             VoiceServiceElement,
@@ -20,7 +20,7 @@ class KeyInputPresentation(VoiceServiceElement):
             help_text = _("The element to redirect to after the key_input has been played."))
 
     class Meta:
-        verbose_name = _('Key input Presentation Element')
+        verbose_name = _('Key input Element')
 
     @property
     def redirect(self):
@@ -44,7 +44,7 @@ class KeyInputPresentation(VoiceServiceElement):
 
     def validator(self):
         errors = []
-        errors.extend(super(KeyInputPresentation, self).validator())
+        errors.extend(super(KeyInput, self).validator())
         if not self.final_element and not self._redirect:
             errors.append(ugettext('Key_input %s does not have a redirect element and is not a final element')%self.name)
         elif not self.final_element:
