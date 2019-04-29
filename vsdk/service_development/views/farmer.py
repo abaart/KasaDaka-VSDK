@@ -6,7 +6,7 @@ from ..models import Farmer, CallSession, Language
 
 from . import base
 
-class KasaDakaFarmerRegistration(TemplateView):
+class FarmerRegistration(TemplateView):
 
     def create_new_farmer(self, request, session):
         """
