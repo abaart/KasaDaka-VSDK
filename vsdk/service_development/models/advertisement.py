@@ -13,19 +13,19 @@ class Advertisement(models.Model):
     """
     Advertisement that belongs to a farmer
     """
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
-    seed = models.ForeignKey(Seed, on_delete=models.CASCADE)
+    farmer = models.ForeignKey(Farmer, on_delete=models.SET_NULL, null=True)
+    seed = models.ForeignKey(Seed,on_delete = models.SET_NULL, null = True)
     description = models.TextField(default="", blank=True)
     quantity = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
     price = models.PositiveIntegerField(validators=[MaxValueValidator(999999999)])
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField(_('Date published'))
 
     class Meta:
         unique_together = (('farmer', 'pub_date'),)
         unique_together = (('farmer', 'seed'),)
 
     def __str__(self):
-        return self.seed.seed_name
+        return self.seed.name
 
     def was_published_recently(self):
         now = timezone.now()

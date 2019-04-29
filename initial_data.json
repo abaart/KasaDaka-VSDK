@@ -1003,7 +1003,7 @@
   }
 },
 {
-  "model": "service_development.kasadakauser",
+  "model": "service_development.farmer",
   "pk": 1,
   "fields": {
     "caller_id": "456",

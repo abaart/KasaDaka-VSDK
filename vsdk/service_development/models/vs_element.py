@@ -30,7 +30,7 @@ class VoiceServiceSubElement(models.Model):
             on_delete = models.SET_NULL,
             null = True,
             blank = True,
-            )
+    )
 
     class Meta:
         verbose_name = _('Voice Service Sub-Element')

@@ -1,17 +1,13 @@
 from django.db import models
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
-from django.core.validators import MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
 
+
 class Seed(models.Model):
-    """
-    Seed that belongs to an advertisement
-    """
-    seed_name = models.CharField(primary_key=True, max_length=70)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(_('Seed Name'), max_length=100, unique=True)
 
     class Meta:
         verbose_name = _('Seed')
 
     def __str__(self):
-        return self.seed_name
+        return "%s" % self.name

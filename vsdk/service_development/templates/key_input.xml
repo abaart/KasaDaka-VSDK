@@ -1,7 +1,5 @@
 {% extends "base.xml" %}
-{#
-plays back a key input, then sends the farmer to the redirect
-#}
+{# Lets the user give input using the number keys on the phone #}
 
 {% block content %}
 <form id="key_input">
@@ -19,4 +17,3 @@ plays back a key input, then sends the farmer to the redirect
 </form>
 
 {% endblock %}
-

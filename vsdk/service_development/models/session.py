@@ -9,6 +9,7 @@ from . import Farmer
 from . import VoiceService, VoiceServiceElement
 from . import Language
 
+
 class CallSession(models.Model):
     start = models.DateTimeField(_('Starting time'),auto_now_add = True)
     #TODO: make some kind of handler when the Asterisk connection is closed, to officially end the session.
@@ -96,12 +97,12 @@ class CallSessionStep(models.Model):
         else: return None
 
 
-def lookup_or_create_session(voice_service, session_id=None, caller_id = None):
+def lookup_or_create_session(voice_service, session_id=None, caller_id=None):
     if session_id:
         session = get_object_or_404(CallSession, pk = session_id)
     else:
         session = CallSession.objects.create(
-                service = voice_service,
-                caller_id = caller_id) 
+                service=voice_service,
+                caller_id=caller_id)
         session.save()
     return session
