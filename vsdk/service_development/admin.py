@@ -147,10 +147,10 @@ class CallSessionInline(admin.TabularInline):
     max_num = 0
 
 class CallSessionAdmin(admin.ModelAdmin):
-    list_display = ('start','user','service','caller_id','language')
-    list_filter = ('service','user','caller_id')
-    fieldsets = [(_('General'), {'fields' : ['service', 'user','caller_id','start','end','language']})]
-    readonly_fields = ('service','user','caller_id','start','end','language') 
+    list_display = ('start','farmer','service','caller_id','language')
+    list_filter = ('service','farmer','caller_id')
+    fieldsets = [(_('General'), {'fields' : ['service', 'farmer','caller_id','start','end','language']})]
+    readonly_fields = ('service','farmer','caller_id','start','end','language')
     inlines = [CallSessionInline]
     can_delete = True
 
@@ -172,11 +172,11 @@ class MessagePresentationAdmin(VoiceServiceElementAdmin):
 class SeedPresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets
 
-class KasaDakaUserAdmin(admin.ModelAdmin):
-    list_filter = ['service','language','caller_id', 'place', 'region']
-    list_display = ('__str__','caller_id', 'service', 'language', 'place', 'region')
+class FarmerAdmin(admin.ModelAdmin):
+    list_filter = ['service','language','caller_id']
+    list_display = ('__str__','caller_id', 'service', 'language')
 
-class SpokenUserInputAdmin(admin.ModelAdmin):
+class SpokenFarmerInputAdmin(admin.ModelAdmin):
     list_display = ('__str__','category','description','audio_file_player')
     list_filter = ('category',)
     fieldsets = [(_('General'), {'fields' : ['audio', 'audio_file_player', 'session','category','description']})]
@@ -186,6 +186,14 @@ class SpokenUserInputAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = ('seed', 'farmer', 'pub_date', 'was_published_recently')
+    fieldsets = [
+        ('Seed information', {'fields': ['seed', 'description', 'quantity', 'price', 'pub_date']}),
+        ('Farmer information', {'fields': ['farmer']}),
+    ]
+    list_filter = ['pub_date']
+    search_fields = ['seed']
 
 
 # Register your models here.
@@ -195,11 +203,11 @@ admin.site.register(MessagePresentation, MessagePresentationAdmin)
 admin.site.register(Choice, ChoiceAdmin)
 # admin.site.register(KeyInput)
 admin.site.register(CallSession, CallSessionAdmin)
-admin.site.register(KasaDakaUser, KasaDakaUserAdmin)
+admin.site.register(Farmer, FarmerAdmin)
 admin.site.register(Language)
 admin.site.register(VoiceLabel, VoiceLabelAdmin)
-# admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
-# admin.site.register(UserInputCategory)
-# admin.site.register(Record)
-admin.site.register(Advertisement)
+admin.site.register(FarmerInputCategory)
+admin.site.register(Record)
+admin.site.register(Advertisement, AdvertisementAdmin)
 admin.site.register(Seed, SeedPresentationAdmin)
+admin.site.register(SpokenFarmerInput, SpokenFarmerInputAdmin)

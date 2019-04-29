@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.core.files import File
 from django.core.files.storage import Storage
 
-from ..views import user
+from ..views import farmer
 from ..models import KasaDakaUser, CallSession, CallSessionStep
 from ..models import VoiceService
 from ..models import Language, VoiceLabel, VoiceFragment

@@ -106,7 +106,7 @@ class TestCallSession(TestCase):
                 user=None)
         assert session.user == None
         user = mixer.blend('service_development.KasaDakaUser')
-        session.link_to_user(user)
+        session.link_to_farmer(user)
         assert session.user == user
 
 class TestCallSessionStep:

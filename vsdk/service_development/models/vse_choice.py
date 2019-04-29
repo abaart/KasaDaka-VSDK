@@ -39,7 +39,7 @@ class ChoiceOption(VoiceServiceSubElement):
             VoiceServiceElement, 
             on_delete = models.SET_NULL,
             verbose_name = _('Redirect element'),
-            help_text = _("The element to redirect to when this choice is made by the user."),
+            help_text = _("The element to redirect to when this choice is made by the farmer."),
             related_name='%(app_label)s_%(class)s_redirect_related',
             blank = True,
             null = True)

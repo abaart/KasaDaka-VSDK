@@ -44,7 +44,7 @@ def record(request, element_id, session_id):
 
         value = 'audio file'
 
-        result = SpokenUserInput()
+        result = SpokenFarmerInput()
 
         result.session = session
 

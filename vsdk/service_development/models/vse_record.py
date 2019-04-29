@@ -4,11 +4,11 @@ from django.utils.translation import ugettext
 
 from vsdk.service_development.models import VoiceLabel
 from .vs_element import VoiceServiceElement
-from .user_input import UserInputCategory
+from .farmer_input import FarmerInputCategory
 
 class Record(VoiceServiceElement):
     """
-        An element that records user input to a sound file.
+        An element that records farmer input to a sound file.
     """
 
     _urls_name = 'service-development:record'
@@ -16,7 +16,7 @@ class Record(VoiceServiceElement):
     not_heard_voice_label = models.ForeignKey(
         VoiceLabel,
         verbose_name = _('No response voice label'),
-        help_text = _('The voice label that is played when the system does not recognize the user saying anything. Example: "We did not hear anything, please speak your message."'),
+        help_text = _('The voice label that is played when the system does not recognize the farmer saying anything. Example: "We did not hear anything, please speak your message."'),
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -26,7 +26,7 @@ class Record(VoiceServiceElement):
     repeat_voice_label = models.ForeignKey(
         VoiceLabel,
         verbose_name = _('Repeat input voice label'),
-        help_text = _('The voice label that is played before the system repeats the user input. Example: "Your message is:"'),
+        help_text = _('The voice label that is played before the system repeats the farmer input. Example: "Your message is:"'),
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -37,7 +37,7 @@ class Record(VoiceServiceElement):
     ask_confirmation_voice_label = models.ForeignKey(
         VoiceLabel,
         verbose_name = _('Ask for confirmation voice label'),
-        help_text = _('The voice label that asks the user to confirm their pinput. Example: "Are you satisfied with your recording? Press 1 to confirm, or press 2 to retry."'),
+        help_text = _('The voice label that asks the farmer to confirm their pinput. Example: "Are you satisfied with your recording? Press 1 to confirm, or press 2 to retry."'),
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -46,14 +46,14 @@ class Record(VoiceServiceElement):
     final_voice_label = models.ForeignKey(
         VoiceLabel,
         verbose_name = _('Final voice label'),
-        help_text = _('The voice label that is played when the user has completed the recording process. Example: "Thank you for your message! The message has been stored successfully."'),
+        help_text = _('The voice label that is played when the farmer has completed the recording process. Example: "Thank you for your message! The message has been stored successfully."'),
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
         related_name='final_voice_label',
     )
     input_category = models.ForeignKey(
-        UserInputCategory,
+        FarmerInputCategory,
         verbose_name = _('Input category'),
         help_text = _('The category under which the input will be stored in the system.'),
         on_delete=models.SET_NULL,

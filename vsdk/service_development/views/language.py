@@ -24,7 +24,7 @@ class LanguageSelection(TemplateView):
 
     def get(self, request, session_id):
         """
-        Asks the user to select one of the supported languages.
+        Asks the farmer to select one of the supported languages.
         """
         session = get_object_or_404(CallSession, pk = session_id)
         voice_service = session.service

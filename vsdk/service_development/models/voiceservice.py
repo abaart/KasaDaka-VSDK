@@ -20,7 +20,7 @@ class VoiceService(models.Model):
     creation_date = models.DateTimeField(_('Date created'), auto_now_add = True)
     modification_date = models.DateTimeField(_('Date last modified'), auto_now = True)
     active = models.BooleanField(_('Voice service active'),
-            help_text = _("A voice service that is active is accessible to users. Marking this service as active (which is only possible when it is valid) will activate this service and disactivate all other services."))
+            help_text = _("A voice service that is active is accessible to farmers. Marking this service as active (which is only possible when it is valid) will activate this service and disactivate all other services."))
     _start_element = models.ForeignKey(            
             VoiceServiceElement,
             related_name='%(app_label)s_%(class)s_related',
@@ -31,9 +31,9 @@ class VoiceService(models.Model):
     registration_choices = [('required', _('required (service does not function without Caller ID!)')),
                             ('preferred', _('preferred')),
                             ('disabled', _('disabled'))]
-    registration = models.CharField(_('User registration'),max_length = 15, blank = False, choices = registration_choices)
-    registration_language = models.BooleanField(_('Register Language preference'), help_text= _("The preferred language will be asked and stored during the user registration process"), default = True)
-    registration_name = models.BooleanField(_('Register spoken name'), help_text = _("The user will be asked to speak their name as part of the user registration process"), default = False)
+    registration = models.CharField(_('Farmer registration'),max_length = 15, blank = False, choices = registration_choices)
+    registration_language = models.BooleanField(_('Register Language preference'), help_text= _("The preferred language will be asked and stored during the farmer registration process"), default = True)
+    registration_name = models.BooleanField(_('Register spoken name'), help_text = _("The farmer will be asked to speak their name as part of the farmer registration process"), default = False)
 
     supported_languages = models.ManyToManyField(Language, blank = True,verbose_name=_('Supported languages'))
 
@@ -68,17 +68,17 @@ class VoiceService(models.Model):
 
     @property
     def registration_required(self):
-        "Returns True if user registration is required"
+        "Returns True if farmer registration is required"
         return self.registration == 'required'
 
     @property
     def registration_preferred_or_required(self):
-        "Returns True if user registration is preferred or required"
+        "Returns True if farmer registration is preferred or required"
         return (self.registration == 'preferred' or self.registration == 'required')
 
     @property
     def registration_disabled(self):
-        "Returns True if user registration is disabled"
+        "Returns True if farmer registration is disabled"
         return self.registration == 'disabled'
     
     
