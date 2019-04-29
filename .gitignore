@@ -94,3 +94,14 @@ ENV/
 *db.sqlite3
 #vsdk/settings.py
 *.DS_Store
+
+*.iml
+.idea/
+*.pyc
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/

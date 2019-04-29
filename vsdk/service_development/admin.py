@@ -182,6 +182,14 @@ class SpokenUserInputAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = ('seed', 'farmer', 'pub_date', 'was_published_recently')
+    fieldsets = [
+        ('Seed information', {'fields': ['seed', 'description', 'quantity', 'price', 'pub_date']}),
+        ('Farmer information', {'fields': ['farmer']}),
+    ]
+    list_filter = ['pub_date']
+    search_fields = ['seed']
 
 
 # Register your models here.
@@ -196,3 +204,4 @@ admin.site.register(VoiceLabel, VoiceLabelAdmin)
 admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
 admin.site.register(UserInputCategory)
 admin.site.register(Record)
+admin.site.register(Advertisement, AdvertisementAdmin)
