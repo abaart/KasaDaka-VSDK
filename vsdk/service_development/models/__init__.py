@@ -7,5 +7,6 @@ from .vse_choice import *
 from .vse_message import *
 from .vse_record import *
 from .farmer_input import *
+from .seed import *
 from .advertisement import *
-
+from .vse_key_input import *

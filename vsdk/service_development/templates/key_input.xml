@@ -1,0 +1,22 @@
+{% extends "base.xml" %}
+{#
+plays back a key input, then sends the farmer to the redirect
+#}
+
+{% block content %}
+<form id="key_input">
+    <field name="key_input_field" type="number">
+		<prompt>
+			<audio src="{{ voice_label }}"/>
+        </prompt>
+
+        {# when there has been input, redirect the user to the corresponding URL #}
+        <filled>
+            <assign name="key_input_value" expr="key_input_field"/>
+            <goto next="{{ redirect_url }}"/>
+        </filled>
+    </field>
+</form>
+
+{% endblock %}
+

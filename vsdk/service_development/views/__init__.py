@@ -5,3 +5,4 @@ from .vse_record import *
 from .farmer import *
 from .voiceservice import *
 from .language import *
+from .vse_key_input import *

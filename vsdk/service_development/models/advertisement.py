@@ -7,14 +7,14 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from enum import Enum
 
-from . import Farmer
+from . import Farmer, Seed
 
 class Advertisement(models.Model):
     """
     Advertisement that belongs to a farmer
     """
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
-    seed = models.CharField(max_length=200)
+    seed = models.ForeignKey(Seed, on_delete=models.CASCADE)
     description = models.TextField(default="", blank=True)
     quantity = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
     price = models.PositiveIntegerField(validators=[MaxValueValidator(999999999)])
@@ -25,7 +25,7 @@ class Advertisement(models.Model):
         unique_together = (('farmer', 'seed'),)
 
     def __str__(self):
-        return self.seed
+        return self.seed.seed_name
 
     def was_published_recently(self):
         now = timezone.now()
