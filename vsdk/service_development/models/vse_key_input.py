@@ -6,7 +6,6 @@ from .vs_element import VoiceServiceElement
 
 class KeyInput(VoiceServiceElement):
     _urls_name = 'service-development:key-input'
-    input = models.IntegerField(_('Input'), default = 0, blank = True)
     _redirect = models.ForeignKey(
             VoiceServiceElement,
             on_delete = models.SET_NULL,
@@ -45,8 +44,5 @@ class KeyInput(VoiceServiceElement):
         errors.extend(super(KeyInput, self).validator())
         if not self._redirect:
             errors.append(ugettext('No redirect in key input element: "%s"')%str(self))
-        elif not self.input:
-            if self._redirect.id == self.id:
-                errors.append(ugettext('There is a loop in %s')%str(self))
 
         return errors

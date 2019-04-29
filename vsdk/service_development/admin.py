@@ -85,9 +85,6 @@ class ChoiceOptionsInline(admin.TabularInline):
 class ChoiceAdmin(VoiceServiceElementAdmin):
     inlines = [ChoiceOptionsInline]
 
-class KeyInputAdmin(VoiceServiceElementAdmin):
-    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect','input']})]
-
 class VoiceLabelInline(admin.TabularInline):
     model = VoiceFragment
     extra = 2
@@ -169,8 +166,8 @@ class CallSessionAdmin(admin.ModelAdmin):
 class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Message Presentation'), {'fields': ['_redirect','final_element']})]
 
-class SeedPresentationAdmin(VoiceServiceElementAdmin):
-    fieldsets = VoiceServiceElementAdmin.fieldsets
+class KeyInputAdmin(VoiceServiceElementAdmin):
+    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect']})]
 
 class FarmerAdmin(admin.ModelAdmin):
     list_filter = ['service','language','caller_id']
@@ -201,7 +198,7 @@ class AdvertisementAdmin(admin.ModelAdmin):
 admin.site.register(VoiceService, VoiceServiceAdmin)
 admin.site.register(MessagePresentation, MessagePresentationAdmin)
 admin.site.register(Choice, ChoiceAdmin)
-# admin.site.register(KeyInput)
+admin.site.register(KeyInput, KeyInputAdmin)
 admin.site.register(CallSession, CallSessionAdmin)
 admin.site.register(Farmer, FarmerAdmin)
 admin.site.register(Language)
@@ -209,5 +206,5 @@ admin.site.register(VoiceLabel, VoiceLabelAdmin)
 admin.site.register(FarmerInputCategory)
 admin.site.register(Record)
 admin.site.register(Advertisement, AdvertisementAdmin)
-admin.site.register(Seed, SeedPresentationAdmin)
+admin.site.register(Seed)
 admin.site.register(SpokenFarmerInput, SpokenFarmerInputAdmin)
