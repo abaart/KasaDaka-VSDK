@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 
-from ..models import Farmer, CallSession, Language
+from ..models import Farmer, CallSession
 
 from . import base
 

@@ -1,5 +1,6 @@
 from .base import *
 from .vse_choice import *
+from .vse_key_input import *
 from .vse_message import *
 from .vse_record import *
 from .user import *

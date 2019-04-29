@@ -52,7 +52,6 @@
         </field>
     {% endif %}
 
-
     <block>
         <prompt>
             <audio src="{{final_voice_label}}"/>

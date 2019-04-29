@@ -1,0 +1,19 @@
+{% extends "base.xml" %}
+{# Lets the user give input using the number keys on the phone #}
+
+{% block content %}
+<form id="{{ key_input.name|slugify }}">
+    <field name="key_input" type="number">
+		<prompt>
+			<audio src="{{ key_input_voice_label }}"/>
+        </prompt>
+
+        {# when there has been input, redirect the user to the corresponding URL #}
+        <filled>
+            <assign name="{{ key_input.name }}" expr="'{{ key_input.id }}'"/>
+            <goto next="{{ key_input_redirect_url }}"/>
+        </filled>
+    </field>
+</form>
+
+{% endblock %}

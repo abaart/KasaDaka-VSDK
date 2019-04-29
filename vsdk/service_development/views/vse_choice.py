@@ -30,13 +30,14 @@ def choice_generate_context(choice_element, session):
         """
     choice_options =  choice_element.choice_options.all()
     language = session.language
-    context = {'choice':choice_element,
-                'choice_voice_label':choice_element.get_voice_fragment_url(language),
-                'choice_options': choice_options,
-                'choice_options_voice_labels':choice_options_resolve_voice_labels(choice_options, language),
-                    'choice_options_redirect_urls': choice_options_resolve_redirect_urls(choice_options,session),
-                    'language': language,
-                    }
+    context = {
+        'choice':choice_element,
+        'choice_voice_label':choice_element.get_voice_fragment_url(language),
+        'choice_options': choice_options,
+        'choice_options_voice_labels':choice_options_resolve_voice_labels(choice_options, language),
+        'choice_options_redirect_urls': choice_options_resolve_redirect_urls(choice_options,session),
+        'language': language,
+    }
     return context
 
 def choice(request, element_id, session_id):

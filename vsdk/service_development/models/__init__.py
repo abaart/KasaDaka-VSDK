@@ -9,3 +9,4 @@ from .vse_record import *
 from .user_input import *
 from .farmer import *
 from .advertisement import *
+from .vse_key_input import *

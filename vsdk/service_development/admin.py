@@ -85,14 +85,15 @@ class ChoiceOptionsInline(admin.TabularInline):
 class ChoiceAdmin(VoiceServiceElementAdmin):
     inlines = [ChoiceOptionsInline]
 
+class KeyInputAdmin(VoiceServiceElementAdmin):
+    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect','input']})]
+
 class VoiceLabelInline(admin.TabularInline):
     model = VoiceFragment
     extra = 2
     fk_name = 'parent'
     fieldsets = [(_('General'),    {'fields' : [ 'language', 'is_valid', 'audio', 'audio_file_player']})]
     readonly_fields = ('audio_file_player','is_valid')
-
-
 
 class VoiceLabelByVoiceServicesFilter(admin.SimpleListFilter):
     # Human-readable title which will be displayed in the
@@ -189,12 +190,13 @@ class SpokenUserInputAdmin(admin.ModelAdmin):
 admin.site.register(VoiceService, VoiceServiceAdmin)
 admin.site.register(MessagePresentation, MessagePresentationAdmin)
 admin.site.register(Choice, ChoiceAdmin)
+# admin.site.register(KeyInput)
 admin.site.register(CallSession, CallSessionAdmin)
 admin.site.register(KasaDakaUser, KasaDakaUserAdmin)
 admin.site.register(Language)
 admin.site.register(VoiceLabel, VoiceLabelAdmin)
-admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
-admin.site.register(UserInputCategory)
-admin.site.register(Record)
-admin.site.register(Farmer)
+# admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
+# admin.site.register(UserInputCategory)
+# admin.site.register(Record)
+admin.site.register(Farmer, KasaDakaUserAdmin)
 admin.site.register(Advertisement)

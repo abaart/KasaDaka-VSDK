@@ -1,7 +1,7 @@
 {% extends "base.xml" %}
 {% block content%}
 <form id="language_form">
-	<field name="select_language">
+	<field name="language_field">
 		<prompt>
             <!--Greeting-->
 			{% for language in languages %}
