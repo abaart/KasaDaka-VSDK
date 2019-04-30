@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
-from . import Farmer
+from . import Farmer, Advertisement
 from . import VoiceService, VoiceServiceElement
 from . import Language
 
@@ -17,6 +17,7 @@ class CallSession(models.Model):
     farmer = models.ForeignKey(Farmer, on_delete = models.SET_NULL, null = True, blank = True)
     caller_id = models.CharField(_('Caller ID'),max_length = 100, blank = True, null = True)
     service = models.ForeignKey(VoiceService, on_delete = models.SET_NULL, null = True)
+    advertisement = models.ForeignKey(Advertisement, on_delete=models.SET_NULL, null=True)
     _language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
 
     class Meta:
@@ -62,6 +63,11 @@ class CallSession(models.Model):
 
     def link_to_farmer(self, farmer):
         self.farmer = farmer
+        self.save()
+        return self
+
+    def link_to_advertisement(self, advertisement):
+        self.advertisement = advertisement
         self.save()
         return self
 

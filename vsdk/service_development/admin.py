@@ -184,9 +184,9 @@ class SpokenFarmerInputAdmin(admin.ModelAdmin):
         return False
 
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('seed', 'farmer', 'pub_date', 'was_published_recently')
+    list_display = ('seed', 'farmer', 'was_published_recently')
     fieldsets = [
-        ('Seed information', {'fields': ['seed', 'description', 'quantity', 'price', 'pub_date']}),
+        ('Seed information', {'fields': ['seed', 'description', 'quantity', 'price']}),
         ('Farmer information', {'fields': ['farmer']}),
     ]
     list_filter = ['pub_date']

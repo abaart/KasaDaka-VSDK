@@ -14,7 +14,7 @@ class Advertisement(models.Model):
     Advertisement that belongs to a farmer
     """
     farmer = models.ForeignKey(Farmer, on_delete=models.SET_NULL, null=True)
-    seed = models.ForeignKey(Seed,on_delete = models.SET_NULL, blank=True, null=True)
+    seed = models.ForeignKey(Seed,on_delete = models.SET_NULL, blank=True, null=True, default=1)
     description = models.TextField(default="", blank=True)
     quantity = models.PositiveIntegerField(validators=[MaxValueValidator(99999)], null = True)
     price = models.PositiveIntegerField(validators=[MaxValueValidator(999999999)], null = True)
