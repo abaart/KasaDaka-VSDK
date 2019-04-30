@@ -37,29 +37,28 @@ def post(request, session_id):
     """
     Saves the key input to the session
     """
-    if 'redirect_url' in request.POST:
-        redirect_url = request.POST['redirect_url']
-    else: raise ValueError('Incorrect request, redirect_url not set')
-    if 'key_input_value' not in request.POST:
-        raise ValueError('Incorrect request, input value not set')
-
-    session = get_object_or_404(CallSession, pk = session_id)
+    session = get_object_or_404(CallSession, pk=session_id)
     key_input = request.POST['key_input_value']
-    advertisement = Advertisement(quantity=key_input, price=0, pub_date=datetime)
+    advertisement = Advertisement(quantity=key_input)
     advertisement.save()
-
+    
+    session.link_to_advertisement(advertisement)
     session.record_step(None, "Value input, %s" % key_input)
-
-    print(HttpResponseRedirect(redirect_url))
-
-    return HttpResponseRedirect(redirect_url)
 
 
 def key_input(request, element_id, session_id):
     print("Request method: ", request.method)
 
     if request.method == "POST":
+        if 'redirect_url' in request.POST:
+            redirect_url = request.POST['redirect_url']
+        else: raise ValueError('Incorrect request, redirect_url not set')
+        if 'key_input_value' not in request.POST:
+            raise ValueError('Incorrect request, input value not set')
+
         post(request, session_id)
+
+        return HttpResponseRedirect(redirect_url)
 
     elif request.method == "GET":
         key_input_element = get_object_or_404(KeyInput, pk=element_id)
