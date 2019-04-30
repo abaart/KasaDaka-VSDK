@@ -41,7 +41,7 @@ def post(request, session_id):
     key_input = request.POST['key_input_value']
     advertisement = Advertisement(quantity=key_input)
     advertisement.save()
-    
+
     session.link_to_advertisement(advertisement)
     session.record_step(None, "Value input, %s" % key_input)
 
