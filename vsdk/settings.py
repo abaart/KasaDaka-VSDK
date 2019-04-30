@@ -31,7 +31,7 @@ SECRET_KEY = 'tk2(l(00&kfe7j97j$dvgz&b6r!kk_zbse1(9w*eoc$bcwu773'
 ##########
 #Use True on your local PC, False on Heroku!!
 ########
-#DEBUG = True
+# DEBUG = True
 
 DEBUG = False
 

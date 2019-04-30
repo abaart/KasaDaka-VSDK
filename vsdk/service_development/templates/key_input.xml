@@ -1,0 +1,29 @@
+{% extends "base.xml" %}
+{# Lets the user give input using the number keys on the phone #}
+
+{% block content %}
+<form id="key_input">
+    <field name="key_input_field" type="number">
+		<prompt>
+			<audio src="{{ voice_label }}"/>
+        </prompt>
+
+        {# when there has been input, redirect the user to the corresponding URL #}
+        <filled>
+            <assign name="key_input_value" expr="key_input_field"/>
+            <goto next="submit_form"/>
+        </filled>
+    </field>
+</form>
+
+<form id="submit_form">
+    <block>
+        {# include the variables in the dictionary 'pass_on_variables' as POST variables #}
+        {% for key, value in pass_on_variables.items %}
+        <assign name="{{ key }}" expr="'{{ value }}'"/>
+        {% endfor %}
+        <submit next="{{ redirect_url }}" method="post" namelist="key_input_value {% for key, value in pass_on_variables.items %} {{ key }} {% endfor %}"/>
+    </block>
+</form>
+
+{% endblock %}

@@ -20,6 +20,7 @@ class VoiceLabel(models.Model):
 
     def is_valid(self):
         return len(self.validator()) == 0
+
     is_valid.boolean = True
     is_valid.short_description = _('Is valid')
 
@@ -51,7 +52,7 @@ class Language(models.Model):
             on_delete = models.PROTECT,
             verbose_name = _('Select language voice label'),
             related_name = 'language_select_language',
-            help_text = _("A message requesting the user to select a language"))
+            help_text = _("A message requesting the farmer to select a language"))
     pre_choice_option = models.ForeignKey('VoiceLabel',
             on_delete = models.PROTECT,
             verbose_name = _('Pre-Choice Option voice label'),

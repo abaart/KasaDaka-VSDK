@@ -4,11 +4,11 @@ from django.utils.translation import ugettext
 
 from .vs_element import VoiceServiceElement
 
-class MessagePresentation(VoiceServiceElement):
+class KeyInput(VoiceServiceElement):
     """
     An element that presents a Voice Label to the farmer.
     """
-    _urls_name = 'service-development:message-presentation'
+    _urls_name = 'service-development:key-input'
     final_element = models.BooleanField(_('This element will terminate the call'),default = False)
     _redirect = models.ForeignKey(
             VoiceServiceElement,
@@ -17,10 +17,10 @@ class MessagePresentation(VoiceServiceElement):
             blank = True,
             related_name='%(app_label)s_%(class)s_related',
             verbose_name=_('Redirect element'),
-            help_text = _("The element to redirect to after the message has been played."))
+            help_text = _("The element to redirect to after the key_input has been played."))
 
     class Meta:
-        verbose_name = _('Message Presentation Element')
+        verbose_name = _('Key input Element')
 
     @property
     def redirect(self):
@@ -31,11 +31,11 @@ class MessagePresentation(VoiceServiceElement):
         """
         if self._redirect :
             return VoiceServiceElement.objects.get_subclass(id = self._redirect.id)
-        else: 
+        else:
             return None
 
     def __str__(self):
-        return _("Message: ") + self.name
+        return _("Key Input: ") + self.name
 
     def is_valid(self):
         return len(self.validator()) == 0
@@ -44,12 +44,11 @@ class MessagePresentation(VoiceServiceElement):
 
     def validator(self):
         errors = []
-        errors.extend(super(MessagePresentation, self).validator())
+        errors.extend(super(KeyInput, self).validator())
         if not self.final_element and not self._redirect:
-            errors.append(ugettext('Message %s does not have a redirect element and is not a final element')%self.name)
+            errors.append(ugettext('Key_input %s does not have a redirect element and is not a final element')%self.name)
         elif not self.final_element:
             if self._redirect.id == self.id:
                 errors.append(ugettext('There is a loop in %s')%str(self))
-
 
         return errors

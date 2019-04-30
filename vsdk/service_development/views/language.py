@@ -8,6 +8,7 @@ from ..models import CallSession, VoiceService, Language
 class LanguageSelection(TemplateView):
 
     def render_language_selection_form(self, request, session, redirect_url):
+        print("redirect_url: ", redirect_url)
         languages = session.service.supported_languages.all()
 
         # This is the redirect URL to POST the language selected
@@ -24,7 +25,7 @@ class LanguageSelection(TemplateView):
 
     def get(self, request, session_id):
         """
-        Asks the user to select one of the supported languages.
+        Asks the farmer to select one of the supported languages.
         """
         session = get_object_or_404(CallSession, pk = session_id)
         voice_service = session.service

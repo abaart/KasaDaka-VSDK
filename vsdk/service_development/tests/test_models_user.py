@@ -2,7 +2,7 @@ import pytest
 from mixer.backend.django import mixer
 pytestmark = pytest.mark.django_db
 
-from ..models.user import lookup_kasadaka_user_by_caller_id
+from ..models.farmer import lookup_farmer_by_caller_id
 
 
 class TestKasaDakaUser:
@@ -30,7 +30,7 @@ class TestKasaDakaUser:
     def test_lookup_by_caller_id(self):
 
         
-        assert lookup_kasadaka_user_by_caller_id("1","1") == None
+        assert lookup_farmer_by_caller_id("1", "1") == None
         
         service = mixer.blend('service_development.VoiceService')
         user = mixer.blend('service_development.KasaDakaUser',
@@ -38,9 +38,9 @@ class TestKasaDakaUser:
                 first_name = "",
                 last_name = "",
                 service = service)
-        assert lookup_kasadaka_user_by_caller_id(self.caller_id,service) == user
-        assert lookup_kasadaka_user_by_caller_id(None,None) == None
-        assert lookup_kasadaka_user_by_caller_id("1",None) == None
-        assert lookup_kasadaka_user_by_caller_id(None, service) == None
+        assert lookup_farmer_by_caller_id(self.caller_id, service) == user
+        assert lookup_farmer_by_caller_id(None, None) == None
+        assert lookup_farmer_by_caller_id("1", None) == None
+        assert lookup_farmer_by_caller_id(None, service) == None
         
 

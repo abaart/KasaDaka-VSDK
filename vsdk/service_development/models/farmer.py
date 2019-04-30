@@ -9,9 +9,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 from . import Language
 from . import VoiceService
 
-class KasaDakaUser(models.Model):
+class Farmer(models.Model):
     """
-    User that belongs to a Voice Service on this system
+    Farmer that belongs to a Voice Service on this system
     """
     caller_id = models.CharField(_('Phone number'),max_length=100, unique = True)
     #phone_number = PhoneNumberField()
@@ -20,10 +20,12 @@ class KasaDakaUser(models.Model):
     creation_date = models.DateTimeField(_('Date created'),auto_now_add = True)
     modification_date = models.DateTimeField(_('Date last modified'),auto_now = True)
     language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
+    place = models.CharField(_('Place'), max_length=100, blank = True)
+    region = models.CharField(_('Region'), max_length=100, blank = True)
     service = models.ForeignKey(VoiceService, on_delete = models.CASCADE)
 
     class Meta:
-        verbose_name = _('KasaDaka User')
+        verbose_name = _('Farmer')
 
     def __str__(self):
         if not (self.first_name or self.last_name):
@@ -32,15 +34,15 @@ class KasaDakaUser(models.Model):
             return "%s %s (%s)" % (self.first_name, self.last_name, self.caller_id)
 
 
-def lookup_kasadaka_user_by_caller_id(caller_id, service):
+def lookup_farmer_by_caller_id(caller_id, service):
     """
-    If user with caller_id for current voice_service exists, returns User object.
-    If user does not exist or caller_id is None, returns None.
+    If farmer with caller_id for current voice_service exists, returns Farmer object.
+    If farmer does not exist or caller_id is None, returns None.
     """
     if caller_id:
         try:
-            return KasaDakaUser.objects.get(caller_id = caller_id,
+            return Farmer.objects.get(caller_id = caller_id,
                                       service = service)
-        except KasaDakaUser.DoesNotExist:
+        except Farmer.DoesNotExist:
             return None
     return None

@@ -1,15 +1,12 @@
 {% extends "base.xml" %}
 {% block content%}
-<form id="language_form">
-	<field name="language_field">
+<form id="seed_form">
+	<field name="seed_field">
 		<prompt>
-            <!--Greeting-->
-			{% for language in languages %}
-                <audio src="{{ language.get_interface_voice_label_url_dict.voice_label }}"/>
-			{% endfor %}
+			{<audio src="{{ language.get_interface_voice_label_url_dict.voice_label }}"/>
 
-            <!--Language Selection-->
-            {% for language in languages %}
+            <!--Seed Selection-->
+            {% for seed in seeds %}
 			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
                 <audio src="{{ language.get_interface_voice_label_url_dict.voice_label }}"/>
                 <audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
@@ -20,7 +17,7 @@
         <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
             <rule id="MYRULE" scope = "public">
                 <one-of>
-                    {% for language in languages %}
+                    {% for seed in seeds %}
                         <item>{{ forloop.counter }}</item>
                     {% endfor %}
                 </one-of>
@@ -28,13 +25,13 @@
         </grammar>
         {# when there has been input, save the corresponding URI in the given variable #}
         <filled>
-            {% for language in languages %}
+            {% for seed in seeds %}
                 {% if forloop.counter == 1 %}
-                    <if cond="language_field == '{{ forloop.counter }}'">
-		            <assign name="language_id" expr="'{{ language.id }}'"/>
+                    <if cond="seed_field == '{{ forloop.counter }}'">
+		            <assign name="seed_id" expr="'{{ seed.id }}'"/>
                 {% else %}
-                    <elseif cond="language_field == '{{ forloop.counter }}'" />
-                    <assign name="language_id" expr="'{{ language.id }}'"/>
+                    <elseif cond="seed_field == '{{ forloop.counter }}'" />
+                    <assign name="seed_id" expr="'{{ seed.id }}'"/>
                 {% endif %}
             {% endfor %}
             <else/>
