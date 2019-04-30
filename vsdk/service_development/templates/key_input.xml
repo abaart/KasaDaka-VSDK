@@ -3,7 +3,7 @@
 
 {% block content %}
 <form id="key_input">
-    <field name="key_input_field" type="number">
+    <field name="key_input_field" type="digits?maxlength=10">
 		<prompt>
 			<audio src="{{ voice_label }}"/>
         </prompt>
