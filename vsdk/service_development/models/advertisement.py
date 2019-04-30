@@ -14,18 +14,21 @@ class Advertisement(models.Model):
     Advertisement that belongs to a farmer
     """
     farmer = models.ForeignKey(Farmer, on_delete=models.SET_NULL, null=True)
-    seed = models.ForeignKey(Seed,on_delete = models.SET_NULL, null = True)
+    seed = models.ForeignKey(Seed,on_delete = models.SET_NULL, blank=True, null=True)
     description = models.TextField(default="", blank=True)
-    quantity = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
-    price = models.PositiveIntegerField(validators=[MaxValueValidator(999999999)])
-    pub_date = models.DateTimeField(_('Date published'))
+    quantity = models.PositiveIntegerField(validators=[MaxValueValidator(99999)], null = True)
+    price = models.PositiveIntegerField(validators=[MaxValueValidator(999999999)], null = True)
+    pub_date = models.DateTimeField(_('Date published'), auto_now_add=True)
 
     class Meta:
-        unique_together = (('farmer', 'pub_date'),)
+        verbose_name = _('Advertisement')
         unique_together = (('farmer', 'seed'),)
 
     def __str__(self):
-        return self.seed.name
+        if self.farmer is not None and self.seed is not None:
+            return "%s %s (%s)" % (self.farmer.name, self.seed.name)
+        else:
+            return ""
 
     def was_published_recently(self):
         now = timezone.now()
