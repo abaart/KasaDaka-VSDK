@@ -11,7 +11,7 @@
         {# when there has been input, redirect the user to the corresponding URL #}
         <filled>
             <assign name="key_input_value" expr="key_input_field"/>
-            <goto next="submit_form"/>
+            <goto next="#submit_form"/>
         </filled>
     </field>
 </form>
