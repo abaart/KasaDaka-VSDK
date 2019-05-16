@@ -167,7 +167,7 @@ class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Message Presentation'), {'fields': ['_redirect','final_element']})]
 
 class KeyInputAdmin(VoiceServiceElementAdmin):
-    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect','final_element']})]
+    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect', 'save_element', 'save_option']})]
 
 class FarmerAdmin(admin.ModelAdmin):
     list_filter = ['service','language','caller_id']
@@ -186,7 +186,7 @@ class SpokenFarmerInputAdmin(admin.ModelAdmin):
 class AdvertisementAdmin(admin.ModelAdmin):
     list_display = ('seed', 'farmer', 'was_published_recently')
     fieldsets = [
-        ('Seed information', {'fields': ['seed', 'description', 'quantity', 'price']}),
+        ('Seed information', {'fields': ['seed', 'quantity']}),
         ('Farmer information', {'fields': ['farmer']}),
     ]
     list_filter = ['pub_date']
