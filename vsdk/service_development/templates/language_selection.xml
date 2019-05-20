@@ -5,7 +5,7 @@
 		<prompt>
             <!--Greeting-->
 			{% for language in languages %}
-                <audio src="{{ language.get_interface_voice_label_url_dict.voice_label }}"/>
+                <audio src="{{ language.get_interface_voice_label_url_dict.greeting }}"/>
 			{% endfor %}
 
             <!--Language Selection-->

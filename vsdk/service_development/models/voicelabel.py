@@ -53,6 +53,11 @@ class Language(models.Model):
             verbose_name = _('Select language voice label'),
             related_name = 'language_select_language',
             help_text = _("A message requesting the farmer to select a language"))
+    greeting = models.ForeignKey('VoiceLabel',
+            on_delete=models.PROTECT,
+            verbose_name=_('Greeting'),
+            related_name='language_greeting',
+            help_text=_("The fragment that is to be played at the beginning of the conversation"))
     pre_choice_option = models.ForeignKey('VoiceLabel',
             on_delete = models.PROTECT,
             verbose_name = _('Pre-Choice Option voice label'),
@@ -159,6 +164,7 @@ class Language(models.Model):
                 'select_language':self.select_language,
                 'pre_choice_option':self.pre_choice_option,
                 'post_choice_option':self.post_choice_option,
+                'greeting':self.greeting
                 }
         for k, v in interface_voice_labels.items():
             interface_voice_labels[k] = v.get_voice_fragment_url(self)
