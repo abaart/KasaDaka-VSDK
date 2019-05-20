@@ -8,18 +8,17 @@ from ..models import CallSession, VoiceService, Language
 class LanguageSelection(TemplateView):
 
     def render_language_selection_form(self, request, session, redirect_url):
-        print("redirect_url: ", redirect_url)
         languages = session.service.supported_languages.all()
 
         # This is the redirect URL to POST the language selected
-        redirect_url_POST = reverse('service-development:language-selection', args = [session.id])
+        redirect_url_POST = reverse('service-development:language-selection', args=[session.id])
 
         # This is the redirect URL for *AFTER* the language selection process
-        pass_on_variables = {'redirect_url' : redirect_url}
+        pass_on_variables = {'redirect_url': redirect_url}
 
-        context = {'languages' : languages,
-                   'redirect_url' : redirect_url_POST,
-                   'pass_on_variables' : pass_on_variables
+        context = {'languages': languages,
+                   'redirect_url': redirect_url_POST,
+                   'pass_on_variables': pass_on_variables
                    }
         return render(request, 'language_selection.xml', context, content_type='text/xml')
 
@@ -27,7 +26,7 @@ class LanguageSelection(TemplateView):
         """
         Asks the farmer to select one of the supported languages.
         """
-        session = get_object_or_404(CallSession, pk = session_id)
+        session = get_object_or_404(CallSession, pk=session_id)
         voice_service = session.service
         if 'redirect_url' in request.GET:
             redirect_url = request.GET['redirect_url']

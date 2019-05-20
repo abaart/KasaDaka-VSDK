@@ -20,8 +20,8 @@ class Farmer(models.Model):
     creation_date = models.DateTimeField(_('Date created'),auto_now_add = True)
     modification_date = models.DateTimeField(_('Date last modified'),auto_now = True)
     language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
-    place = models.CharField(_('Place'), max_length=100, blank = True)
-    region = models.CharField(_('Region'), max_length=100, blank = True)
+    commune = models.CharField(_('Commune'), max_length=100, blank = True)
+    village = models.CharField(_('Village'), max_length=100, blank = True)
     service = models.ForeignKey(VoiceService, on_delete = models.CASCADE)
 
     class Meta:

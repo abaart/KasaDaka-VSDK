@@ -167,7 +167,7 @@ class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Message Presentation'), {'fields': ['_redirect','final_element']})]
 
 class KeyInputAdmin(VoiceServiceElementAdmin):
-    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect','final_element']})]
+    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect', 'save_element', 'save_option']})]
 
 class FarmerAdmin(admin.ModelAdmin):
     list_filter = ['service','language','caller_id']
@@ -186,13 +186,22 @@ class SpokenFarmerInputAdmin(admin.ModelAdmin):
 class AdvertisementAdmin(admin.ModelAdmin):
     list_display = ('seed', 'farmer', 'was_published_recently')
     fieldsets = [
-        ('Seed information', {'fields': ['seed', 'description', 'quantity', 'price']}),
+        ('Seed information', {'fields': ['seed', 'quantity']}),
         ('Farmer information', {'fields': ['farmer']}),
     ]
     list_filter = ['pub_date']
     search_fields = ['seed']
 
+
 class SeedAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+class CommuneAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+class VillageAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 # Register your models here.
@@ -209,3 +218,5 @@ admin.site.register(FarmerInputCategory)
 admin.site.register(Record)
 admin.site.register(Advertisement, AdvertisementAdmin)
 admin.site.register(Seed, SeedAdmin)
+admin.site.register(Commune, CommuneAdmin)
+admin.site.register(Village, VillageAdmin)

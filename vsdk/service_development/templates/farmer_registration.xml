@@ -1,0 +1,90 @@
+{% extends "base.xml" %}
+{% block content%}
+<form id="farmer_registration_form">
+	<field name="commune_field">
+		<prompt>
+            <!--Commune Selection-->
+            {% for commune in communes %}
+			    <audio src="{{ commune.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+                <audio src="{{ commune.get_interface_voice_label_url_dict.voice_label }}"/>
+                <audio src="{{ commune.get_interface_voice_label_url_dict.post_choice_option }}"/>
+			    {% for number in commune.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
+			{% endfor %}
+		</prompt>
+
+        <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+            <rule id="MYRULE" scope = "public">
+                <one-of>
+                    {% for commune in communes %}
+                        <item>{{ forloop.counter }}</item>
+                    {% endfor %}
+                </one-of>
+            </rule>
+        </grammar>
+
+        {# when there has been input, save the corresponding URI in the given variable #}
+        <filled>
+            {% for commune in communes %}
+                {% if forloop.counter == 1 %}
+                    <if cond="commune_field == '{{ forloop.counter }}'">
+		            <assign name="commune_id" expr="'{{ commune.id }}'"/>
+                {% else %}
+                    <elseif cond="commune_field == '{{ forloop.counter }}'" />
+                    <assign name="commune_id" expr="'{{ commune.id }}'"/>
+                {% endif %}
+            {% endfor %}
+            <else/>
+            </if>
+        </filled>
+    </field>
+
+    <field name="village_field">
+		<prompt>
+            <!--Village Selection-->
+            {% for village in villages %}
+			    <audio src="{{ village.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+                <audio src="{{ village.get_interface_voice_label_url_dict.voice_label }}"/>
+                <audio src="{{ village.get_interface_voice_label_url_dict.post_choice_option }}"/>
+			    {% for number in village.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
+			{% endfor %}
+		</prompt>
+
+        <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+            <rule id="MYRULE" scope = "public">
+                <one-of>
+                    {% for village in villages %}
+                        <item>{{ forloop.counter }}</item>
+                    {% endfor %}
+                </one-of>
+            </rule>
+        </grammar>
+
+        {# when there has been input, save the corresponding URI in the given variable #}
+        <filled>
+            {% for village in villages %}
+                {% if forloop.counter == 1 %}
+                    <if cond="village_field == '{{ forloop.counter }}'">
+		            <assign name="village_id" expr="'{{ village.id }}'"/>
+                {% else %}
+                    <elseif cond="village_field == '{{ forloop.counter }}'" />
+                    <assign name="village_id" expr="'{{ village.id }}'"/>
+                {% endif %}
+            {% endfor %}
+            <else/>
+            </if>
+        </filled>
+    </field>
+
+    <block>
+        <goto next="#submit_form"/>
+    </block>
+</form>
+
+
+<form id="submit_form">
+    <block>
+        <submit next="{{ redirect_url }}" method="post" namelist="commune_id village_id"/>
+    </block>
+</form>
+
+{% endblock %}
