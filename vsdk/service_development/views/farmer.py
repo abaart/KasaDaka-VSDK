@@ -13,7 +13,7 @@ class FarmerRegistration(TemplateView):
         # This is the redirect URL to POST the language selected
         redirect_url = reverse('service-development:farmer-registration', args=[session.id])
 
-        if session.service.registration_language and session.language is None:
+        if session.language is None:
             return base.redirect_add_get_parameters('service-development:language-selection', session.id,
                     redirect_url=redirect_url)
 
@@ -58,6 +58,7 @@ class FarmerRegistration(TemplateView):
             farmer.language = session.language
 
         farmer.save()
+        session.advertisement.farmer = farmer
         session.link_to_farmer(farmer)
 
         session.record_step(None, "Registered as farmer: %s" %str(farmer))
