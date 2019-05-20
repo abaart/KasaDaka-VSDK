@@ -7,7 +7,17 @@ from ..models import Farmer, Commune, Village, CallSession, Language
 
 from . import base
 
+
 class FarmerRegistration(TemplateView):
+
+    def resolve_voice_labels(self, items, language):
+        """
+        Returns a list of voice labels belonging to the provided list of choice_options.
+        """
+        voice_labels = []
+        for item in items:
+            voice_labels.append(item.get_voice_fragment_url(language))
+        return voice_labels
 
     def render_farmer_registration_form(self, request, session):
         # This is the redirect URL to POST the language selected
@@ -17,16 +27,17 @@ class FarmerRegistration(TemplateView):
             return base.redirect_add_get_parameters('service-development:language-selection', session.id,
                     redirect_url=redirect_url)
 
+        language = session.language
         communes = Commune.objects.all()
         villages = Village.objects.all()
 
-        print(communes)
-        print(villages)
-
         context = {
             "redirect_url": redirect_url,
+            "language": language,
             'communes': communes,
-            'villages': villages
+            'villages': villages,
+            'commune_voice_labels':self.resolve_voice_labels(communes, language),
+            'village_voice_labels':self.resolve_voice_labels(villages, language),
         }
 
         return render(request, 'farmer_registration.xml', context, content_type='text/xml')

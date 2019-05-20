@@ -4,10 +4,10 @@
 	<field name="commune_field">
 		<prompt>
             <!--Commune Selection-->
-            {% for commune in communes %}
-			    <audio src="{{ commune.get_interface_voice_label_url_dict.pre_choice_option }}"/>
-                <audio src="{{ commune.get_interface_voice_label_url_dict.voice_label }}"/>
-                <audio src="{{ commune.get_interface_voice_label_url_dict.post_choice_option }}"/>
+            {% for commune_voice_label in commune_voice_labels %}
+			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+                <audio src="{{ commune_voice_label }}"/>
+                <audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
 			    {% for number in commune.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
 			{% endfor %}
 		</prompt>
@@ -41,10 +41,10 @@
     <field name="village_field">
 		<prompt>
             <!--Village Selection-->
-            {% for village in villages %}
-			    <audio src="{{ village.get_interface_voice_label_url_dict.pre_choice_option }}"/>
-                <audio src="{{ village.get_interface_voice_label_url_dict.voice_label }}"/>
-                <audio src="{{ village.get_interface_voice_label_url_dict.post_choice_option }}"/>
+            {% for village_voice_label in village_voice_labels %}
+			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+                <audio src="{{ village_voice_label }}"/>
+                <audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
 			    {% for number in village.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
 			{% endfor %}
 		</prompt>

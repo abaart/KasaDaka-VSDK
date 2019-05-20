@@ -199,10 +199,16 @@ class SeedAdmin(admin.ModelAdmin):
 
 class CommuneAdmin(admin.ModelAdmin):
     list_display = ['name']
+    fieldsets = [
+        ('General', {'fields': [ 'name', 'voice_label']})
+    ]
 
 
 class VillageAdmin(admin.ModelAdmin):
     list_display = ['name']
+    fieldsets = [
+        ('General', {'fields': [ 'name', 'voice_label']})
+    ]
 
 # Register your models here.
 
