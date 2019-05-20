@@ -20,9 +20,6 @@ class FarmerRegistration(TemplateView):
         communes = Commune.objects.all()
         villages = Village.objects.all()
 
-        print(communes)
-        print(villages)
-
         context = {
             "redirect_url": redirect_url,
             'communes': communes,
@@ -58,7 +55,11 @@ class FarmerRegistration(TemplateView):
             farmer.language = session.language
 
         farmer.save()
-        session.advertisement.farmer = farmer
+
+        advertisement = session.advertisement
+        advertisement.farmer = farmer
+        advertisement.save()
+
         session.link_to_farmer(farmer)
 
         session.record_step(None, "Registered as farmer: %s" %str(farmer))

@@ -29,8 +29,6 @@ def key_input_generate_context(key_input_element, session, element_id):
         'pass_on_variables': pass_on_variables
     }
 
-    print("Context: ", context)
-
     return context
 
 
@@ -41,11 +39,10 @@ def post(request, session_id):
     session = get_object_or_404(CallSession, pk=session_id)
     key_input = request.POST['key_input_value']
     save_option = request.POST['save_option']
-    advertisement = Advertisement()
+    advertisement = session.advertisement
     setattr(advertisement, save_option, key_input)
     advertisement.save()
 
-    session.link_to_advertisement(advertisement)
     session.record_step(None, "Value input, %s" % key_input)
 
 

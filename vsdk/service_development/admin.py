@@ -184,7 +184,7 @@ class SpokenFarmerInputAdmin(admin.ModelAdmin):
         return False
 
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('farmer', 'seed', 'quantity')
+    list_display = ('id', 'farmer', 'seed', 'quantity')
     fieldsets = [
         ('Farmer information', {'fields': ['farmer']}),
         ('Advertisement information', {'fields': ['seed', 'quantity']})
