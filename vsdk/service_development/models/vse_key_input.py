@@ -17,7 +17,6 @@ class KeyInput(VoiceServiceElement):
             related_name='%(app_label)s_%(class)s_related',
             verbose_name=_('Redirect element'),
             help_text = _("The element to redirect to after the key_input has been played."))
-    save_element = models.BooleanField(_('Save the input'),default = False)
     save_option = models.CharField(_('Save to'), max_length = 100, blank = True)
 
     class Meta:
