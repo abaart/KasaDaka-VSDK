@@ -144,10 +144,10 @@ class CallSessionInline(admin.TabularInline):
     max_num = 0
 
 class CallSessionAdmin(admin.ModelAdmin):
-    list_display = ('start','farmer','service','caller_id','language')
-    list_filter = ('service','farmer','caller_id')
-    fieldsets = [(_('General'), {'fields' : ['service', 'farmer','caller_id','start','end','language']})]
-    readonly_fields = ('service','farmer','caller_id','start','end','language')
+    list_display = ('start', 'farmer', 'advertisement', 'service', 'caller_id', 'language')
+    list_filter = ('service', 'farmer', 'advertisement', 'caller_id')
+    fieldsets = [(_('General'), {'fields': ['service', 'farmer', 'advertisement', 'caller_id', 'start','end', 'language']})]
+    readonly_fields = ('service', 'farmer', 'advertisement', 'caller_id', 'start', 'end', 'language')
     inlines = [CallSessionInline]
     can_delete = True
 
@@ -184,13 +184,12 @@ class SpokenFarmerInputAdmin(admin.ModelAdmin):
         return False
 
 class AdvertisementAdmin(admin.ModelAdmin):
-    list_display = ('seed', 'farmer', 'was_published_recently')
+    list_display = ('farmer', 'seed', 'quantity')
     fieldsets = [
-        ('Seed information', {'fields': ['seed', 'quantity']}),
         ('Farmer information', {'fields': ['farmer']}),
+        ('Advertisement information', {'fields': ['seed', 'quantity']})
     ]
-    list_filter = ['pub_date']
-    search_fields = ['seed']
+    list_filter = ['seed', 'farmer']
 
 
 class SeedAdmin(admin.ModelAdmin):
