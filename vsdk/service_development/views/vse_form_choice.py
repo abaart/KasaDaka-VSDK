@@ -5,18 +5,17 @@ from django.contrib.contenttypes.models import ContentType
 from ..models import *
 
 
-def resolve_redirect_url(choice_element, session):
-    return choice_element.redirect.get_absolute_url(session)
-
-
 def resolve_voice_labels(choice_options, language):
     """
     Returns a list of voice labels belonging to the provided list of choice_options.
     """
-    voice_labels = []
-    for choice_option in choice_options:
-        voice_labels.append(choice_option.get_voice_fragment_url(language))
-    return voice_labels
+    if(choice_options):
+        voice_labels = []
+        for choice_option in choice_options:
+            voice_labels.append(choice_option.get_voice_fragment_url(language))
+        return voice_labels
+
+    return
 
 
 def get_model_from_any_app(model_name):
@@ -44,7 +43,6 @@ def choice_generate_context(choice_element, session, element_id):
     model = get_model_from_any_app(model_type)
     farmer = session.farmer
     advertisements = Advertisement.objects.filter(farmer=farmer)
-    print(advertisements.values(model_type))
 
     choice_elements = None
 
@@ -59,7 +57,7 @@ def choice_generate_context(choice_element, session, element_id):
     redirect_url_POST = reverse('service-development:form-choice', args=[element_id, session.id])
 
     pass_on_variables = {
-        'redirect_url': resolve_redirect_url(choice_element, session),
+        'redirect_url': choice_element.redirect.get_absolute_url(session),
         'action': action
     }
 
@@ -71,6 +69,8 @@ def choice_generate_context(choice_element, session, element_id):
         'redirect_url': redirect_url_POST,
         'pass_on_variables': pass_on_variables,
         'language': language,
+        'no_items_voice_label': choice_element.get_voice_fragment_url(language),
+        'go_back_redirect': reverse('service-development:voice-service', args= [element_id, session.id])
     }
     return context
 

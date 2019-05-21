@@ -86,7 +86,7 @@ class ChoiceAdmin(VoiceServiceElementAdmin):
     inlines = [ChoiceOptionsInline]
 
 class FormChoiceAdmin(VoiceServiceElementAdmin):
-    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Form Choice'), {'fields': ['_redirect', 'model_type', 'action_type']})]
+    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Form Choice'), {'fields': ['_redirect', 'model_type', 'action_type', 'no_items_voice_label']})]
 
 class VoiceLabelInline(admin.TabularInline):
     model = VoiceFragment

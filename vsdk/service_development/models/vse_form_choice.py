@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from .vs_element import VoiceServiceElement, VoiceServiceSubElement
+from .vs_element import VoiceServiceElement, VoiceServiceSubElement, VoiceLabel
 
 
 class FormChoice(VoiceServiceElement):
@@ -25,6 +25,13 @@ class FormChoice(VoiceServiceElement):
             null=True)
     model_type = models.CharField(verbose_name=_("Model for choices"), max_length=30, choices=MODEL_CHOICES)
     action_type = models.CharField(verbose_name=_("Action"), max_length=30, choices=ACTION_CHOICES)
+    no_items_voice_label = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('No items voice label'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+    )
 
     class Meta:
         verbose_name = _('Form Choice Element')
@@ -56,4 +63,10 @@ class FormChoice(VoiceServiceElement):
             errors.append(_('Form_Choice %s does not have a redirect element')%self.name)
 
         return errors
+
+    def get_voice_fragment_url(self, language):
+        """
+        Returns the url of the audio file of this element, in the given language.
+        """
+        return self.no_items_voice_label.get_voice_fragment_url(language)
 
