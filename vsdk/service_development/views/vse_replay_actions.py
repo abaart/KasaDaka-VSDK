@@ -22,12 +22,12 @@ def replay_actions_generate_context(replay_actions_element,session):
     made_no_new_changes_to_your_advertisements = replay_actions_element.made_no_new_changes_to_your_advertisements.get_voice_fragment_url(language)
     replay_for = replay_actions_element.replay_for.get_voice_fragment_url(language)
     number = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-    replay_action_create = session.replay_action_create
-    replay_action_update = session.replay_action_update
-    replay_action_remove = session.replay_action_remove
-    amount_create = getattr(language, number[int(len(replay_action_create))]).get_voice_fragment_url(language)
-    amount_update = getattr(language, number[int(len(replay_action_update))]).get_voice_fragment_url(language)
-    amount_remove = getattr(language, number[int(len(replay_action_remove))]).get_voice_fragment_url(language)
+    replay_action_create = session.replay_action_create.all()
+    replay_action_update = session.replay_action_update.all()
+    replay_action_remove = session.replay_action_remove.all()
+    amount_create = getattr(language, number[replay_action_create.count()]).get_voice_fragment_url(language)
+    amount_update = getattr(language, number[replay_action_update.count()]).get_voice_fragment_url(language)
+    amount_remove = getattr(language, number[replay_action_remove.count()]).get_voice_fragment_url(language)
 
     context = {
                 'you_have':you_have,

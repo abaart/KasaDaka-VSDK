@@ -77,7 +77,7 @@ class ReplayActions(VoiceServiceElement):
             return None
 
     def __str__(self):
-        return 'Replay actions:' + self.name
+        return "%s" % self.name
 
     def is_valid(self):
         return len(self.validator()) == 0
