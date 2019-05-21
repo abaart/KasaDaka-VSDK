@@ -87,11 +87,15 @@ def post(request, session, model_type):
         setattr(advertisement, model_type, item)
         advertisement.save()
         session.link_to_advertisement(advertisement)
+        session.replay_action_create.add(advertisement)
     elif action == 'update':
         advertisement = Advertisement.objects.get(**{model_type: item})
         CallSession.objects.filter(id=session.id).update(advertisement=advertisement)
+        session.replay_action_update.add(advertisement)
     elif action == 'remove':
-        Advertisement.objects.filter(**{model_type: item}).delete()
+        advertisement = Advertisement.objects.filter(**{model_type: item})
+        session.replay_action_remove.add(advertisement)
+        advertisement.delete()
         CallSession.objects.filter(id=session.id).update(advertisement=None)
     return
 

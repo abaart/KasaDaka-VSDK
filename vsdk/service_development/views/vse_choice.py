@@ -37,7 +37,9 @@ def choice_generate_context(choice_element, element_id, session):
 
 
 def post(request, session):
-    Advertisement.objects.filter(farmer=session.farmer, seed=session.advertisement.seed).delete()
+    advertisement = Advertisement.objects.filter(farmer=session.farmer, seed=session.advertisement.seed)
+    session.replay_action_remove.add(advertisement)
+    advertisement.delete()
     CallSession.objects.filter(id=session.id).update(advertisement=None)
 
 

@@ -19,6 +19,9 @@ class CallSession(models.Model):
     service = models.ForeignKey(VoiceService, on_delete = models.SET_NULL, null = True)
     advertisement = models.ForeignKey(Advertisement, on_delete=models.SET_NULL, null=True)
     _language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
+    replay_action_create = models.ManyToManyField(Advertisement)
+    replay_action_update = models.ManyToManyField(Advertisement)
+    replay_action_delete = models.ManyToManyField(Advertisement)
 
     class Meta:
         verbose_name = _('Call Session')
