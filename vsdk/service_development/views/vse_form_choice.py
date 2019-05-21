@@ -51,7 +51,7 @@ def choice_generate_context(choice_element, session, element_id):
     elif (action == 'update' or action == 'remove') and advertisements:
         for item in advertisements.values(model_type):
             choice_elements = model.objects.filter(id=item[model_type])
-    else:
+    elif action == 'create':
         choice_elements = model.objects.all()
 
     language = session.language
