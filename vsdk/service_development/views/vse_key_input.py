@@ -47,8 +47,6 @@ def post(request, session_id):
 
 
 def key_input(request, element_id, session_id):
-    print("Request method: ", request.method)
-
     if request.method == "POST":
         if 'redirect_url' in request.POST:
             redirect_url = request.POST['redirect_url']
