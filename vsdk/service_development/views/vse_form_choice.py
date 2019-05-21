@@ -42,15 +42,17 @@ def choice_generate_context(choice_element, session, element_id):
     model_type = choice_element.model_type
     action = choice_element.action_type
     model = get_model_from_any_app(model_type)
+    farmer = session.farmer
+    advertisements = Advertisement.objects.filter(farmer=farmer)
+    print(advertisements.values(model_type))
 
     choice_elements = None
 
-    if action == 'create':
-        choice_elements = model.objects.all()
-    elif action == 'update' or action == 'remove':
-        # TODO: filter based on farmer
-        # choice_elements = Advertisement.objects.filter(farmer=farmer).select_related(model_type)
-        choice_elements = model.objects.all()
+    for item in advertisements.values(model_type):
+        if action == 'create':
+            choice_elements = model.objects.exclude(id=item[model_type])
+        elif action == 'update' or action == 'remove':
+            choice_elements = model.objects.filter(id=item[model_type])
 
     language = session.language
 
