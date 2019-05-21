@@ -39,9 +39,9 @@ def post(request, session_id):
     session = get_object_or_404(CallSession, pk=session_id)
     key_input = request.POST['key_input_value']
     save_option = request.POST['save_option']
-    advertisement = session.advertisement
-    setattr(advertisement, save_option, key_input)
-    advertisement.save()
+
+    advertisement = Advertisement.objects.filter(seed=session.advertisement.seed, farmer=session.advertisement.farmer)
+    advertisement.update(**{save_option: key_input})
 
     session.record_step(None, "Value input, %s" % key_input)
 

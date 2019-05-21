@@ -85,10 +85,10 @@ def post(request, session, model_type):
         session.link_to_advertisement(advertisement)
     elif action == 'update':
         advertisement = Advertisement.objects.get(**{model_type: item})
-        CallSession.objects.update(advertisement=advertisement)
+        CallSession.objects.filter(id=session.id).update(advertisement=advertisement)
     elif action == 'remove':
         Advertisement.objects.filter(**{model_type: item}).delete()
-        CallSession.objects.update(advertisement=None)
+        CallSession.objects.filter(id=session.id).update(advertisement=None)
     return
 
 
