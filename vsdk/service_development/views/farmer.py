@@ -70,10 +70,6 @@ class FarmerRegistration(TemplateView):
 
         farmer.save()
 
-        advertisement = session.advertisement
-        advertisement.farmer = farmer
-        advertisement.save()
-
         session.link_to_farmer(farmer)
 
         session.record_step(None, "Registered as farmer: %s" %str(farmer))
