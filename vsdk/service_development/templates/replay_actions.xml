@@ -1,0 +1,54 @@
+{% extends "base.xml" %}
+{% block content%}
+<form id="replay_actions">
+	<field name="replay_actions_field">
+		<prompt>
+            <!--Created-->
+            {% if replay_action_create %}
+            <audio src="{{ you_have }}"/>
+            <audio src="{{ created }}"/>
+            <audio src="{{ amount_create }}"/>
+            <audio src="{{ advertisements }}"/>
+			{% for item in replay_action_create %}
+                <audio src="{{ an_advertisement }}"/>
+                <audio src="{{ replay_for }}"/>
+                <audio src="{{ item.seed.name }}"/>
+            {% endfor %}
+            {% endif %}
+
+            <!--Updated-->
+            {% if replay_action_update %}
+            <audio src="{{ you_have }}"/>
+            <audio src="{{ updated }}"/>
+            <audio src="{{ amount_update }}"/>
+            <audio src="{{ advertisements }}"/>
+            {% for item in replay_action_update %}
+                <audio src="{{ an_advertisement }}"/>
+                <audio src="{{ replay_for }}"/>
+                <audio src="{{ item.seed.name }}"/>
+            {% endfor %}
+            {% endif %}
+
+            <!--Deleted-->
+            {% if replay_action_delete %}
+            <audio src="{{ you_have }}"/>
+            <audio src="{{ deleted }}"/>
+            <audio src="{{ amount_delete }}"/>
+            <audio src="{{ advertisements }}"/>
+            <audio src="{{ namely }}"/>
+            {% for item in replay_action_delete %}
+                <audio src="{{ item.seed.name }}"/>
+            {% endfor %}
+            {% endif %}
+
+            <!--No changes-->
+            {% if not replay_action_create and not replay_action_update and not replay_action_delete %}
+            <audio src="{{ you_have }}"/>
+            <audio src="{{ made_no_new_changes_to_your_advertisements }}"/>
+            {% endif %}
+		</prompt>
+        <goto next="{{ redirect_url }}"/>
+    </field>
+</form>
+
+{% endblock %}

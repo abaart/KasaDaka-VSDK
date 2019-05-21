@@ -167,7 +167,7 @@ class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Message Presentation'), {'fields': ['_redirect','final_element']})]
 
 class KeyInputAdmin(VoiceServiceElementAdmin):
-    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect', 'save_element', 'save_option']})]
+    fieldsets = VoiceServiceElementAdmin.fieldsets + [(_('Key Input Presentation'), {'fields': ['_redirect', 'save_option']})]
 
 class FarmerAdmin(admin.ModelAdmin):
     list_filter = ['service','language','caller_id']
@@ -225,3 +225,4 @@ admin.site.register(Advertisement, AdvertisementAdmin)
 admin.site.register(Seed, SeedAdmin)
 admin.site.register(Commune, CommuneAdmin)
 admin.site.register(Village, VillageAdmin)
+admin.site.register(ReplayActions)
