@@ -31,6 +31,10 @@ class Choice(VoiceServiceElement):
 
 
 class ChoiceOption(VoiceServiceSubElement):
+    ACTION_CHOICES = (
+        ('remove', 'Remove'),
+    )
+
     parent = models.ForeignKey(
             Choice,
             on_delete = models.CASCADE,
@@ -43,6 +47,7 @@ class ChoiceOption(VoiceServiceSubElement):
             related_name='%(app_label)s_%(class)s_redirect_related',
             blank = True,
             null = True)
+    action = models.CharField(verbose_name=_("Action"), max_length=30, choices=ACTION_CHOICES, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Voice Service')

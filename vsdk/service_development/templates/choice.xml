@@ -28,16 +28,29 @@
             {% for option_redirect in choice_options_redirect_urls %}
               {% if forloop.counter == 1 %}
               <if cond="choice == '{{ forloop.counter }}'">
-                  {% comment %} TODO hoe doe je een url opzoeken als je nog niet weet welke class object je naar refereert? {% endcomment %}
-              <goto next="{{ option_redirect }}"/>
+                  {% if removable %}
+                    <goto next="#submit_form"/>
+                    <assign name="redirect_url_post" expr="{{ option_redirect }}"/>
+                  {% else %}
+                    <goto next="{{ option_redirect }}"/>
+                  {% endif %}
               {% else %}
               <elseif cond="choice == '{{ forloop.counter }}'" />
-              <goto next="{{ option_redirect }}"/>
+                  {% if removable %}
+                    <goto next="#submit_form"/>
+                    <assign name="redirect_url_post" expr="{{ option_redirect }}"/>
+                  {% else %}
+                    <goto next="{{ option_redirect }}"/>
+                  {% endif %}
               {% endif %}
             {% endfor %}
             <else/>
             </if>
         </filled>
     </field>
+</form>
+
+<form id="submit_form">
+    <submit next="{{ redirect_url }}" method="post" namelist="redirect_url_post"/>
 </form>
 {% endblock %}
