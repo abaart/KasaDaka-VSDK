@@ -6,9 +6,7 @@ from .vs_element import VoiceServiceElement, VoiceServiceSubElement
 
 class FormChoice(VoiceServiceElement):
     MODEL_CHOICES = (
-        ('commune', 'Commune'),
         ('seed', 'Seed'),
-        ('village', 'Village')
     )
     ACTION_CHOICES = (
         ('create', 'Create'),
