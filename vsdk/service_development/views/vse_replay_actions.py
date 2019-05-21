@@ -15,7 +15,7 @@ def replay_actions_generate_context(replay_actions_element,session):
     you_have = replay_actions_element.you_have.get_voice_fragment_url(language)
     created = replay_actions_element.created.get_voice_fragment_url(language)
     updated = replay_actions_element.updated.get_voice_fragment_url(language)
-    deleted = replay_actions_element.deleted.get_voice_fragment_url(language)
+    removed = replay_actions_element.removed.get_voice_fragment_url(language)
     advertisements = replay_actions_element.advertisements.get_voice_fragment_url(language)
     an_advertisement = replay_actions_element.an_advertisement.get_voice_fragment_url(language)
     namely = replay_actions_element.namely.get_voice_fragment_url(language)
@@ -24,16 +24,16 @@ def replay_actions_generate_context(replay_actions_element,session):
     number = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
     replay_action_create = session.replay_action_create
     replay_action_update = session.replay_action_update
-    replay_action_delete = session.replay_action_delete
+    replay_action_remove = session.replay_action_remove
     amount_create = getattr(language, number[int(len(replay_action_create))]).get_voice_fragment_url(language)
     amount_update = getattr(language, number[int(len(replay_action_update))]).get_voice_fragment_url(language)
-    amount_delete = getattr(language, number[int(len(replay_action_delete))]).get_voice_fragment_url(language)
+    amount_remove = getattr(language, number[int(len(replay_action_remove))]).get_voice_fragment_url(language)
 
     context = {
                 'you_have':you_have,
                 'created': created,
                 'updated': updated,
-                'deleted': deleted,
+                'removed': removed,
                 'advertisements': advertisements,
                 'an_advertisement': an_advertisement,
                 'replay_for': replay_for,
@@ -42,10 +42,10 @@ def replay_actions_generate_context(replay_actions_element,session):
                 'replay_actions': replay_actions,
                 'replay_action_create': replay_action_create,
                 'replay_action_update': replay_action_update,
-                'replay_action_delete': replay_action_delete,
+                'replay_action_remove': replay_action_remove,
                 'amount_create': amount_create,
                 'amount_update': amount_update,
-                'amount_delete': amount_delete,
+                'amount_remove': amount_remove,
                 'redirect_url':redirect_url
     }
     return context

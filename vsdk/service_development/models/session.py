@@ -21,7 +21,7 @@ class CallSession(models.Model):
     _language = models.ForeignKey(Language,on_delete = models.SET_NULL, null = True)
     replay_action_create = []
     replay_action_update = []
-    replay_action_delete = []
+    replay_action_remove = []
 
     class Meta:
         verbose_name = _('Call Session')

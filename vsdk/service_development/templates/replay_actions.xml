@@ -29,20 +29,20 @@
             {% endfor %}
             {% endif %}
 
-            <!--Deleted-->
-            {% if replay_action_delete %}
+            <!--Removed-->
+            {% if replay_action_remove %}
             <audio src="{{ you_have }}"/>
-            <audio src="{{ deleted }}"/>
-            <audio src="{{ amount_delete }}"/>
+            <audio src="{{ removed }}"/>
+            <audio src="{{ amount_remove }}"/>
             <audio src="{{ advertisements }}"/>
             <audio src="{{ namely }}"/>
-            {% for item in replay_action_delete %}
+            {% for item in replay_action_remove %}
                 <audio src="{{ item.seed.name }}"/>
             {% endfor %}
             {% endif %}
 
             <!--No changes-->
-            {% if not replay_action_create and not replay_action_update and not replay_action_delete %}
+            {% if not replay_action_create and not replay_action_update and not replay_action_remove %}
             <audio src="{{ you_have }}"/>
             <audio src="{{ made_no_new_changes_to_your_advertisements }}"/>
             {% endif %}

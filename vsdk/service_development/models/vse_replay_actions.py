@@ -25,11 +25,11 @@ class ReplayActions(VoiceServiceElement):
             verbose_name=_('Updated'),
             related_name='replay_action_updated',
             help_text=_("A Voice Label of 'updated'"))
-    deleted = models.ForeignKey('VoiceLabel',
+    removed = models.ForeignKey('VoiceLabel',
             on_delete=models.PROTECT,
-            verbose_name=_('Deleted'),
-            related_name='replay_action_deleted',
-            help_text=_("A Voice Label of 'deleted'"))
+            verbose_name=_('Removed'),
+            related_name='replay_action_removed',
+            help_text=_("A Voice Label of 'removed'"))
     you_have = models.ForeignKey('VoiceLabel',
             on_delete=models.PROTECT,
             verbose_name=_('You have'),
@@ -102,7 +102,7 @@ class ReplayActions(VoiceServiceElement):
         interface_voice_labels = {
                 'created':self.created,
                 'updated':self.updated,
-                'deleted':self.deleted,
+                'removed':self.removed,
                 'you_have':self.you_have,
                 'advertisements':self.advertisements,
                 'an_advertisement':self.an_advertisement,
