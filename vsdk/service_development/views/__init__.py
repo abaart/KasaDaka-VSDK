@@ -8,4 +8,5 @@ from .voiceservice import *
 from .language import *
 from .advertisement import *
 from .seed import *
+from .vse_form_choice import *
 from .vse_replay_actions import *

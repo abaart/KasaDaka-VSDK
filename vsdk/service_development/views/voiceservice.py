@@ -31,19 +31,12 @@ def voice_service_start(request, voice_service_id, session_id = None):
     caller_id = get_caller_id_from_GET_request(request)
     session = lookup_or_create_session(voice_service, session_id, caller_id)
 
-    if not session.farmer:
-        advertisement = Advertisement()
-        advertisement.save()
-        session.link_to_advertisement(advertisement)
-
     # If the session is not yet linked to an farmer, try to look up the farmer by
     # Caller ID, and link it to the session. If the farmer cannot be found,
     # redirect to registration.
     if caller_id and not session.farmer:
         found_farmer = lookup_farmer_by_caller_id(caller_id, session.service)
         if found_farmer:
-            advertisement.farmer = found_farmer
-            advertisement.save()
             session.link_to_farmer(found_farmer)
 
         # If there is no farmer with this caller_id and registration of farmers is preferred or required, redirect to registration

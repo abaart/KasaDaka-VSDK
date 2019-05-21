@@ -3,6 +3,7 @@
 <form id="farmer_registration_form">
 	<field name="commune_field">
 		<prompt>
+            <!--TODO: add introduction audio-->
             <!--Commune Selection-->
             {% for commune_voice_label in commune_voice_labels %}
 			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
@@ -40,6 +41,7 @@
 
     <field name="village_field">
 		<prompt>
+            <!--TODO: add introduction audio-->
             <!--Village Selection-->
             {% for village_voice_label in village_voice_labels %}
 			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>

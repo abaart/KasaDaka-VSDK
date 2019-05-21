@@ -12,4 +12,5 @@ from .vse_message import *
 from .vse_record import *
 from .farmer_input import *
 from .vse_key_input import *
+from .vse_form_choice import *
 from .vse_replay_actions import *
