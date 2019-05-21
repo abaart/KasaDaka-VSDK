@@ -9,10 +9,10 @@
             <audio src="{{ created }}"/>
             <audio src="{{ amount_create }}"/>
             <audio src="{{ advertisements }}"/>
-			{% for item in replay_action_create %}
+			{% for seed in replay_action_create %}
                 <audio src="{{ an_advertisement }}"/>
                 <audio src="{{ replay_for }}"/>
-                <audio src="{{ item.seed.name }}"/>
+                <audio src="{{ seed }}"/>
             {% endfor %}
             {% endif %}
 
@@ -22,10 +22,10 @@
             <audio src="{{ updated }}"/>
             <audio src="{{ amount_update }}"/>
             <audio src="{{ advertisements }}"/>
-            {% for item in replay_action_update %}
+            {% for seed in replay_action_update %}
                 <audio src="{{ an_advertisement }}"/>
                 <audio src="{{ replay_for }}"/>
-                <audio src="{{ item.seed.name }}"/>
+                <audio src="{{ seed }}"/>
             {% endfor %}
             {% endif %}
 
@@ -36,8 +36,8 @@
             <audio src="{{ amount_remove }}"/>
             <audio src="{{ advertisements }}"/>
             <audio src="{{ namely }}"/>
-            {% for item in replay_action_remove %}
-                <audio src="{{ item.seed.name }}"/>
+            {% for seed in replay_action_remove %}
+                <audio src="{{ seed }}"/>
             {% endfor %}
             {% endif %}
 

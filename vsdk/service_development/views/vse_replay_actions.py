@@ -4,6 +4,16 @@ from django.http.response import HttpResponseRedirect
 from ..models import *
 
 
+def resolve_voice_labels(replay_actions, language):
+    """
+    Returns a list of voice labels belonging to the provided list of choice_options.
+    """
+    voice_labels = []
+    for item in replay_actions:
+        voice_labels.append(item.seed.get_voice_fragment_url(language))
+    return voice_labels
+
+
 def replay_actions_get_redirect_url(replay_actions_element, session):
     return replay_actions_element.redirect.get_absolute_url(session)
 
@@ -40,9 +50,9 @@ def replay_actions_generate_context(replay_actions_element,session):
                 'namely': namely,
                 'made_no_new_changes_to_your_advertisements': made_no_new_changes_to_your_advertisements,
                 'replay_actions': replay_actions,
-                'replay_action_create': replay_action_create,
-                'replay_action_update': replay_action_update,
-                'replay_action_remove': replay_action_remove,
+                'replay_action_create': resolve_voice_labels(replay_action_create, language),
+                'replay_action_update': resolve_voice_labels(replay_action_update, language),
+                'replay_action_remove': resolve_voice_labels(replay_action_remove, language),
                 'amount_create': amount_create,
                 'amount_update': amount_update,
                 'amount_remove': amount_remove,
