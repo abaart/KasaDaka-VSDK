@@ -1,0 +1,54 @@
+{% extends "base.xml" %}
+{% block content%}
+<form  id="{{ choice.name|slugify }}">
+	<field name="choice">
+		<prompt>
+			<audio src="{{ choice_voice_label }}"/>
+			{% for voice_label in voice_labels %}
+				<audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+				<audio src="{{ voice_label }}"/>
+				<audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
+			{% for number in language.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
+			{% endfor %}
+        </prompt>
+
+        {# all possible inputs from the user #}
+        <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+              <rule id="MYRULE" scope = "public">
+                <one-of>
+                  {% for option in choice_options %}
+                    <item>{{ forloop.counter }}</item>
+                  {% endfor %}
+                </one-of>
+               </rule>
+        </grammar>
+
+        {# when there has been input, redirect the user to the corresponding URL #}
+        <filled>
+            {% for option in choice_options %}
+                {% if forloop.counter == 1 %}
+                    <if cond="option_field == '{{ forloop.counter }}'">
+		            <assign name="option_id" expr="'{{ option.id }}'"/>
+                {% else %}
+                    <elseif cond="option_field == '{{ forloop.counter }}'" />
+                    <assign name="option_id" expr="'{{ option.id }}'"/>
+                {% endif %}
+            {% endfor %}
+            <else/>
+            </if>
+
+            <goto next="#submit_form"/>
+        </filled>
+    </field>
+</form>
+
+<form id="submit_form">
+    <block>
+        {# include the variables in the dictionary 'pass_on_variables' as POST variables #}
+        {% for key, value in pass_on_variables.items %}
+        <assign name="{{ key }}" expr="'{{ value }}'"/>
+        {% endfor %}
+        <submit next="{{ redirect_url }}" method="post" namelist="option_id {% for key, value in pass_on_variables.items %} {{ key }} {% endfor %}"/>
+    </block>
+</form>
+{% endblock %}
