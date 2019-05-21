@@ -48,10 +48,6 @@ def choice(request, element_id, session_id):
         if 'redirect_url' in request.POST:
             redirect_url = request.POST['redirect_url']
         else: raise ValueError('Incorrect request, redirect_url not set')
-        if 'option_id' not in request.POST:
-            raise ValueError('Incorrect request, no option selected')
-        if 'action' not in request.POST:
-            raise ValueError('No action defined')
 
         post(request, session)
 

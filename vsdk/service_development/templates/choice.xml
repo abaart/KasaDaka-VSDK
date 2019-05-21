@@ -31,7 +31,7 @@
               <if cond="choice == '{{ forloop.counter }}'">
                   {% if choice_option.removable %}
                     <goto next="#submit_form"/>
-                    <assign name="redirect_url_post" expr="{{ choice_option.redirect_url }}"/>
+                    <assign name="redirect_url" expr="{{ choice_option.redirect_url }}"/>
                   {% else %}
                     <goto next="{{ choice_option.redirect_url }}"/>
                   {% endif %}
@@ -39,7 +39,7 @@
               <elseif cond="choice == '{{ forloop.counter }}'" />
                   {% if choice_option.removable %}
                     <goto next="#submit_form"/>
-                    <assign name="redirect_url_post" expr="{{ choice_option.redirect_url }}"/>
+                    <assign name="redirect_url" expr="{{ choice_option.redirect_url }}"/>
                   {% else %}
                     <goto next="{{ choice_option.redirect_url }}"/>
                   {% endif %}
@@ -52,6 +52,6 @@
 </form>
 
 <form id="submit_form">
-    <submit next="{{ redirect_url }}" method="post" namelist="redirect_url_post"/>
+    <submit next="{{ redirect_url }}" method="post" namelist="redirect_url"/>
 </form>
 {% endblock %}
