@@ -3,21 +3,16 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 from ..models import *
 
 
-def choice_options_resolve_redirect_urls(choice_options, session):
-    choice_options_redirection_urls = []
+def resolve_choice_options(choice_options, session):
+    options = []
     for choice_option in choice_options:
-        redirect_url = choice_option.redirect.get_absolute_url(session)
-        choice_options_redirection_urls.append(redirect_url)
-    return choice_options_redirection_urls
+        items = {}
+        items['voice_label'] = choice_option.get_voice_fragment_url(session.language)
+        items['redirect_url'] = choice_option.redirect.get_absolute_url(session)
+        items['removable'] = choice_option.action == "remove"
+        options.append(items)
+    return options
 
-def choice_options_resolve_voice_labels(choice_options, language):
-    """
-    Returns a list of voice labels belonging to the provided list of choice_options.
-    """
-    choice_options_voice_labels = []
-    for choice_option in choice_options:
-        choice_options_voice_labels.append(choice_option.get_voice_fragment_url(language))
-    return choice_options_voice_labels
 
 def choice_generate_context(choice_element, element_id, session):
     """
@@ -28,16 +23,14 @@ def choice_generate_context(choice_element, element_id, session):
     choice_options_voice_labels = list of resolved Voice Label URL's referencing to the choice_options in the same position
     choice_options_redirect_urls = list of resolved redirection URL's referencing to the choice_options in the same position
         """
-    choice_options = choice_element.choice_options.all()
+
+    choice_options = resolve_choice_options(choice_element.choice_options.all(), session)
     language = session.language
     context = {
         'choice':choice_element,
         'choice_voice_label':choice_element.get_voice_fragment_url(language),
         'choice_options': choice_options,
-        'choice_options_voice_labels':choice_options_resolve_voice_labels(choice_options, language),
-        'choice_options_redirect_urls': choice_options_resolve_redirect_urls(choice_options,session),
         'language': language,
-        'removable': choice_element.action == "remove",
         'redirect_url': reverse('service-development:choice', args=[element_id, session.id])
     }
     return context
@@ -51,7 +44,7 @@ def post(request, session):
 def choice(request, element_id, session_id):
     if request.method == "POST":
         session = get_object_or_404(CallSession, pk=session_id)
-        
+
         if 'redirect_url' in request.POST:
             redirect_url = request.POST['redirect_url']
         else: raise ValueError('Incorrect request, redirect_url not set')

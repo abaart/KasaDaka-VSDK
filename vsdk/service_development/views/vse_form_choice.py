@@ -45,12 +45,14 @@ def choice_generate_context(choice_element, session, element_id):
     advertisements = Advertisement.objects.filter(farmer=farmer)
 
     choice_elements = None
-
-    for item in advertisements.values(model_type):
-        if action == 'create':
+    if action == 'create' and advertisements:
+        for item in advertisements.values(model_type):
             choice_elements = model.objects.exclude(id=item[model_type])
-        elif action == 'update' or action == 'remove':
+    elif (action == 'update' or action == 'remove') and advertisements:
+        for item in advertisements.values(model_type):
             choice_elements = model.objects.filter(id=item[model_type])
+    else:
+        choice_elements = model.objects.all()
 
     language = session.language
 
@@ -63,13 +65,13 @@ def choice_generate_context(choice_element, session, element_id):
 
     context = {
         'choice': choice_element,
-        'choice_voice_label': choice_element.get_voice_fragment_url(language),
+        'choice_voice_label': choice_element.get_voice_fragment_url(language, choice_element.voice_label),
         'choice_options': choice_elements,
         'voice_labels': resolve_voice_labels(choice_elements, language),
         'redirect_url': redirect_url_POST,
         'pass_on_variables': pass_on_variables,
         'language': language,
-        'no_items_voice_label': choice_element.get_voice_fragment_url(language),
+        'no_items_voice_label': choice_element.get_voice_fragment_url(language, choice_element.no_items_voice_label),
         'go_back_redirect': reverse('service-development:voice-service', args= [element_id, session.id])
     }
     return context

@@ -64,9 +64,9 @@ class FormChoice(VoiceServiceElement):
 
         return errors
 
-    def get_voice_fragment_url(self, language):
+    def get_voice_fragment_url(self, language, item):
         """
         Returns the url of the audio file of this element, in the given language.
         """
-        return self.no_items_voice_label.get_voice_fragment_url(language)
+        return item.get_voice_fragment_url(language)
 
