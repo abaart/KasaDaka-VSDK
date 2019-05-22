@@ -93,7 +93,7 @@ def post(request, session, model_type):
         CallSession.objects.filter(id=session.id).update(advertisement=advertisement)
         session.replay_action_update.add(advertisement)
     elif action == 'remove':
-        advertisement = Advertisement.objects.filter(**{model_type: item})
+        advertisement = Advertisement.objects.get(**{model_type: item})
         session.replay_action_remove.add(advertisement)
         advertisement.delete()
         CallSession.objects.filter(id=session.id).update(advertisement=None)

@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^choice/(?P<element_id>[0-9]+)/(?P<session_id>[0-9]+)$', views.choice, name='choice'),
     url(r'^form_choice/(?P<element_id>[0-9]+)/(?P<session_id>[0-9]+)$', views.form_choice, name='form-choice'),
     url(r'^message/(?P<element_id>[0-9]+)/(?P<session_id>[0-9]+)$', views.message_presentation, name='message-presentation'),
+    url(r'^replay_actions/(?P<element_id>[0-9]+)/(?P<session_id>[0-9]+)$', views.replay_actions, name='replay-actions'),
     url(r'^key_input/(?P<element_id>[0-9]+)/(?P<session_id>[0-9]+)$', views.key_input, name='key-input'),
     url(r'^start/(?P<voice_service_id>[0-9]+)$', views.voice_service_start, name='voice-service'),
     url(r'^start/(?P<voice_service_id>[0-9]+)/(?P<session_id>[0-9]+)$', views.voice_service_start, name='voice-service'),
