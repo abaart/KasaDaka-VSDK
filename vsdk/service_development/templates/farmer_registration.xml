@@ -9,7 +9,11 @@
 			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
                 <audio src="{{ commune_voice_label }}"/>
                 <audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
-			    {% for number in commune.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
+			    {% for number in language.get_interface_numbers_voice_label_url_list %}
+                    {% if forloop.counter0 == forloop.parentloop.counter %}
+                        <audio src="{{ number }}"/>
+                    {% endif %}
+                {% endfor %}
 			{% endfor %}
 		</prompt>
 
@@ -47,7 +51,7 @@
 			    <audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
                 <audio src="{{ village_voice_label }}"/>
                 <audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
-			    {% for number in village.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
+			    {% for number in language.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
 			{% endfor %}
 		</prompt>
 
