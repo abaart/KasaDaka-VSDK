@@ -57,7 +57,9 @@ class Language(models.Model):
             on_delete=models.PROTECT,
             verbose_name=_('Greeting'),
             related_name='language_greeting',
-            help_text=_("The fragment that is to be played at the beginning of the conversation"))
+            help_text=_("The fragment that is to be played at the beginning of the conversation"),
+            blank=True,
+            null=True)
     pre_choice_option = models.ForeignKey('VoiceLabel',
             on_delete = models.PROTECT,
             verbose_name = _('Pre-Choice Option voice label'),
