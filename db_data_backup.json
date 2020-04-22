@@ -1,0 +1,1247 @@
+[
+{
+  "model": "service_development.voicelabel",
+  "pk": 1,
+  "fields": {
+    "name": "Dutch language",
+    "description": "Nederlandse taal"
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 2,
+  "fields": {
+    "name": "General error message",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 3,
+  "fields": {
+    "name": "This is the truth",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 4,
+  "fields": {
+    "name": "English language",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 5,
+  "fields": {
+    "name": "Thank you for using this service",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 6,
+  "fields": {
+    "name": "Wow, it must be a really boring guy!",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 7,
+  "fields": {
+    "name": "French language",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 8,
+  "fields": {
+    "name": "Please select your language",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 9,
+  "fields": {
+    "name": "Pre Choice Option",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 10,
+  "fields": {
+    "name": "Post Choice Option",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 11,
+  "fields": {
+    "name": "One",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 12,
+  "fields": {
+    "name": "Two",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 13,
+  "fields": {
+    "name": "Three",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 14,
+  "fields": {
+    "name": "Four",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 15,
+  "fields": {
+    "name": "Five",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 16,
+  "fields": {
+    "name": "Six",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 17,
+  "fields": {
+    "name": "Seven",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 18,
+  "fields": {
+    "name": "Eight",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 19,
+  "fields": {
+    "name": "Nine",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 20,
+  "fields": {
+    "name": "Zero",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 21,
+  "fields": {
+    "name": "Yes",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 22,
+  "fields": {
+    "name": "No",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 23,
+  "fields": {
+    "name": "Does the king like to drink beer?",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 25,
+  "fields": {
+    "name": "Please speak your message",
+    "description": ""
+  }
+},
+{
+  "model": "service_development.voicelabel",
+  "pk": 26,
+  "fields": {
+    "name": "Radio Question",
+    "description": null
+  }
+},
+{
+  "model": "service_development.language",
+  "pk": 1,
+  "fields": {
+    "name": "Nederlands",
+    "code": "nl",
+    "voice_label": 1,
+    "error_message": 2,
+    "select_language": 8,
+    "pre_choice_option": 9,
+    "post_choice_option": 10,
+    "one": 11,
+    "two": 12,
+    "three": 13,
+    "four": 14,
+    "five": 15,
+    "six": 16,
+    "seven": 17,
+    "eight": 18,
+    "nine": 19,
+    "zero": 20
+  }
+},
+{
+  "model": "service_development.language",
+  "pk": 2,
+  "fields": {
+    "name": "English",
+    "code": "en",
+    "voice_label": 4,
+    "error_message": 2,
+    "select_language": 8,
+    "pre_choice_option": 9,
+    "post_choice_option": 10,
+    "one": 11,
+    "two": 12,
+    "three": 13,
+    "four": 14,
+    "five": 15,
+    "six": 16,
+    "seven": 17,
+    "eight": 18,
+    "nine": 19,
+    "zero": 20
+  }
+},
+{
+  "model": "service_development.language",
+  "pk": 3,
+  "fields": {
+    "name": "Francais",
+    "code": "fr",
+    "voice_label": 7,
+    "error_message": 2,
+    "select_language": 8,
+    "pre_choice_option": 9,
+    "post_choice_option": 10,
+    "one": 11,
+    "two": 12,
+    "three": 13,
+    "four": 14,
+    "five": 15,
+    "six": 16,
+    "seven": 17,
+    "eight": 18,
+    "nine": 19,
+    "zero": 20
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 1,
+  "fields": {
+    "parent": 6,
+    "language": 2,
+    "audio": "boring_guy_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 2,
+  "fields": {
+    "parent": 6,
+    "language": 1,
+    "audio": "boring_guy_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 6,
+  "fields": {
+    "parent": 22,
+    "language": 1,
+    "audio": "no_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 7,
+  "fields": {
+    "parent": 22,
+    "language": 2,
+    "audio": "no_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 8,
+  "fields": {
+    "parent": 22,
+    "language": 3,
+    "audio": "no_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 9,
+  "fields": {
+    "parent": 21,
+    "language": 1,
+    "audio": "yes_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 10,
+  "fields": {
+    "parent": 21,
+    "language": 2,
+    "audio": "yes_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 11,
+  "fields": {
+    "parent": 21,
+    "language": 3,
+    "audio": "yes_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 12,
+  "fields": {
+    "parent": 20,
+    "language": 1,
+    "audio": "0_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 13,
+  "fields": {
+    "parent": 20,
+    "language": 2,
+    "audio": "0_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 14,
+  "fields": {
+    "parent": 20,
+    "language": 3,
+    "audio": "0_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 15,
+  "fields": {
+    "parent": 19,
+    "language": 1,
+    "audio": "9_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 16,
+  "fields": {
+    "parent": 19,
+    "language": 2,
+    "audio": "9_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 17,
+  "fields": {
+    "parent": 19,
+    "language": 3,
+    "audio": "9_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 18,
+  "fields": {
+    "parent": 18,
+    "language": 1,
+    "audio": "8_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 19,
+  "fields": {
+    "parent": 18,
+    "language": 2,
+    "audio": "8_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 20,
+  "fields": {
+    "parent": 18,
+    "language": 3,
+    "audio": "8_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 21,
+  "fields": {
+    "parent": 17,
+    "language": 1,
+    "audio": "7_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 22,
+  "fields": {
+    "parent": 17,
+    "language": 2,
+    "audio": "7_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 23,
+  "fields": {
+    "parent": 17,
+    "language": 3,
+    "audio": "7_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 24,
+  "fields": {
+    "parent": 16,
+    "language": 1,
+    "audio": "6_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 25,
+  "fields": {
+    "parent": 16,
+    "language": 2,
+    "audio": "6_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 26,
+  "fields": {
+    "parent": 16,
+    "language": 3,
+    "audio": "6_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 27,
+  "fields": {
+    "parent": 15,
+    "language": 1,
+    "audio": "5_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 28,
+  "fields": {
+    "parent": 15,
+    "language": 2,
+    "audio": "5_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 29,
+  "fields": {
+    "parent": 15,
+    "language": 3,
+    "audio": "5_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 30,
+  "fields": {
+    "parent": 14,
+    "language": 1,
+    "audio": "4_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 31,
+  "fields": {
+    "parent": 14,
+    "language": 3,
+    "audio": "4_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 32,
+  "fields": {
+    "parent": 14,
+    "language": 2,
+    "audio": "4_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 33,
+  "fields": {
+    "parent": 13,
+    "language": 1,
+    "audio": "3_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 34,
+  "fields": {
+    "parent": 13,
+    "language": 2,
+    "audio": "3_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 35,
+  "fields": {
+    "parent": 13,
+    "language": 3,
+    "audio": "3_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 36,
+  "fields": {
+    "parent": 12,
+    "language": 1,
+    "audio": "2_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 37,
+  "fields": {
+    "parent": 12,
+    "language": 2,
+    "audio": "2_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 38,
+  "fields": {
+    "parent": 12,
+    "language": 3,
+    "audio": "2_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 39,
+  "fields": {
+    "parent": 11,
+    "language": 1,
+    "audio": "1_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 40,
+  "fields": {
+    "parent": 11,
+    "language": 2,
+    "audio": "1_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 41,
+  "fields": {
+    "parent": 11,
+    "language": 3,
+    "audio": "1_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 42,
+  "fields": {
+    "parent": 10,
+    "language": 1,
+    "audio": "post_choice_option_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 43,
+  "fields": {
+    "parent": 10,
+    "language": 2,
+    "audio": "post_choice_option_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 44,
+  "fields": {
+    "parent": 10,
+    "language": 3,
+    "audio": "post_choice_option_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 45,
+  "fields": {
+    "parent": 9,
+    "language": 1,
+    "audio": "pre_choice_option_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 46,
+  "fields": {
+    "parent": 9,
+    "language": 2,
+    "audio": "pre_choice_option_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 47,
+  "fields": {
+    "parent": 9,
+    "language": 3,
+    "audio": "pre_choice_option_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 48,
+  "fields": {
+    "parent": 8,
+    "language": 1,
+    "audio": "select_language_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 49,
+  "fields": {
+    "parent": 8,
+    "language": 2,
+    "audio": "select_language_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 50,
+  "fields": {
+    "parent": 8,
+    "language": 3,
+    "audio": "select_language_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 51,
+  "fields": {
+    "parent": 7,
+    "language": 1,
+    "audio": "french_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 52,
+  "fields": {
+    "parent": 7,
+    "language": 2,
+    "audio": "french_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 53,
+  "fields": {
+    "parent": 7,
+    "language": 3,
+    "audio": "french_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 54,
+  "fields": {
+    "parent": 6,
+    "language": 3,
+    "audio": "boring_guy_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 55,
+  "fields": {
+    "parent": 5,
+    "language": 1,
+    "audio": "thank_you_for_using_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 56,
+  "fields": {
+    "parent": 5,
+    "language": 2,
+    "audio": "thank_you_for_using_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 57,
+  "fields": {
+    "parent": 5,
+    "language": 3,
+    "audio": "thank_you_for_using_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 58,
+  "fields": {
+    "parent": 4,
+    "language": 1,
+    "audio": "english_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 59,
+  "fields": {
+    "parent": 4,
+    "language": 2,
+    "audio": "english_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 60,
+  "fields": {
+    "parent": 4,
+    "language": 3,
+    "audio": "english_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 61,
+  "fields": {
+    "parent": 3,
+    "language": 1,
+    "audio": "truth_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 62,
+  "fields": {
+    "parent": 3,
+    "language": 2,
+    "audio": "truth_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 63,
+  "fields": {
+    "parent": 3,
+    "language": 3,
+    "audio": "truth_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 64,
+  "fields": {
+    "parent": 2,
+    "language": 1,
+    "audio": "error_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 65,
+  "fields": {
+    "parent": 2,
+    "language": 2,
+    "audio": "error_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 66,
+  "fields": {
+    "parent": 2,
+    "language": 3,
+    "audio": "error_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 67,
+  "fields": {
+    "parent": 1,
+    "language": 1,
+    "audio": "dutch_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 68,
+  "fields": {
+    "parent": 1,
+    "language": 2,
+    "audio": "dutch_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 69,
+  "fields": {
+    "parent": 1,
+    "language": 3,
+    "audio": "dutch_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 70,
+  "fields": {
+    "parent": 23,
+    "language": 1,
+    "audio": "king_question_nl.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 71,
+  "fields": {
+    "parent": 23,
+    "language": 2,
+    "audio": "king_question_en.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 72,
+  "fields": {
+    "parent": 23,
+    "language": 3,
+    "audio": "king_question_fr.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 74,
+  "fields": {
+    "parent": 25,
+    "language": 3,
+    "audio": "speakYourMessage.wav"
+  }
+},
+{
+  "model": "service_development.voicefragment",
+  "pk": 75,
+  "fields": {
+    "parent": 26,
+    "language": 2,
+    "audio": "radio_question_en_4HDCdbV.wav"
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 2,
+  "fields": {
+    "service": 1,
+    "creation_date": "2017-04-23T19:30:23.792Z",
+    "modification_date": "2018-02-16T16:42:26.402Z",
+    "name": "Does the king like to drink beer?",
+    "description": "",
+    "voice_label": 23
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 3,
+  "fields": {
+    "service": 1,
+    "creation_date": "2017-04-23T19:32:07.853Z",
+    "modification_date": "2018-01-25T14:35:48.977Z",
+    "name": "Yes",
+    "description": "King <3's BEER",
+    "voice_label": 21
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 4,
+  "fields": {
+    "service": 1,
+    "creation_date": "2017-04-23T19:32:07.854Z",
+    "modification_date": "2018-02-16T16:42:26.405Z",
+    "name": "No",
+    "description": "",
+    "voice_label": 22
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 5,
+  "fields": {
+    "service": 1,
+    "creation_date": "2017-04-23T19:49:50.055Z",
+    "modification_date": "2018-02-16T16:42:51.484Z",
+    "name": "This is the truth",
+    "description": "",
+    "voice_label": 3
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 6,
+  "fields": {
+    "service": 1,
+    "creation_date": "2017-04-23T21:11:06.805Z",
+    "modification_date": "2017-04-23T21:33:29.853Z",
+    "name": "Thank you for using this service",
+    "description": "",
+    "voice_label": 5
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 7,
+  "fields": {
+    "service": 1,
+    "creation_date": "2017-04-23T21:36:55.756Z",
+    "modification_date": "2017-04-23T21:36:55.756Z",
+    "name": "King is boring",
+    "description": "",
+    "voice_label": 6
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 8,
+  "fields": {
+    "service": 2,
+    "creation_date": "2020-04-22T10:13:50.651Z",
+    "modification_date": "2020-04-22T10:17:50.061Z",
+    "name": "Radio Question Of The Day",
+    "description": "",
+    "voice_label": 26
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 9,
+  "fields": {
+    "service": 2,
+    "creation_date": "2020-04-22T10:13:50.655Z",
+    "modification_date": "2020-04-22T10:17:50.065Z",
+    "name": "Infrastructure",
+    "description": "Choice 1",
+    "voice_label": 11
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 10,
+  "fields": {
+    "service": 2,
+    "creation_date": "2020-04-22T10:13:50.662Z",
+    "modification_date": "2020-04-22T10:17:50.067Z",
+    "name": "Health services",
+    "description": "Choice 2",
+    "voice_label": 12
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 11,
+  "fields": {
+    "service": 2,
+    "creation_date": "2020-04-22T10:13:50.663Z",
+    "modification_date": "2020-04-22T10:17:50.069Z",
+    "name": "Educational programmes",
+    "description": "Choice 3",
+    "voice_label": 13
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 12,
+  "fields": {
+    "service": 2,
+    "creation_date": "2020-04-22T10:13:50.664Z",
+    "modification_date": "2020-04-22T10:17:50.071Z",
+    "name": "Food security",
+    "description": "Choice 4",
+    "voice_label": 14
+  }
+},
+{
+  "model": "service_development.voiceservicesubelement",
+  "pk": 13,
+  "fields": {
+    "service": 2,
+    "creation_date": "2020-04-22T10:16:29.060Z",
+    "modification_date": "2020-04-22T10:17:28.020Z",
+    "name": "[FB] Thank you for using this service",
+    "description": "",
+    "voice_label": 5
+  }
+},
+{
+  "model": "service_development.voiceserviceelement",
+  "pk": 2,
+  "fields": {}
+},
+{
+  "model": "service_development.voiceserviceelement",
+  "pk": 5,
+  "fields": {}
+},
+{
+  "model": "service_development.voiceserviceelement",
+  "pk": 6,
+  "fields": {}
+},
+{
+  "model": "service_development.voiceserviceelement",
+  "pk": 7,
+  "fields": {}
+},
+{
+  "model": "service_development.voiceserviceelement",
+  "pk": 8,
+  "fields": {}
+},
+{
+  "model": "service_development.voiceserviceelement",
+  "pk": 13,
+  "fields": {}
+},
+{
+  "model": "service_development.voiceservice",
+  "pk": 1,
+  "fields": {
+    "name": "King's truth checker",
+    "description": "Checks the user's knowledge about the king of the Netherlands",
+    "creation_date": "2017-04-23T19:23:52.392Z",
+    "modification_date": "2018-02-16T09:58:43.936Z",
+    "active": false,
+    "_start_element": 2,
+    "registration": "preferred",
+    "registration_language": true,
+    "registration_name": false,
+    "supported_languages": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "service_development.voiceservice",
+  "pk": 2,
+  "fields": {
+    "name": "Foroba-Blon",
+    "description": "Foroba-Blon",
+    "creation_date": "2020-04-22T09:29:13.202Z",
+    "modification_date": "2020-04-22T10:15:06.244Z",
+    "active": true,
+    "_start_element": 8,
+    "registration": "disabled",
+    "registration_language": true,
+    "registration_name": false,
+    "supported_languages": [
+      2
+    ]
+  }
+},
+{
+  "model": "service_development.kasadakauser",
+  "pk": 1,
+  "fields": {
+    "caller_id": "456",
+    "first_name": "Henk",
+    "last_name": "Ernia",
+    "creation_date": "2018-02-02T11:10:27.670Z",
+    "modification_date": "2018-02-12T14:44:24.019Z",
+    "language": 1,
+    "service": 1
+  }
+},
+{
+  "model": "service_development.callsession",
+  "pk": 1,
+  "fields": {
+    "start": "2020-04-22T10:18:53.196Z",
+    "end": "2020-04-22T10:18:53.345Z",
+    "user": null,
+    "caller_id": null,
+    "service": 2,
+    "_language": 2
+  }
+},
+{
+  "model": "service_development.callsessionstep",
+  "pk": 1,
+  "fields": {
+    "time": "2020-04-22T10:18:53.348Z",
+    "session": 1,
+    "_visited_element": 8,
+    "description": null
+  }
+},
+{
+  "model": "service_development.choice",
+  "pk": 2,
+  "fields": {}
+},
+{
+  "model": "service_development.choice",
+  "pk": 8,
+  "fields": {}
+},
+{
+  "model": "service_development.choiceoption",
+  "pk": 3,
+  "fields": {
+    "parent": 2,
+    "_redirect": 5
+  }
+},
+{
+  "model": "service_development.choiceoption",
+  "pk": 4,
+  "fields": {
+    "parent": 2,
+    "_redirect": 7
+  }
+},
+{
+  "model": "service_development.choiceoption",
+  "pk": 9,
+  "fields": {
+    "parent": 8,
+    "_redirect": 13
+  }
+},
+{
+  "model": "service_development.choiceoption",
+  "pk": 10,
+  "fields": {
+    "parent": 8,
+    "_redirect": 13
+  }
+},
+{
+  "model": "service_development.choiceoption",
+  "pk": 11,
+  "fields": {
+    "parent": 8,
+    "_redirect": 13
+  }
+},
+{
+  "model": "service_development.choiceoption",
+  "pk": 12,
+  "fields": {
+    "parent": 8,
+    "_redirect": 13
+  }
+},
+{
+  "model": "service_development.messagepresentation",
+  "pk": 5,
+  "fields": {
+    "final_element": false,
+    "_redirect": 6
+  }
+},
+{
+  "model": "service_development.messagepresentation",
+  "pk": 6,
+  "fields": {
+    "final_element": true,
+    "_redirect": null
+  }
+},
+{
+  "model": "service_development.messagepresentation",
+  "pk": 7,
+  "fields": {
+    "final_element": false,
+    "_redirect": 6
+  }
+},
+{
+  "model": "service_development.messagepresentation",
+  "pk": 13,
+  "fields": {
+    "final_element": true,
+    "_redirect": null
+  }
+}
+]
