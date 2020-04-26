@@ -6,6 +6,7 @@ from django.utils.translation import ugettext
 
 from .voicelabel import VoiceLabel
 
+
 class VoiceServiceSubElement(models.Model):
     """
     A sub-element in a voice service (could be ChoiceOption, etc).
@@ -30,6 +31,29 @@ class VoiceServiceSubElement(models.Model):
             on_delete = models.SET_NULL,
             null = True,
             blank = True,
+            )
+
+    # Weather Parameters
+
+    is_weather_element = models.BooleanField(_('This element contains weather forecasts'), default = False)
+    wind_threshold = models.IntegerField(_('Wind Threshold (km/h)'), blank=True, null=True)
+
+    voice_label_wind_normal = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label normal wind'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_normal_wind',
+            )
+
+    voice_label_wind_strong = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label strong wind'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_strong_wind'
             )
 
     class Meta:
@@ -63,6 +87,14 @@ class VoiceServiceSubElement(models.Model):
         Returns the url of the audio file of this element, in the given language.
         """
         return self.voice_label.get_voice_fragment_url(language)
+
+    def get_voice_fragment_url_wind(self, language, forecast):
+        """
+        Returns the url of the audio file of this element, in the given language.
+        """
+        if forecast < self.wind_threshold:
+            return self.voice_label_wind_normal.get_voice_fragment_url(language)
+        return self.voice_label_wind_strong.get_voice_fragment_url(language)
 
     def get_subclass_object(self):
         return VoiceServiceSubElement.objects.get_subclass(id = self.id)

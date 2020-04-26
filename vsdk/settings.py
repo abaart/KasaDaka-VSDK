@@ -26,14 +26,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'tk2(l(00&kfe7j97j$dvgz&b6r!kk_zbse1(9w*eoc$bcwu773'
 
+# Open Weather Map APIs KEY
+
+# OWM_API_KEY = os.environ.get('OWM_API_KEY')
+OWM_API_KEY = 'c2240d0d9111ca1d768567b7fd6074fa'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ##########
 #Use True on your local PC, False on Heroku!!
 ########
-#DEBUG = True
+DEBUG = True
 
-DEBUG = False
+#DEBUG = False
 
 
 ALLOWED_HOSTS = ['*']

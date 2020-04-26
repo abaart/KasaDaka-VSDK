@@ -1,0 +1,22 @@
+{% extends "base.xml" %}
+{#
+plays back a message, then sends the user to the redirect
+#}
+
+{% block content %}
+<form>
+<block>
+<prompt>
+    <audio src="{{ message_voice_fragment_url }}"/>
+</prompt>
+<prompt>
+    <audio src="{{ message_voice_fragment_wind_url }}"/>
+</prompt>
+{% if redirect_url %}
+<goto next="{{ redirect_url }}"/>
+{% endif %}
+</block>
+</form>
+
+{% endblock %}
+
