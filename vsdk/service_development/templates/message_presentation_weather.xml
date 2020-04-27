@@ -4,19 +4,45 @@ plays back a message, then sends the user to the redirect
 #}
 
 {% block content %}
-<form>
-<block>
-<prompt>
-    <audio src="{{ message_voice_fragment_url }}"/>
-</prompt>
-<prompt>
-    <audio src="{{ message_voice_fragment_wind_url }}"/>
-</prompt>
-{% if redirect_url %}
-<goto next="{{ redirect_url }}"/>
-{% endif %}
-</block>
-</form>
+    <form>
+        <block>
+            <prompt>
+                <audio src="{{ message_voice_fragment_url }}"/>
+            </prompt>
+            <prompt>
+                <audio src="{{ message_voice_fragment_today_url }}"/>
+                <audio src="{{ message_voice_fragment_wind0_url }}"/>
+            </prompt>
+            <prompt>
+                <audio src="{{ message_voice_fragment_tomorrow_url }}"/>
+                <audio src="{{ message_voice_fragment_wind1_url }}"/>
+
+            </prompt>
+            <prompt>
+                <audio src="{{ message_voice_fragment_day2_url }}"/>
+                <audio src="{{ message_voice_fragment_wind2_url }}"/>
+
+            </prompt>
+            <prompt>
+                <audio src="{{ message_voice_fragment_day3_url }}"/>
+                <audio src="{{ message_voice_fragment_wind3_url }}"/>
+
+            </prompt>
+            <prompt>
+                <audio src="{{ message_voice_fragment_day4_url }}"/>
+                <audio src="{{ message_voice_fragment_wind4_url }}"/>
+
+            </prompt>
+            <prompt>
+                <audio src="{{ message_voice_fragment_day5_url }}"/>
+                <audio src="{{ message_voice_fragment_wind5_url }}"/>
+
+            </prompt>
+            {% if redirect_url %}
+                <goto next="{{ redirect_url }}"/>
+            {% endif %}
+        </block>
+    </form>
 
 {% endblock %}
 

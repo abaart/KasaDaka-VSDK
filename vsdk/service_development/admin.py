@@ -67,7 +67,20 @@ class VoiceServiceAdmin(admin.ModelAdmin):
 class VoiceServiceElementAdmin(admin.ModelAdmin):
     fieldsets = [
         (_('General'), {'fields' : [ 'name', 'description','service','is_valid', 'validation_details', 'voice_label']}),
-        (_('Weather'), {'fields' : [ 'is_weather_element', 'wind_threshold', 'voice_label_wind_normal', 'voice_label_wind_strong' ]})
+        (_('Weather'), {'fields' : [ 'is_weather_element',
+                                     'wind_threshold',
+                                     'voice_label_wind_normal',
+                                     'voice_label_wind_strong',
+                                     'voice_label_today',
+                                     'voice_label_tomorrow',
+                                     'voice_label_monday',
+                                     'voice_label_tuesday',
+                                     'voice_label_wednesday',
+                                     'voice_label_thursday',
+                                     'voice_label_friday',
+                                     'voice_label_saturday',
+                                     'voice_label_sunday',
+                                     ]})
     ]
     list_filter = ['service']
     list_display = ('name', 'service', 'is_valid')

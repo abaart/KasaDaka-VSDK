@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.db import models
 from model_utils.managers import InheritanceManager
 from django.urls import reverse
@@ -56,6 +58,87 @@ class VoiceServiceSubElement(models.Model):
             related_name='voice_label_strong_wind'
             )
 
+    voice_label_today = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label today'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_today'
+    )
+
+    voice_label_tomorrow = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label tomorrow'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_tomorrow'
+    )
+
+    voice_label_monday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label monday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_monday'
+    )
+
+    voice_label_tuesday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label tuesday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_tuesday'
+    )
+
+    voice_label_wednesday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label wednesday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_wednesday'
+    )
+
+    voice_label_thursday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label thursday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_thursday'
+    )
+
+    voice_label_friday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label friday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_friday'
+    )
+
+    voice_label_saturday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label saturday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_saturday'
+    )
+
+    voice_label_sunday = models.ForeignKey(
+            VoiceLabel,
+            verbose_name = _('Voice label sunday'),
+            on_delete = models.SET_NULL,
+            null = True,
+            blank = True,
+            related_name='voice_label_sunday'
+    )
+
     class Meta:
         verbose_name = _('Voice Service Sub-Element')
 
@@ -88,13 +171,64 @@ class VoiceServiceSubElement(models.Model):
         """
         return self.voice_label.get_voice_fragment_url(language)
 
-    def get_voice_fragment_url_wind(self, language, forecast):
+    def get_voice_fragment_url_wind(self, language, forecast, count):
         """
-        Returns the url of the audio file of this element, in the given language.
+        Returns the url of the audio file of the days' element, in the given language.
         """
-        if forecast < self.wind_threshold:
+
+        wind_speed_of_day = forecast.days[count].wind_speed
+        if wind_speed_of_day < self.wind_threshold:
             return self.voice_label_wind_normal.get_voice_fragment_url(language)
         return self.voice_label_wind_strong.get_voice_fragment_url(language)
+
+
+    def get_voice_fragment_url_day(self, language, forecast, count):
+        """Returns the url of the audio file for the corresponding day.
+        It will use today, tomorrow, [weekday of day after tomorrow], ...
+        """
+
+        day_in_forecast = forecast.days[count].forecast_date
+        today = date.today()
+
+        # today
+        if day_in_forecast == today:
+            return self.voice_label_today.get_voice_fragment_url(language)
+
+        # tomorrow
+        elif day_in_forecast == today + timedelta(days=1):
+            return self.voice_label_tomorrow.get_voice_fragment_url(language)
+
+        # Mondays
+        elif day_in_forecast.weekday() == 0:
+            return self.voice_label_monday.get_voice_fragment_url(language)
+
+        # Tuesday
+        elif day_in_forecast.weekday() == 1:
+            return self.voice_label_tuesday.get_voice_fragment_url(language)
+
+        # Wednesday
+        elif day_in_forecast.weekday() == 2:
+            return self.voice_label_wednesday.get_voice_fragment_url(language)
+
+        # Thursday
+        elif day_in_forecast.weekday() == 3:
+            return self.voice_label_thursday.get_voice_fragment_url(language)
+
+        # Friday
+        elif day_in_forecast.weekday() == 4:
+            return self.voice_label_friday.get_voice_fragment_url(language)
+
+        # Saturday
+        elif day_in_forecast.weekday() == 5:
+            return self.voice_label_saturday.get_voice_fragment_url(language)
+
+        # Sunday
+        elif day_in_forecast.weekday() == 6:
+            return self.voice_label_sunday.get_voice_fragment_url(language)
+
+        else:
+            raise ValueError("weekday not calculated correctly")
+
 
     def get_subclass_object(self):
         return VoiceServiceSubElement.objects.get_subclass(id = self.id)
