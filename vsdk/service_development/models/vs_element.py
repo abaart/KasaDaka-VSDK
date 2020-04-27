@@ -139,6 +139,78 @@ class VoiceServiceSubElement(models.Model):
             related_name='voice_label_sunday'
     )
 
+    voice_label_rain_0 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 0'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_0'
+    )
+
+    voice_label_rain_5 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 5'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_5'
+    )
+
+    voice_label_rain_10 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 10'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_10'
+    )
+
+    voice_label_rain_15 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 15'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_15'
+    )
+
+    voice_label_rain_20 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 20'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_20'
+    )
+
+    voice_label_rain_25 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 25'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_25'
+    )
+
+    voice_label_rain_30 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 30'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_30'
+    )
+
+    voice_label_rain_35 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 35'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_35'
+    )
+
     class Meta:
         verbose_name = _('Voice Service Sub-Element')
 
@@ -180,6 +252,31 @@ class VoiceServiceSubElement(models.Model):
         if wind_speed_of_day < self.wind_threshold:
             return self.voice_label_wind_normal.get_voice_fragment_url(language)
         return self.voice_label_wind_strong.get_voice_fragment_url(language)
+
+    def get_voice_fragment_url_rain(self, language, forecast, count):
+        """
+        Returns the url of the audio file of the rain file in the given language
+        """
+        rain = forecast.days[count].rainfall
+        rounded_rain = int(round(rain, -1)) # round to nearest 10
+        if rounded_rain == 0:
+            return self.voice_label_rain_0.get_voice_fragment_url(language)
+        if rounded_rain == 5:
+            return self.voice_label_rain_5.get_voice_fragment_url(language)
+        if rounded_rain == 10:
+            return self.voice_label_rain_10.get_voice_fragment_url(language)
+        if rounded_rain == 15:
+            return self.voice_label_rain_15.get_voice_fragment_url(language)
+        if rounded_rain == 20:
+            return self.voice_label_rain_20.get_voice_fragment_url(language)
+        if rounded_rain == 25:
+            return self.voice_label_rain_25.get_voice_fragment_url(language)
+        if rounded_rain == 30:
+            return self.voice_label_rain_30.get_voice_fragment_url(language)
+        if rounded_rain == 35:
+            return self.voice_label_rain_35.get_voice_fragment_url(language)
+        else:
+            raise ValueError("Rain is more than 35mm/day")
 
 
     def get_voice_fragment_url_day(self, language, forecast, count):

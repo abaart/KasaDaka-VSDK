@@ -37,31 +37,43 @@ def message_presentation_generate_weather_context(message_presentation_element, 
             message_presentation_element.get_voice_fragment_url_day(language, forecast, 0),
         'message_voice_fragment_wind0_url':
             message_presentation_element.get_voice_fragment_url_wind(language, forecast, 0),
+        'message_voice_fragment_rain0_url':
+            message_presentation_element.get_voice_fragment_url_rain(language, forecast, 0),
 
         'message_voice_fragment_tomorrow_url':
             message_presentation_element.get_voice_fragment_url_day(language, forecast, 1),
         'message_voice_fragment_wind1_url':
             message_presentation_element.get_voice_fragment_url_wind(language, forecast, 1),
+        'message_voice_fragment_rain1_url':
+            message_presentation_element.get_voice_fragment_url_rain(language, forecast, 1),
 
         'message_voice_fragment_day2_url':
             message_presentation_element.get_voice_fragment_url_day(language, forecast, 2),
         'message_voice_fragment_wind2_url':
             message_presentation_element.get_voice_fragment_url_wind(language, forecast, 2),
+        'message_voice_fragment_rain2_url':
+            message_presentation_element.get_voice_fragment_url_rain(language, forecast, 2),
 
         'message_voice_fragment_day3_url':
             message_presentation_element.get_voice_fragment_url_day(language, forecast, 3),
         'message_voice_fragment_wind3_url':
             message_presentation_element.get_voice_fragment_url_wind(language, forecast, 3),
+        'message_voice_fragment_rain3_url':
+            message_presentation_element.get_voice_fragment_url_rain(language, forecast, 3),
 
         'message_voice_fragment_day4_url':
             message_presentation_element.get_voice_fragment_url_day(language, forecast, 4),
         'message_voice_fragment_wind4_url':
             message_presentation_element.get_voice_fragment_url_wind(language, forecast, 4),
+        'message_voice_fragment_rain4_url':
+            message_presentation_element.get_voice_fragment_url_rain(language, forecast, 4),
 
         'message_voice_fragment_day5_url':
             message_presentation_element.get_voice_fragment_url_day(language, forecast, 5),
         'message_voice_fragment_wind5_url':
             message_presentation_element.get_voice_fragment_url_wind(language, forecast, 5),
+        'message_voice_fragment_rain5_url':
+            message_presentation_element.get_voice_fragment_url_rain(language, forecast, 5),
 
         'redirect_url': redirect_url
     }

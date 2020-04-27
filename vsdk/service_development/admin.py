@@ -80,6 +80,14 @@ class VoiceServiceElementAdmin(admin.ModelAdmin):
                                      'voice_label_friday',
                                      'voice_label_saturday',
                                      'voice_label_sunday',
+                                     'voice_label_rain_0',
+                                     'voice_label_rain_5',
+                                     'voice_label_rain_10',
+                                     'voice_label_rain_15',
+                                     'voice_label_rain_20',
+                                     'voice_label_rain_25',
+                                     'voice_label_rain_30',
+                                     'voice_label_rain_35'
                                      ]})
     ]
     list_filter = ['service']
