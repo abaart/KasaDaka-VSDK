@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--- <vxml version = "2.1" > -->
+<!DOCTYPE vxml SYSTEM "http://www.w3.org/TR/voicexml21/vxml.dtd">
+<vxml
+  xmlns="http://www.w3.org/2001/vxml"
+  version="2.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/2001/vxml
+  http://www.w3.org/TR/2007/REC-voicexml21-20070619/vxml.xsd">
+  <property name="inputmodes" value="dtmf" />
+  <!-- Kasadaka VoiceXML File -->
+  <form>
+    <block>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_init.wav?raw=true"/>
+      </prompt>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_today_7fAH1Yy.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_normal_wind.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_rain_iQw59Rd.wav?raw=true"/>
+      </prompt>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_tomorrow_vomLrCO.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_normal_wind.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_rain_10_nV1xcRb.wav?raw=true"/>
+      </prompt>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_wednesday_NYJYvwr.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_normal_wind.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_rain_iQw59Rd.wav?raw=true"/>
+      </prompt>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_thursday_HReyNyg.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_normal_wind.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_rain_iQw59Rd.wav?raw=true"/>
+      </prompt>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_friday_mXp0bKD.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_normal_wind.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_rain_10_nV1xcRb.wav?raw=true"/>
+      </prompt>
+      <prompt>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_saturday_EcXAv9i.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_normal_wind.wav?raw=true"/>
+        <audio src="https://github.com/contervis/KasaDaka-VSDK/blob/day_generation/vsdk/uploads/en_weather_rain_10_nV1xcRb.wav?raw=true"/>
+      </prompt>
+    </block>
+  </form>
+</vxml>
