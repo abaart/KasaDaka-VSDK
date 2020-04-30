@@ -93,7 +93,6 @@ ENV/
 
 *.swp
 #*.wav
-*migrations*
 *db.sqlite3
 #vsdk/settings.py
 *.DS_Store
