@@ -36,9 +36,9 @@ OWM_API_KEY = 'c2240d0d9111ca1d768567b7fd6074fa'
 ##########
 #Use True on your local PC, False on Heroku!!
 ########
-DEBUG = True
+#DEBUG = True
 
-#DEBUG = False
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['*']

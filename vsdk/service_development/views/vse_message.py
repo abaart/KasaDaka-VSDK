@@ -25,6 +25,7 @@ def message_presentation_generate_context(message_presentation_element, session)
 
 
 def message_presentation_generate_weather_context(message_presentation_element, session):
+    
     forecast = get_apis(OWM_API_KEY).get_forecast(get_location())
 
     language = session.language
