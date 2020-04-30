@@ -8,27 +8,27 @@ plays back a message, then sends the user to the redirect
         <block>
             <prompt>
                 <audio src="{{ message_voice_fragment_url }}"/>
-                <break/>
+
                 <audio src="{{ message_voice_fragment_today_url }}"/>
                 <audio src="{{ message_voice_fragment_wind0_url }}"/>
                 <audio src="{{ message_voice_fragment_rain0_url }}"/>
-                <break/>
+
                 <audio src="{{ message_voice_fragment_tomorrow_url }}"/>
                 <audio src="{{ message_voice_fragment_wind1_url }}"/>
                 <audio src="{{ message_voice_fragment_rain1_url }}"/>
-                <break/>
+
                 <audio src="{{ message_voice_fragment_day2_url }}"/>
                 <audio src="{{ message_voice_fragment_wind2_url }}"/>
                 <audio src="{{ message_voice_fragment_rain2_url }}"/>
-                <break/>
+
                 <audio src="{{ message_voice_fragment_day3_url }}"/>
                 <audio src="{{ message_voice_fragment_wind3_url }}"/>
                 <audio src="{{ message_voice_fragment_rain3_url }}"/>
-                <break/>
+
                 <audio src="{{ message_voice_fragment_day4_url }}"/>
                 <audio src="{{ message_voice_fragment_wind4_url }}"/>
                 <audio src="{{ message_voice_fragment_rain4_url }}"/>
-                <break/>
+
                 <audio src="{{ message_voice_fragment_day5_url }}"/>
                 <audio src="{{ message_voice_fragment_wind5_url }}"/>
                 <audio src="{{ message_voice_fragment_rain5_url }}"/>
