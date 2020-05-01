@@ -268,14 +268,15 @@ class VoiceServiceSubElement(models.Model):
         """
         rain = forecast.days[count].rainfall
 
+        if rain == 0:
+            return self.voice_label_rain_0.get_voice_fragment_url(language)
+
         # to prevent saying "no rain" when it's a little rain
         if 0 < rain <= 5:
             return self.voice_label_rain_0_to_5.get_voice_fragment_url(language)
 
         # round to nearest 10
         rounded_rain = int(round(rain, -1))
-        if rounded_rain == 0:
-            return self.voice_label_rain_0.get_voice_fragment_url(language)
         if rounded_rain == 5:
             return self.voice_label_rain_5.get_voice_fragment_url(language)
         if rounded_rain == 10:
