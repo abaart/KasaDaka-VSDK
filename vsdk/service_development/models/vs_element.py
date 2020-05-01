@@ -148,6 +148,15 @@ class VoiceServiceSubElement(models.Model):
         related_name='voice_label_rain_0'
     )
 
+    voice_label_rain_0_to_5 = models.ForeignKey(
+        VoiceLabel,
+        verbose_name=_('Voice label rain 0 to 5'),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='voice_label_rain_0_to_5'
+    )
+
     voice_label_rain_5 = models.ForeignKey(
         VoiceLabel,
         verbose_name=_('Voice label rain 5'),
@@ -258,9 +267,16 @@ class VoiceServiceSubElement(models.Model):
         Returns the url of the audio file of the rain file in the given language
         """
         rain = forecast.days[count].rainfall
-        rounded_rain = int(round(rain, -1)) # round to nearest 10
-        if rounded_rain == 0:
+
+        if rain == 0:
             return self.voice_label_rain_0.get_voice_fragment_url(language)
+
+        # to prevent saying "no rain" when it's a little rain
+        if 0 < rain <= 5:
+            return self.voice_label_rain_0_to_5.get_voice_fragment_url(language)
+
+        # round to nearest 10
+        rounded_rain = int(round(rain, -1))
         if rounded_rain == 5:
             return self.voice_label_rain_5.get_voice_fragment_url(language)
         if rounded_rain == 10:

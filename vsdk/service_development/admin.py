@@ -81,6 +81,7 @@ class VoiceServiceElementAdmin(admin.ModelAdmin):
                                      'voice_label_saturday',
                                      'voice_label_sunday',
                                      'voice_label_rain_0',
+                                     'voice_label_rain_0_to_5',
                                      'voice_label_rain_5',
                                      'voice_label_rain_10',
                                      'voice_label_rain_15',
