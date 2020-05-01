@@ -68,6 +68,9 @@ def get_location():
     Tries first to get GPS coordinates, then tries to get location via its public IP address.
     """
 
+    #TODO remove Ghana mock location for assignment 2
+    return Location(latitude=6.6885, longitude=-1.6244)
+
     try:
         return _get_gps()
     except Exception:
