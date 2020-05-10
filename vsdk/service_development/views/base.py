@@ -5,7 +5,7 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('This is the VoiceXML generator')
 
-def redirect_to_voice_service_element(element,session):
+def redirect_to_voice_service_element(element, session):
     """
     Redirects to a VoiceServiceElement (of unknown subclass), including the session_id in the request.
     """

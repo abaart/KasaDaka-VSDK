@@ -9,6 +9,7 @@ from .validators import validate_audio_file_extension, validate_audio_file_forma
 
 
 class VoiceLabel(models.Model):
+    
     name = models.CharField(_('Name'),max_length=50)
     description = models.CharField(_('Description'),max_length=1000, blank = True, null = True)
 

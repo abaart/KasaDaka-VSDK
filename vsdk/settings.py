@@ -38,7 +38,7 @@ OWM_API_KEY = 'c2240d0d9111ca1d768567b7fd6074fa'
 ########
 #DEBUG = True
 
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['*']

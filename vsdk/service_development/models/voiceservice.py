@@ -11,6 +11,7 @@ from django.utils.translation import ugettext
 
 from .voicelabel import VoiceLabel, Language, VoiceFragment
 from .vs_element import VoiceServiceElement
+from .weather_manager import WeatherManager
 
 class VoiceService(models.Model):
     _urls_name = 'service-development:voice-service'
@@ -19,8 +20,10 @@ class VoiceService(models.Model):
     description = models.CharField(_('Description'),max_length=1000)
     creation_date = models.DateTimeField(_('Date created'), auto_now_add = True)
     modification_date = models.DateTimeField(_('Date last modified'), auto_now = True)
+
     active = models.BooleanField(_('Voice service active'),
             help_text = _("A voice service that is active is accessible to users. Marking this service as active (which is only possible when it is valid) will activate this service and disactivate all other services."))
+
     _start_element = models.ForeignKey(            
             VoiceServiceElement,
             related_name='%(app_label)s_%(class)s_related',
@@ -28,14 +31,24 @@ class VoiceService(models.Model):
             null = True,
             on_delete = models.SET_NULL,
             blank = True)
+
     registration_choices = [('required', _('required (service does not function without Caller ID!)')),
                             ('preferred', _('preferred')),
                             ('disabled', _('disabled'))]
+
     registration = models.CharField(_('User registration'),max_length = 15, blank = False, choices = registration_choices)
     registration_language = models.BooleanField(_('Register Language preference'), help_text= _("The preferred language will be asked and stored during the user registration process"), default = True)
     registration_name = models.BooleanField(_('Register spoken name'), help_text = _("The user will be asked to speak their name as part of the user registration process"), default = False)
 
     supported_languages = models.ManyToManyField(Language, blank = True,verbose_name=_('Supported languages'))
+
+    weather_manager = models.ForeignKey(
+        WeatherManager,
+        verbose_name = _('Weather Manager'),
+        on_delete = models.SET_NULL,
+        null = True,
+        blank = True,
+    )
 
     class Meta:
         verbose_name = _('Voice Service')

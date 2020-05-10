@@ -17,6 +17,7 @@ def format_validation_result(obj):
 class VoiceServiceAdmin(admin.ModelAdmin):
     fieldsets = [(_('General'),    {'fields' : ['name', 'description', 'vxml_url', 'active', 'is_valid', 'validation_details', 'supported_languages']}),
                     (_('Registration process'), {'fields': ['registration', 'registration_language']}),
+                    (_('Weather'), {'fields': ['weather_manager']}),
                     (_('Call flow'), {'fields': ['_start_element']})]
     list_display = ('name','active')
     readonly_fields = ('vxml_url', 'is_valid', 'validation_details')
@@ -67,29 +68,7 @@ class VoiceServiceAdmin(admin.ModelAdmin):
 class VoiceServiceElementAdmin(admin.ModelAdmin):
     fieldsets = [
         (_('General'), {'fields' : [ 'name', 'description','service','is_valid', 'validation_details', 'voice_label']}),
-        (_('Weather'), {'fields' : [ 'is_weather_element',
-                                     'wind_threshold',
-                                     'voice_label_wind_normal',
-                                     'voice_label_wind_strong',
-                                     'voice_label_today',
-                                     'voice_label_tomorrow',
-                                     'voice_label_monday',
-                                     'voice_label_tuesday',
-                                     'voice_label_wednesday',
-                                     'voice_label_thursday',
-                                     'voice_label_friday',
-                                     'voice_label_saturday',
-                                     'voice_label_sunday',
-                                     'voice_label_rain_0',
-                                     'voice_label_rain_0_to_5',
-                                     'voice_label_rain_5',
-                                     'voice_label_rain_10',
-                                     'voice_label_rain_15',
-                                     'voice_label_rain_20',
-                                     'voice_label_rain_25',
-                                     'voice_label_rain_30',
-                                     'voice_label_rain_35'
-                                     ]})
+        (_('Weather'), {'fields' : ['is_forecast', 'day_index']})
     ]
     list_filter = ['service']
     list_display = ('name', 'service', 'is_valid')
@@ -221,3 +200,4 @@ admin.site.register(VoiceLabel, VoiceLabelAdmin)
 admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
 admin.site.register(UserInputCategory)
 admin.site.register(Record)
+admin.site.register(WeatherManager)

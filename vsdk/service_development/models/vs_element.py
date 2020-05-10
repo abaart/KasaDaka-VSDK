@@ -24,9 +24,18 @@ class VoiceServiceSubElement(models.Model):
     creation_date = models.DateTimeField(_('Date created'), auto_now_add = True)
     modification_date = models.DateTimeField(_('Date last modified'), auto_now = True)
     name = models.CharField(_('Name'),max_length=100)
+
+    is_forecast = models.BooleanField(_('Is forecast message'), default = False)
+
+    day_index = models.IntegerField(choices = [(i,i) for i in range(7)],
+            null = True,
+            blank = True
+            )
+
     description = models.CharField(
             max_length = 1000,
             blank = True)
+
     voice_label = models.ForeignKey(
             VoiceLabel,
             verbose_name = _('Voice label'),
@@ -34,191 +43,6 @@ class VoiceServiceSubElement(models.Model):
             null = True,
             blank = True,
             )
-
-    # Weather Parameters
-
-    is_weather_element = models.BooleanField(_('This element contains weather forecasts'), default = False)
-    wind_threshold = models.IntegerField(_('Wind Threshold (km/h)'), blank=True, null=True)
-
-    voice_label_wind_normal = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label normal wind'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_normal_wind',
-            )
-
-    voice_label_wind_strong = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label strong wind'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_strong_wind'
-            )
-
-    voice_label_today = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label today'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_today'
-    )
-
-    voice_label_tomorrow = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label tomorrow'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_tomorrow'
-    )
-
-    voice_label_monday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label monday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_monday'
-    )
-
-    voice_label_tuesday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label tuesday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_tuesday'
-    )
-
-    voice_label_wednesday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label wednesday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_wednesday'
-    )
-
-    voice_label_thursday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label thursday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_thursday'
-    )
-
-    voice_label_friday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label friday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_friday'
-    )
-
-    voice_label_saturday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label saturday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_saturday'
-    )
-
-    voice_label_sunday = models.ForeignKey(
-            VoiceLabel,
-            verbose_name = _('Voice label sunday'),
-            on_delete = models.SET_NULL,
-            null = True,
-            blank = True,
-            related_name='voice_label_sunday'
-    )
-
-    voice_label_rain_0 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 0'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_0'
-    )
-
-    voice_label_rain_0_to_5 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 0 to 5'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_0_to_5'
-    )
-
-    voice_label_rain_5 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 5'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_5'
-    )
-
-    voice_label_rain_10 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 10'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_10'
-    )
-
-    voice_label_rain_15 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 15'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_15'
-    )
-
-    voice_label_rain_20 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 20'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_20'
-    )
-
-    voice_label_rain_25 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 25'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_25'
-    )
-
-    voice_label_rain_30 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 30'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_30'
-    )
-
-    voice_label_rain_35 = models.ForeignKey(
-        VoiceLabel,
-        verbose_name=_('Voice label rain 35'),
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='voice_label_rain_35'
-    )
 
     class Meta:
         verbose_name = _('Voice Service Sub-Element')
@@ -251,97 +75,6 @@ class VoiceServiceSubElement(models.Model):
         Returns the url of the audio file of this element, in the given language.
         """
         return self.voice_label.get_voice_fragment_url(language)
-
-    def get_voice_fragment_url_wind(self, language, forecast, count):
-        """
-        Returns the url of the audio file of the days' element, in the given language.
-        """
-
-        wind_speed_of_day = forecast.days[count].wind_speed
-        if wind_speed_of_day < self.wind_threshold:
-            return self.voice_label_wind_normal.get_voice_fragment_url(language)
-        return self.voice_label_wind_strong.get_voice_fragment_url(language)
-
-    def get_voice_fragment_url_rain(self, language, forecast, count):
-        """
-        Returns the url of the audio file of the rain file in the given language
-        """
-        rain = forecast.days[count].rainfall
-
-        if rain == 0:
-            return self.voice_label_rain_0.get_voice_fragment_url(language)
-
-        # to prevent saying "no rain" when it's a little rain
-        if 0 < rain <= 5:
-            return self.voice_label_rain_0_to_5.get_voice_fragment_url(language)
-
-        # round to nearest 10
-        rounded_rain = int(round(rain, -1))
-        if rounded_rain == 5:
-            return self.voice_label_rain_5.get_voice_fragment_url(language)
-        if rounded_rain == 10:
-            return self.voice_label_rain_10.get_voice_fragment_url(language)
-        if rounded_rain == 15:
-            return self.voice_label_rain_15.get_voice_fragment_url(language)
-        if rounded_rain == 20:
-            return self.voice_label_rain_20.get_voice_fragment_url(language)
-        if rounded_rain == 25:
-            return self.voice_label_rain_25.get_voice_fragment_url(language)
-        if rounded_rain == 30:
-            return self.voice_label_rain_30.get_voice_fragment_url(language)
-        if rounded_rain == 35:
-            return self.voice_label_rain_35.get_voice_fragment_url(language)
-        else:
-            raise ValueError("Rain is more than 35mm/day")
-
-
-    def get_voice_fragment_url_day(self, language, forecast, count):
-        """Returns the url of the audio file for the corresponding day.
-        It will use today, tomorrow, [weekday of day after tomorrow], ...
-        """
-
-        day_in_forecast = forecast.days[count].forecast_date
-        today = date.today()
-
-        # today
-        if day_in_forecast == today:
-            return self.voice_label_today.get_voice_fragment_url(language)
-
-        # tomorrow
-        elif day_in_forecast == today + timedelta(days=1):
-            return self.voice_label_tomorrow.get_voice_fragment_url(language)
-
-        # Mondays
-        elif day_in_forecast.weekday() == 0:
-            return self.voice_label_monday.get_voice_fragment_url(language)
-
-        # Tuesday
-        elif day_in_forecast.weekday() == 1:
-            return self.voice_label_tuesday.get_voice_fragment_url(language)
-
-        # Wednesday
-        elif day_in_forecast.weekday() == 2:
-            return self.voice_label_wednesday.get_voice_fragment_url(language)
-
-        # Thursday
-        elif day_in_forecast.weekday() == 3:
-            return self.voice_label_thursday.get_voice_fragment_url(language)
-
-        # Friday
-        elif day_in_forecast.weekday() == 4:
-            return self.voice_label_friday.get_voice_fragment_url(language)
-
-        # Saturday
-        elif day_in_forecast.weekday() == 5:
-            return self.voice_label_saturday.get_voice_fragment_url(language)
-
-        # Sunday
-        elif day_in_forecast.weekday() == 6:
-            return self.voice_label_sunday.get_voice_fragment_url(language)
-
-        else:
-            raise ValueError("weekday not calculated correctly")
-
 
     def get_subclass_object(self):
         return VoiceServiceSubElement.objects.get_subclass(id = self.id)
