@@ -49,7 +49,7 @@
 <form id="submit_form">
 <block>
 
-  <submit next="/vxml/choice_save" method="post" namelist="selected_choice_url selected_choice_name"/>
+  <submit next="/vxml/choice_save/{{ session_id }}" method="post" namelist="selected_choice_url selected_choice_name"/>
 
 </block>
 </form>

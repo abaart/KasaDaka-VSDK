@@ -41,6 +41,7 @@ def choice_generate_context(choice_element, session):
                 'choice_options_voice_labels': choice_options_resolve_voice_labels(choice_options, language),
                 'choice_options_redirect_urls': choice_options_resolve_redirect_urls(choice_options,session),
                 'language': language,
+                'session_id': session.id
             }
     return context
 
