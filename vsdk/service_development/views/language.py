@@ -36,6 +36,7 @@ class LanguageSelection(TemplateView):
         """
         Saves the chosen language to the session
         """
+
         if 'redirect_url' in request.POST:
             redirect_url = request.POST['redirect_url']
         else: raise ValueError('Incorrect request, redirect_url not set')

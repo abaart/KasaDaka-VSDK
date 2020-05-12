@@ -2,11 +2,16 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 
 from ..models import *
 
+from pprint import pprint
+
 
 def choice_options_resolve_redirect_urls(choice_options, session):
     choice_options_redirection_urls = []
     for choice_option in choice_options:
-        redirect_url = choice_option.redirect.get_absolute_url(session)
+        redirect_url = {
+            'url': choice_option.redirect.get_absolute_url(session),
+            'name': choice_option.name
+        }
         choice_options_redirection_urls.append(redirect_url)
     return choice_options_redirection_urls
 
@@ -31,12 +36,12 @@ def choice_generate_context(choice_element, session):
     choice_options =  choice_element.choice_options.all()
     language = session.language
     context = {'choice':choice_element,
-                'choice_voice_label':choice_element.get_voice_fragment_url(language),
+                'choice_voice_label': choice_element.get_voice_fragment_url(language),
                 'choice_options': choice_options,
-                'choice_options_voice_labels':choice_options_resolve_voice_labels(choice_options, language),
-                    'choice_options_redirect_urls': choice_options_resolve_redirect_urls(choice_options,session),
-                    'language': language,
-                    }
+                'choice_options_voice_labels': choice_options_resolve_voice_labels(choice_options, language),
+                'choice_options_redirect_urls': choice_options_resolve_redirect_urls(choice_options,session),
+                'language': language,
+            }
     return context
 
 def choice(request, element_id, session_id):
@@ -44,6 +49,11 @@ def choice(request, element_id, session_id):
     session = get_object_or_404(CallSession, pk=session_id)
     session.record_step(choice_element)
     context = choice_generate_context(choice_element, session)
+
+    for elem in context['choice_options']:
+        pprint(elem.name)
+
+    pprint(context)
     
-    return render(request, 'choice.xml', context, content_type='text/xml')
+    return render(request, 'choice_saved.xml', context, content_type='text/xml')
 

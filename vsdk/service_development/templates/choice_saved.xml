@@ -1,0 +1,57 @@
+{% extends "base.xml" %}
+{% block content%}
+<form  id="{{ choice.name|slugify }}">
+	<field name="choice">
+		<prompt>
+			<audio src="{{ choice_voice_label }}"/>
+			{% for option_voice_label in choice_options_voice_labels %}
+				<audio src="{{ language.get_interface_voice_label_url_dict.pre_choice_option }}"/>
+				<audio src="{{ option_voice_label }}"/>
+				<audio src="{{ language.get_interface_voice_label_url_dict.post_choice_option }}"/>
+			{% for number in language.get_interface_numbers_voice_label_url_list %}{% if forloop.counter0 == forloop.parentloop.counter %}<audio src="{{ number }}"/>{% endif %}{% endfor %}
+			{% endfor %}
+</prompt>
+
+{# all possible inputs from the user #}
+<grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+      <rule id="MYRULE" scope = "public">
+        <one-of>
+          {% for option in choice_options %}
+            <item>{{ forloop.counter }}</item>
+          {% endfor %}
+        </one-of>
+       </rule>
+</grammar>
+
+{# when there has been input, redirect the user to the corresponding URL #}
+<filled>
+    {% for option_redirect in choice_options_redirect_urls %}
+      {% if forloop.counter == 1 %}
+      <if cond="choice == '{{ forloop.counter }}'">
+      {% else %}
+      <elseif cond="choice == '{{ forloop.counter }}'" />
+      {% endif %}
+          <assign name="selected_choice_url" expr="'{{ option_redirect.url }}'"/>
+          <assign name="selected_choice_name" expr="'{{ option_redirect.name }}'"/>
+    {% endfor %}
+
+
+    <else/>
+    </if>
+
+    <goto next="#submit_form"/>
+  </filled>
+
+</field>
+</form>
+
+
+<form id="submit_form">
+<block>
+
+  <submit next="/vxml/choice_save" method="post" namelist="selected_choice_url selected_choice_name"/>
+
+</block>
+</form>
+
+{% endblock %}
