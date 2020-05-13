@@ -1,0 +1,10 @@
+{% extends "base.xml" %}
+{% block content%}
+
+<ul>
+  {% for choice in results %}
+    <li>{{ choice.call_date__date }}; {{ choice.choice }} = {{ choice.count }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
