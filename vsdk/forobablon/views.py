@@ -1,6 +1,12 @@
 from django.http import HttpResponse
 
-# Create your views here.
+from vsdk.service_development.models import ChoiceSaved
 
 def results(request):
-  return HttpResponse("Hello, world. You're at the polls index.")
+
+  choices = ChoiceSaved.day_objects.all()
+
+  print(ChoiceSaved.objects.all())
+  print(ChoiceSaved.day_objects.all())
+
+  return HttpResponse(choices)
