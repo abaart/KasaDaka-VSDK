@@ -2,7 +2,7 @@
 {% block content%}
 
 <ul>
-  {% regroup results by call_date__date as objects_by_day %}
+  {% regroup yes_no_results by call_date__date as objects_by_day %}
   {% for choice in objects_by_day %}
     <li>
       {{ choice.grouper }}: 

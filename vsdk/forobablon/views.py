@@ -5,14 +5,15 @@ from vsdk.service_development.models import ChoiceSaved
 
 def results(request):
 
-  choices = ChoiceSaved.day_objects.all()
+  yesNoResults = ChoiceSaved.yes_no_objects.all()
 
   print(ChoiceSaved.objects.all())
-  print(ChoiceSaved.day_objects.all())
+  print(ChoiceSaved.yes_no_objects.all())
 
   context = {
-        'results': choices,
+        'yes_no_results': yesNoResults,
   }
+
 
   #return HttpResponse(choices)
   return render(request, 'results.html', context=context)
