@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'vsdk.service_development.apps.ServiceDevelopmentConfig',
+    'vsdk.forobablon.apps.ForobablonConfig',
     'storages',
     'django.contrib.admin',
     'django.contrib.auth',
