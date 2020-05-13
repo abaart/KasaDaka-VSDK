@@ -1,9 +1,17 @@
-{% extends "base.xml" %}
+{% extends "base_generic.html" %}
 {% block content%}
 
 <ul>
-  {% for choice in results %}
-    <li>{{ choice.call_date__date }}; {{ choice.choice }} = {{ choice.count }}</li>
+  {% regroup results by call_date__date as objects_by_day %}
+  {% for choice in objects_by_day %}
+    <li>
+      {{ choice.grouper }}: 
+      <ul>
+        {% for item in choice.list %}
+        <li>{{ item.choice }} = {{ item.count }}</li>
+        {% endfor %}
+      </ul>
+    </li>
   {% endfor %}
 </ul>
 
