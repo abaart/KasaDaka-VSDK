@@ -1,19 +1,22 @@
+import glob
+
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.conf import settings
 
 from vsdk.service_development.models import ChoiceSaved
 
 def results(request):
 
   yesNoResults = ChoiceSaved.yes_no_objects.all()
+  test_path = settings.MEDIA_URL + "uploads/*"
 
   print(ChoiceSaved.objects.all())
   print(ChoiceSaved.yes_no_objects.all())
 
   context = {
-        'yes_no_results': yesNoResults,
+    'yes_no_results': yesNoResults,
+    'test_path': glob.glob(test_path),
   }
 
-
-  #return HttpResponse(choices)
   return render(request, 'results.html', context=context)
