@@ -13,10 +13,11 @@ def results(request):
   test_path2 = settings.MEDIA_URL + "*"
   test_path3 = settings.MEDIA_URL
 
-  # print(ChoiceSaved.objects.all())
-  # print(ChoiceSaved.yes_no_objects.all())
+  print(ChoiceSaved.objects.all().values())
+  print(ChoiceSaved.yes_no_objects.all().values())
   obj = {
-    
+    "ChoiceSaved.objects.all().values()":ChoiceSaved.objects.all().values(),
+    "ChoiceSaved.yes_no_objects.all().values()": ChoiceSaved.yes_no_objects.all().values()
   }
 
   context = {
