@@ -1,5 +1,5 @@
 import glob
-
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
@@ -13,14 +13,17 @@ def results(request):
   test_path2 = settings.MEDIA_URL + "*"
   test_path3 = settings.MEDIA_URL
 
-  print(ChoiceSaved.objects.all())
-  print(ChoiceSaved.yes_no_objects.all())
+  obj = {
+    "ChoiceSaved.objects.all()": ChoiceSaved.objects.all(),
+    "ChoiceSaved.yes_no_objects.all()": ChoiceSaved.yes_no_objects.all(),
+  }
 
   context = {
     'yes_no_results': yesNoResults,
     'test_path': glob.glob(test_path),
     'test_path2': glob.glob(test_path2),
     'test_path3': test_path3,
+    'dump': json.dumps(obj, indent=2)
   }
 
   return render(request, 'results.html', context=context)
