@@ -19,7 +19,7 @@ def results(request):
 
   all = []
   for item in all_raw:
-    all.append(item.__dict__)
+    all.append(item)
 
   obj = {
     "all":all,
