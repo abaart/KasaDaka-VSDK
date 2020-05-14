@@ -19,7 +19,7 @@ def results(request):
   all = []
   for item_raw in all_raw:
     item = item_raw
-    item["call_date"] = item["call_date"].timestamp()
+    item["call_date"] = item["call_date"].isoformat()
     all.append(item)
     print(item)
 
