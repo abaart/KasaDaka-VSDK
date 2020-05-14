@@ -14,12 +14,14 @@ def results(request):
   test_path3 = settings.MEDIA_URL
 
   all_raw = ChoiceSaved.objects.all().values()
-  print(all_raw)
   print(ChoiceSaved.yes_no_objects.all().values())
 
   all = []
-  for item in all_raw:
+  for item_raw in all_raw:
+    item = item_raw
+    item["call_date"] = item["call_date"].timestamp()
     all.append(item)
+    print(item)
 
   obj = {
     "all":all,
