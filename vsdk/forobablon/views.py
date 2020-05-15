@@ -50,7 +50,7 @@ def _get_results():
   obj = []
   for k in result_object:
     obj.append(result_object[k])
-  return obj
+  return reversed(obj)
 
 def results(request):
   obj = _get_results()
