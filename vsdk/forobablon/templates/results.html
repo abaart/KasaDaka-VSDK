@@ -1,8 +1,30 @@
 {% extends "base_generic.html" %}
 {% block content%}
 
-<pre>{{ stats_language }}</pre>
-<pre>{{ stats_options }}</pre>
+<table>
+  <thead>
+    {% for lng in stats_language.options %}
+      <th>{{ lng }}</th>
+    {% endfor %}
+  </thead>
+  <tbody>
+    {% for lng in stats_language.results %}
+      <td>{{ lng }}</td>
+    {% endfor %}
+  </tbody>
+</table>
+<table>
+  <thead>
+    {% for lng in stats_options.options %}
+      <th>{{ lng }}</th>
+    {% endfor %}
+  </thead>
+  <tbody>
+    {% for lng in stats_options.results %}
+      <td>{{ lng }}</td>
+    {% endfor %}
+  </tbody>
+</table>
 
 <table>
   <thead>

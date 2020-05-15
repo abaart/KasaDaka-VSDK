@@ -94,7 +94,7 @@ def results(request):
     'test_path3': test_path3,
     'dump': obj,
     "stats_language": json.dumps(languages.__dict__),
-    "stats_options": json.dumps(languages.__dict__),
+    "stats_options": json.dumps(options.__dict__),
   }
 
   return render(request, 'results.html', context=context)
