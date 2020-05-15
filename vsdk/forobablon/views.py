@@ -27,7 +27,7 @@ class Result:
   def finished(self) -> bool:
     return self.language is not None and self.answer is not None
 def _get_results():
-    result_object = {}
+  result_object = {}
   all_sessions = CallSession.objects.all().order_by("pk")
 
   for session in all_sessions:
