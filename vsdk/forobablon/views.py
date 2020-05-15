@@ -30,10 +30,14 @@ class SessionAnswers:
       "selection": None,
     }
     if len(self._anwsers) > 0:
-      res["language"] = str(self._anwsers[0])
+      t = self._anwsers[0].__dict__
+      t["call_date"] = str(t["call_date"])
+      res["language"] = str(t)
 
     if len(self._anwsers) > 1:
-      res["selection"] = str(self._anwsers[1])
+      t = self._anwsers[1].__dict__
+      t["call_date"] = str(t["call_date"])
+      res["selection"] = str(t)
 
     return res
 
