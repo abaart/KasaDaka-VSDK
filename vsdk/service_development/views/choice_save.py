@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.http.response import HttpResponseRedirect
 from django.utils import timezone
 
-from ..models import ChoiceSaved
+from ..models import ChoiceSaved, CallSession
 
 class ChoiceSave(TemplateView):
 
@@ -20,7 +20,12 @@ class ChoiceSave(TemplateView):
             raise ValueError('Incorrect request, selected_choice_name not set')
         choice_name = request.POST['selected_choice_name']
 
-        choice = ChoiceSaved(call_date = timezone.now(), choice = choice_name)
+        session = CallSession.objects.all().filter(id = session_id)
+        if not session:
+            raise IndexError("Session not found")
+
+
+        choice = ChoiceSaved(call_date = timezone.now(), choice = choice_name, session = session)
         choice.save()
 
         print(choice_url)
