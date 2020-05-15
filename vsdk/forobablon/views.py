@@ -83,7 +83,7 @@ def results(request):
     'test_path': glob.glob(test_path),
     'test_path2': glob.glob(test_path2),
     'test_path3': test_path3,
-    'dump': json.dumps(obj, indent=2)
+    'dump': obj
   }
 
   return render(request, 'results.html', context=context)
