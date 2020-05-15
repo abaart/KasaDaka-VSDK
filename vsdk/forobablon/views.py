@@ -30,11 +30,11 @@ def results(request):
   all_sessions = CallSession.objects.all()
 
   for session in all_sessions:
-    result_object[session.id] = Result(session.caller_id, session.start, session.end)
+    result_object[session.id] = Result(session.caller_id, session.start.isoformat(), session.end.isoformat())
 
-  choices = ChoiceSaved.objects.filter(session_id__in = list(result_object.keys()))
+  choices = ChoiceSaved.objects.filter(session_id__in = list(result_object.keys())).order_by("pk")
   for choice in choices:
-    result_object[choice.session_id].add_answer(choice)
+    result_object[choice.session_id].add_answer(choice.choice)
 
 
   obj = {}
