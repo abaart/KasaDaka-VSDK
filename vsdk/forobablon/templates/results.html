@@ -1,31 +1,36 @@
 {% extends "base_generic.html" %}
 {% block content%}
 
-<table>
-  <thead>
-    {% for lng in stats_language.options %}
-      <th>{{ lng }}</th>
-    {% endfor %}
-  </thead>
-  <tbody>
-    {% for lng in stats_language.results %}
-      <td>{{ lng }}</td>
-    {% endfor %}
-  </tbody>
-</table>
-<table>
-  <thead>
-    {% for lng in stats_options.options %}
-      <th>{{ lng }}</th>
-    {% endfor %}
-  </thead>
-  <tbody>
-    {% for lng in stats_options.results %}
-      <td>{{ lng }}</td>
-    {% endfor %}
-  </tbody>
-</table>
-
+<fieldset>
+  <legend>Language</legend>
+  <table>
+    <thead>
+      {% for lng in stats_language.options %}
+        <th>{{ lng }}</th>
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for lng in stats_language.results %}
+        <td>{{ lng }}</td>
+      {% endfor %}
+    </tbody>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Options</legend>
+  <table>
+    <thead>
+      {% for lng in stats_options.options %}
+        <th>{{ lng }}</th>
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for lng in stats_options.results %}
+        <td>{{ lng }}</td>
+      {% endfor %}
+    </tbody>
+  </table>
+</fieldset>
 <table>
   <thead>
     <th>Session</th>
