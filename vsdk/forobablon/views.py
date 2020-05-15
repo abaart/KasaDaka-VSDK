@@ -98,3 +98,14 @@ def results(request):
   }
 
   return render(request, 'results.html', context=context)
+
+
+
+def resultsIndex(request):
+
+  context = {
+    'yes_no_results': ChoiceSaved.yes_no_objects.all().order_by('-call_date'),
+  }
+
+  return render(request, 'results-index.html', context=context)
+

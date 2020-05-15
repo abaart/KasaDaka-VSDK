@@ -4,5 +4,5 @@ from . import views
 
 app_name= 'forobablon'
 urlpatterns = [
-    url(r'^results/$', views.results, name='results'),
+    url(r'^results/$', views.resultsIndex, name='results'),
 ]
