@@ -39,7 +39,7 @@ def results(request):
 
   obj = {}
   for k in result_object:
-    obj[k] = str(result_object[k])
+    obj[k] = str(result_object[k].__dict__)
   
   
 
