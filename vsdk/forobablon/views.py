@@ -50,7 +50,7 @@ def results(request):
 
   obj = []
   for k in result_object:
-    obj.append(result_object[k].__dict__)
+    obj.append(result_object[k])
   
   
 
