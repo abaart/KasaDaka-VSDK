@@ -15,7 +15,7 @@ class ChoiceSavedYesNoManager(models.Manager):
 class ChoiceSaved(models.Model):
   call_date = models.DateTimeField('call_date')
   choice = models.CharField(max_length=200)
-  session = models.ForeignKey(CallSession, on_delete=models.CASCADE, related_name="session")
+  session = models.ForeignKey(CallSession, on_delete=models.CASCADE, related_name="choice_saved")
 
   objects = models.Manager() # The default manager.
   yes_no_objects = ChoiceSavedYesNoManager() # The day-specific yes-no manager.
