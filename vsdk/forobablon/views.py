@@ -44,7 +44,7 @@ def results(request):
   test_path2 = settings.MEDIA_URL + "*"
   test_path3 = settings.MEDIA_URL
 
-  all_raw = ChoiceSaved.objects.all().values()
+  all_raw = ChoiceSaved.objects.all()
   # all_raw = CallSession.objects.all().values()
   
   print(ChoiceSaved.yes_no_objects.all().values())
