@@ -3,6 +3,7 @@ import datetime
 from django.utils import timezone
 from django.db import models
 from django.db.models import Count, Q
+from . import CallSession
 
 class ChoiceSavedYesNoManager(models.Manager):
     def get_queryset(self):
@@ -14,6 +15,7 @@ class ChoiceSavedYesNoManager(models.Manager):
 class ChoiceSaved(models.Model):
   call_date = models.DateTimeField('call_date')
   choice = models.CharField(max_length=200)
+  session = models.ForeignKey(CallSession, on_delete=models.CASCADE, related_name="session")
 
   objects = models.Manager() # The default manager.
   yes_no_objects = ChoiceSavedYesNoManager() # The day-specific yes-no manager.

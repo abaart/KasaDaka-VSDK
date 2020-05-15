@@ -12,29 +12,20 @@ class ChoiceSave(TemplateView):
         """
         Saves selected choice to DB
         """
-        
-        print("++++ Save choice ++++")
-
-        if 'selected_choice_url' in request.POST:
-            choice_url = request.POST['selected_choice_url']
-        else:
+        if 'selected_choice_url' not in request.POST:
             raise ValueError('Incorrect request, selected_choice_url not set')
+        choice_url = request.POST['selected_choice_url']
 
-        if 'selected_choice_name' in request.POST:
-            choice_name = request.POST['selected_choice_name']
-        else:
+        if 'selected_choice_name' not in request.POST:
             raise ValueError('Incorrect request, selected_choice_name not set')
+        choice_name = request.POST['selected_choice_name']
 
-        choice = ChoiceSaved(
-            call_date = timezone.now(),
-            choice = choice_name
-        )
+        choice = ChoiceSaved(call_date = timezone.now(), choice = choice_name)
         choice.save()
 
         print(choice_url)
         print(choice_name)
 
-        print("------ Saved. ------")
 
         
 
