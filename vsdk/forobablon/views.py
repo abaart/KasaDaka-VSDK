@@ -48,9 +48,9 @@ def results(request):
     input_element = input_element # type: SpokenUserInput
     result_object[input_element.session_id].audio_file_player = input_element.audio_file_player()
 
-  obj = {}
+  obj = 
   for k in result_object:
-    obj[k] = result_object[k].__dict__
+    obj.append(result_object[k].__dict__)
   
   
 
