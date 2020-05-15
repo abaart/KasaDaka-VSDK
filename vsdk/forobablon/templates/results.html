@@ -18,7 +18,7 @@
       <td>{{ session.language }}</td>
       <td>{{ session.answer }}</td>
       <td>{{ session.phone_number }}</td>
-      <td>{{ session.audio_file_player }}</td>
+      <td>{{ session.audio_file_player |safe }}</td>
     </tr>
     {% endfor %}
   </tbody>
@@ -41,6 +41,5 @@
 {{ test_path }}
 {{ test_path2 }}
 {{ test_path3 }}
-<pre>{{ dump }}</pre>
 
 {% endblock %}
