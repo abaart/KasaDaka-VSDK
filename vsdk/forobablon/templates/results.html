@@ -1,12 +1,18 @@
 {% extends "base_generic.html" %}
 {% block content%}
 
-<h1>{{ poll_date }}</h1>
+<div class="heading">
+  <h1>{{ poll_date }}&#10003;&#10060;</h1>
+</div>
 
 
-<div>
-  <p>yes {{ yes_count }}</p>
-  <p>no {{ no_count }}</p>
+
+
+<div class="chart">
+  <ul>
+    <li id="chart_yes" style="width: {{ yes_percentage }}%"><span>Yes</span><span class="chart-li-count">{{ yes_count }}</span></li>
+    <li id="chart_no" style="width: {{ no_percentage }}%"><span>No</span><span class="chart-li-count">{{ no_count }}</span></li>
+  </ul>
 </div>
 
 <ul>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 	<head>
@@ -9,26 +10,52 @@
 		<style>
 			* {
 				font: normal 1em sans-serif;
-				color: #222;
+				color: white;
+				list-style: none;
 			}
-			thead {
-				background: #444;
+			body {
+				background-color: black;
 			}
-			thead th {
-				color: #EEE;
+			.main {
+				display: grid;
+    		grid-template-columns: 90%;
+    		justify-content: center;
 			}
-			th, td {
-				padding: 0.4em;
+			.heading {
+				margin-top: 15px;
+				border-bottom: 1px solid white;
 			}
-			tbody tr:nth-child(odd) {
-				background: #EEE;
+			h1 {
+				font-size: 4em;
+				line-height: 0px;
+			}
+
+			.chart li {
+				height: 80px;
+				margin: 50px;
+				padding: 0 15px;
+			}
+			.chart li span {
+				line-height: 80px;
+    		font-size: 3em;
+			}
+			.chart li span.chart-li-count {
+				float: right;
+			}
+			#chart_yes {
+				background-color: #1C9177;
+			}
+			#chart_no {
+				background-color: #EA4733;
 			}
 		</style>
 	</head>
 
 
 	<body>
-		{% block content %}{% endblock %}
+		<div class="main">
+			{% block content %}{% endblock %}
+		</div>
 	</body>
 
 </html>

@@ -22,12 +22,15 @@ def results(request, date):
       yes_count = result['count']
     elif result['choice'] == 'No':
       no_count = result['count']
+  total_count = yes_count + no_count
 
   context = {
     'poll_date': parse_date(date),
     'yes_count': yes_count,
+    'yes_percentage': yes_count * 100 / total_count,
     'no_count': no_count,
-    'total_count': yes_count + no_count,
+    'no_percentage': no_count * 100 / total_count,
+    'total_count': total_count,
     'recordings': sui,
   }
 
