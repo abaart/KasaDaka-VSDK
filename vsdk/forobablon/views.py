@@ -27,10 +27,14 @@ class Result:
 
 def results(request):
   result_object = {}
-  all_sessions = CallSession.objects.all()
+  all_sessions = CallSession.objects.all().order_by("pk")
 
   for session in all_sessions:
-    result_object[session.id] = Result(session.caller_id, session.start.isoformat(), session.end.isoformat())
+    start = "-"
+    end = "-"
+    if session.start is not None: start = session.start.isoformat()
+    if session.end is not None: end = session.end.isoformat()
+    result_object[session.id] = Result(session.caller_id, start, end)
 
   choices = ChoiceSaved.objects.filter(session_id__in = list(result_object.keys())).order_by("pk")
   for choice in choices:
