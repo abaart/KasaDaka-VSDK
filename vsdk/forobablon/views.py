@@ -42,14 +42,14 @@ def results(request):
     result_object[choice.session_id].add_answer(choice.choice)
 
 
-  sui = SpokenUserInput.objects.filter(session_id__in = list(result_object.keys())).order_by("pk")
+  sui = SpokenUserInput.objects.filter(session_id__in = list(result_object.keys()))
   for input_element in sui:
     input_element = input_element # type: SpokenUserInput
     result_object[input_element.session_id].audio_file_player = input_element.audio_file_player()
 
   obj = {}
   for k in result_object:
-    obj[k] = str(result_object[k].__dict__)
+    obj[k] = result_object[k].__dict__
   
   
 
