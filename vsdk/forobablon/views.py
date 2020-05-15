@@ -70,7 +70,7 @@ def _get_results():
   obj = []
   for k in result_object:
     obj.append(result_object[k])
-  return reversed(obj)
+  return obj
 
 
 def results(request):
@@ -92,7 +92,7 @@ def results(request):
     'test_path': glob.glob(test_path),
     'test_path2': glob.glob(test_path2),
     'test_path3': test_path3,
-    'dump': obj,
+    'dump': reversed(obj),
     "stats_language": json.dumps(languages.__dict__),
     "stats_options": json.dumps(options.__dict__),
   }
