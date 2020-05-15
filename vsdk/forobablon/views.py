@@ -56,10 +56,13 @@ def results(request):
     
     all[item.session_id].add_answer(item)
 
-  obj = {
-    "all": all,
-    # "ChoiceSaved.yes_no_objects.all().values()": ChoiceSaved.yes_no_objects.all().values()
-  }
+  # obj = {
+  #   "all": all,
+  #   # "ChoiceSaved.yes_no_objects.all().values()": ChoiceSaved.yes_no_objects.all().values()
+  # }
+  obj = {}
+  for item in all:
+    obj[item] = all[item].__dict__
 
   context = {
     'yes_no_results': yesNoResults,
