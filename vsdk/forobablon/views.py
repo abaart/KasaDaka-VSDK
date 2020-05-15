@@ -93,8 +93,8 @@ def results(request):
     'test_path2': glob.glob(test_path2),
     'test_path3': test_path3,
     'dump': reversed(obj),
-    "stats_language": json.dumps(languages.__dict__),
-    "stats_options": json.dumps(options.__dict__),
+    "stats_language": languages.__dict__,
+    "stats_options": options.__dict__,
   }
 
   return render(request, 'results.html', context=context)
