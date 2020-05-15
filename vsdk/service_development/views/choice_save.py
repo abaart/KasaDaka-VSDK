@@ -20,13 +20,20 @@ class ChoiceSave(TemplateView):
             raise ValueError('Incorrect request, selected_choice_name not set')
         choice_name = request.POST['selected_choice_name']
 
+        print("getting session")
+
         session = CallSession.objects.all().filter(id = session_id)
+        print("getting session2")
         if not session:
             raise IndexError("Session not found")
+        print("getting session3")
 
 
+        print("saving choice")
         choice = ChoiceSaved(call_date = timezone.now(), choice = choice_name, session = session)
+        print("saving choice2")
         choice.save()
+        print("saving choice3")
 
         print(choice_url)
         print(choice_name)
