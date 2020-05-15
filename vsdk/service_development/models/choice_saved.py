@@ -22,6 +22,6 @@ class ChoiceSaved(models.Model):
   
 
   def __str__(self):
-    out = "%s;%s;%s" % (str(self.id), str(self.call_date), str(self.choice))
+    out = "%s;%s;%s;%s" % (str(self.id), str(self.call_date), str(self.choice), str(self.session.id))
     return out
   

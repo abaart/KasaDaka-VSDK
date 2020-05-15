@@ -1,75 +1,18 @@
 {% extends "base_generic.html" %}
 {% block content%}
 
-<fieldset>
-  <legend>Language</legend>
-  <table>
-    <thead>
-      {% for lng in stats_language.options %}
-        <th>{{ lng }}</th>
-      {% endfor %}
-    </thead>
-    <tbody>
-      {% for lng in stats_language.results %}
-        <td>{{ lng }}</td>
-      {% endfor %}
-    </tbody>
-  </table>
-</fieldset>
-<fieldset>
-  <legend>Options</legend>
-  <table>
-    <thead>
-      {% for lng in stats_options.options %}
-        <th>{{ lng }}</th>
-      {% endfor %}
-    </thead>
-    <tbody>
-      {% for lng in stats_options.results %}
-        <td>{{ lng }}</td>
-      {% endfor %}
-    </tbody>
-  </table>
-</fieldset>
-<table>
-  <thead>
-    <th>Session</th>
-    <th>Date and time</th>
-    <th>Language</th>
-    <th>Answer</th>
-    <th>Phone number</th>
-    <th>Recording</th>
-  </thead>
-  <tbody>
-    {% for session in dump %}
-    <tr>
-      <td>{{ session.session_id }}</td>
-      <td>{{ session.start_time }} - {{ session.end_time }}</td>
-      <td>{{ session.language }}</td>
-      <td>{{ session.answer }}</td>
-      <td>{{ session.phone_number }}</td>
-      <td>{{ session.audio_file_player |safe }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<h1>{{ poll_date }}</h1>
+
+
+<div>
+  <p>yes {{ yes_count }}</p>
+  <p>no {{ no_count }}</p>
+</div>
 
 <ul>
-  {% regroup yes_no_results by call_date__date as objects_by_day %}
-  {% for choice in objects_by_day %}
-    <li>
-      {{ choice.grouper }}: 
-      <ul>
-        {% for item in choice.list %}
-        <li>{{ item.choice }} = {{ item.count }}</li>
-        {% endfor %}
-      </ul>
-    </li>
+  {% for recording in recordings %}
+    <li>{{ recording.audio_file_player|safe }}</li>
   {% endfor %}
 </ul>
-
-{{ test_path }}
-{{ test_path2 }}
-{{ test_path3 }}
 
 {% endblock %}
