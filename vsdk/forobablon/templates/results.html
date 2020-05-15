@@ -8,11 +8,19 @@
     <th>Language</th>
     <th>Answer</th>
     <th>Phone number</th>
+    <th>Recording</th>
   </thead>
   <tbody>
-    <!-- <tr>
-      <td></td>
-    </tr> -->
+    {% for session_id, session in dump %}
+    <tr>
+      <td>{{ session_id }}</td>
+      <td>{{ session.start_time }} - {{ session.end_time }}</td>
+      <td>{{ session.language }}</td>
+      <td>{{ session.answer }}</td>
+      <td>{{ session.phone_number }}</td>
+      <td>{{ session.audio_file_player }}</td>
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
