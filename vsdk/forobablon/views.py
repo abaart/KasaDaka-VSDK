@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
 
-from vsdk.service_development.models import ChoiceSaved, CallSession, SpokenUserInput
+from vsdk.service_development.models import ChoiceSaved, CallSession, SpokenUserInput, SpokenUserInput
 
 class Result:
   def __init__(self, phone_number: str, start_time: str, end_time: str):
@@ -13,6 +13,7 @@ class Result:
     self.end_time = end_time
     self.language = None
     self.answer = None
+    self.audio_file_player = ""
   
   def add_answer(self, answer: ChoiceSaved):
     if self.language is None:
@@ -40,6 +41,11 @@ def results(request):
   for choice in choices:
     result_object[choice.session_id].add_answer(choice.choice)
 
+
+  sui = SpokenUserInput.objects.filter(session_id__in = list(result_object.keys())).order_by("pk")
+  for input_element in sui:
+    input_element = input_element # type: SpokenUserInput
+    result_object[input_element.session_id].audio_file_player = input_element.audio_file_player()
 
   obj = {}
   for k in result_object:
