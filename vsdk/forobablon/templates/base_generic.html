@@ -5,7 +5,22 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  	{% block title %}<title>Foroba Blon</title>{% endblock %}
+		{% block title %}<title>Foroba Blon</title>{% endblock %}
+		<style>
+			* {
+				font: normal 1em sans-serif;
+			}
+			thead {
+				background: #444;
+				color: #EEE;
+			}
+			th, td {
+				padding: 0.4em;
+			}
+			tbody tr:nth-child(odd) {
+				background: #EEE;
+			}
+		</style>
 	</head>
 
 

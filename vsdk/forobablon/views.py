@@ -26,9 +26,8 @@ class Result:
   @property
   def finished(self) -> bool:
     return self.language is not None and self.answer is not None
-
-def results(request):
-  result_object = {}
+def _get_results():
+    result_object = {}
   all_sessions = CallSession.objects.all().order_by("pk")
 
   for session in all_sessions:
@@ -51,32 +50,15 @@ def results(request):
   obj = []
   for k in result_object:
     obj.append(result_object[k])
-  
-  
+  return obj
+
+def results(request):
+  obj = _get_results()
 
   yesNoResults = ChoiceSaved.yes_no_objects.all()
   test_path = settings.MEDIA_URL + "uploads/*"
   test_path2 = settings.MEDIA_URL + "*"
   test_path3 = settings.MEDIA_URL
-
-  # all_raw = ChoiceSaved.objects.all()
-  # # all_raw = CallSession.objects.all().values()
-  
-  # print(ChoiceSaved.yes_no_objects.all().values())
-
-  # all = {}
-  # for item in all_raw:
-  #   if item.session_id not in all:
-  #     all[item.session_id] = SessionAnswers(item.session_id)
-    
-  #   all[item.session_id].add_answer(item)
-
-  # for session in CallSession.objects.filter(pk__in = list(all.keys())):
-  #   all[session.id].session = session
-
-  # obj = {}
-  # for item in all:
-  #   obj[item] = all[item].__dict__()
 
   context = {
     'yes_no_results': yesNoResults,
