@@ -5,6 +5,37 @@ from django.shortcuts import render
 from django.conf import settings
 
 from vsdk.service_development.models import ChoiceSaved, CallSession
+class SessionAnswers:
+  def __init__(self, session_id):
+    self.session_id = session_id
+    self._anwsers = []
+
+  def add_answer(self, answer: ChoiceSaved):
+    self._anwsers.append(answer)
+  
+  def get_language(self) -> ChoiceSaved:
+    return self._anwsers[0]
+
+  def get_selection(self) -> ChoiceSaved:
+    return self._anwsers[1]
+
+  def finished_session(self) -> bool:
+    return len(self._anwsers) >= 2
+
+  def __dict__(self):
+    res = {
+      "session_id": self.session_id,
+      "finished": self.finished_session(),
+      "language": None,
+      "selection": None,
+    }
+    if len(self._anwsers) > 0:
+      res["language"] = str(self._anwsers[0])
+
+    if len(self._anwsers) > 1:
+      res["selection"] = str(self._anwsers[1])
+
+    return res
 
 def results(request):
 
@@ -16,17 +47,17 @@ def results(request):
   all_raw = ChoiceSaved.objects.all().values()
   # all_raw = CallSession.objects.all().values()
   
-  # print(ChoiceSaved.yes_no_objects.all().values())
+  print(ChoiceSaved.yes_no_objects.all().values())
 
-  all = []
-  for item_raw in all_raw:
-    # item = item_raw
-    # item["call_date"] = item["call_date"].isoformat()
-    all.append(str(item_raw))
-    print(item_raw)
+  all = {}
+  for item in all_raw:
+    if item.session_id not in all:
+      all[item.session_id] = SessionAnswers(item.session_id)
+    
+    all[item.session_id].add_answer(item)
 
   obj = {
-    "all":all,
+    "all": all,
     # "ChoiceSaved.yes_no_objects.all().values()": ChoiceSaved.yes_no_objects.all().values()
   }
 
