@@ -22,7 +22,7 @@ class ChoiceSave(TemplateView):
 
         print("getting session")
 
-        session = CallSession.objects.all().filter(id = session_id)
+        session = CallSession.objects.all().filter(id = session_id).first()
         print("getting session2")
         if not session:
             raise IndexError("Session not found")
