@@ -9,6 +9,7 @@ class SessionAnswers:
   def __init__(self, session_id):
     self.session_id = session_id
     self._anwsers = []
+    self.session = None # type: CallSession
 
   def add_answer(self, answer: ChoiceSaved):
     self._anwsers.append(answer)
@@ -25,6 +26,7 @@ class SessionAnswers:
   def __dict__(self):
     res = {
       "session_id": self.session_id,
+      "session": str(self.session),
       "finished": self.finished_session(),
       "language": None,
       "selection": None,
@@ -60,10 +62,9 @@ def results(request):
     
     all[item.session_id].add_answer(item)
 
-  # obj = {
-  #   "all": all,
-  #   # "ChoiceSaved.yes_no_objects.all().values()": ChoiceSaved.yes_no_objects.all().values()
-  # }
+  for session in CallSession.objects.filter(pk__in = list(all.keys())):
+    all[session.id].session = session
+
   obj = {}
   for item in all:
     obj[item] = all[item].__dict__()

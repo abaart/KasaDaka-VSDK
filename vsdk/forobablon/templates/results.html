@@ -1,6 +1,21 @@
 {% extends "base_generic.html" %}
 {% block content%}
 
+<table>
+  <thead>
+    <th>Session</th>
+    <th>Date and time</th>
+    <th>Language</th>
+    <th>Answer</th>
+    <th>Phone number</th>
+  </thead>
+  <tbody>
+    <!-- <tr>
+      <td></td>
+    </tr> -->
+  </tbody>
+</table>
+
 <ul>
   {% regroup yes_no_results by call_date__date as objects_by_day %}
   {% for choice in objects_by_day %}
