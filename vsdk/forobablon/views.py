@@ -4,70 +4,68 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
 
-from vsdk.service_development.models import ChoiceSaved, CallSession
-class SessionAnswers:
-  def __init__(self, session_id):
-    self.session_id = session_id
-    self._anwsers = []
-    self.session = None # type: CallSession
+from vsdk.service_development.models import ChoiceSaved, CallSession, SpokenUserInput
 
-  def add_answer(self, answer: ChoiceSaved):
-    self._anwsers.append(answer)
+class Result:
+  def __init__(self, phone_number: str, start_time: str, end_time: str):
+    self.phone_number = phone_number
+    self.start_time = start_time
+    self.end_time = end_time
+    self.language = None
+    self.answer = None
   
-  def get_language(self) -> ChoiceSaved:
-    return self._anwsers[0]
+  def add_answer(self, answer: ChoiceSaved):
+    if self.language is None:
+      self.language = str(answer)
+      return
 
-  def get_selection(self) -> ChoiceSaved:
-    return self._anwsers[1]
-
-  def finished_session(self) -> bool:
-    return len(self._anwsers) >= 2
-
-  def __dict__(self):
-    res = {
-      "session_id": self.session_id,
-      "session": str(self.session),
-      "finished": self.finished_session(),
-      "language": None,
-      "selection": None,
-    }
-    if len(self._anwsers) > 0:
-      t = self._anwsers[0].__dict__
-      t["call_date"] = str(t["call_date"])
-      res["language"] = str(t)
-
-    if len(self._anwsers) > 1:
-      t = self._anwsers[1].__dict__
-      t["call_date"] = str(t["call_date"])
-      res["selection"] = str(t)
-
-    return res
+    self.answer = str(answer)
+  
+  @property
+  def finished(self) -> bool:
+    return self.language is not None and self.answer is not None
 
 def results(request):
+  result_object = {}
+  all_sessions = CallSession.objects.all()
+
+  for session in all_sessions:
+    result_object[session.id] = Result(session.caller_id, session.start, session.end)
+
+  choices = ChoiceSaved.objects.filter(session_id__in = list(result_object.keys()))
+  for choice in choices:
+    result_object[choice.session_id].add_answer(choice)
+
+
+  obj = {}
+  for k in result_object:
+    obj[k] = str(result_object[k])
+  
+  
 
   yesNoResults = ChoiceSaved.yes_no_objects.all()
   test_path = settings.MEDIA_URL + "uploads/*"
   test_path2 = settings.MEDIA_URL + "*"
   test_path3 = settings.MEDIA_URL
 
-  all_raw = ChoiceSaved.objects.all()
-  # all_raw = CallSession.objects.all().values()
+  # all_raw = ChoiceSaved.objects.all()
+  # # all_raw = CallSession.objects.all().values()
   
-  print(ChoiceSaved.yes_no_objects.all().values())
+  # print(ChoiceSaved.yes_no_objects.all().values())
 
-  all = {}
-  for item in all_raw:
-    if item.session_id not in all:
-      all[item.session_id] = SessionAnswers(item.session_id)
+  # all = {}
+  # for item in all_raw:
+  #   if item.session_id not in all:
+  #     all[item.session_id] = SessionAnswers(item.session_id)
     
-    all[item.session_id].add_answer(item)
+  #   all[item.session_id].add_answer(item)
 
-  for session in CallSession.objects.filter(pk__in = list(all.keys())):
-    all[session.id].session = session
+  # for session in CallSession.objects.filter(pk__in = list(all.keys())):
+  #   all[session.id].session = session
 
-  obj = {}
-  for item in all:
-    obj[item] = all[item].__dict__()
+  # obj = {}
+  # for item in all:
+  #   obj[item] = all[item].__dict__()
 
   context = {
     'yes_no_results': yesNoResults,
