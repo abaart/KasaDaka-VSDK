@@ -7,7 +7,8 @@ from django.conf import settings
 from vsdk.service_development.models import ChoiceSaved, CallSession, SpokenUserInput, SpokenUserInput
 
 class Result:
-  def __init__(self, phone_number: str, start_time: str, end_time: str):
+  def __init__(self, session_id, phone_number: str, start_time: str, end_time: str):
+    self.session_id = session_id
     self.phone_number = phone_number
     self.start_time = start_time
     self.end_time = end_time
@@ -35,7 +36,7 @@ def results(request):
     end = "-"
     if session.start is not None: start = session.start.isoformat()
     if session.end is not None: end = session.end.isoformat()
-    result_object[session.id] = Result(session.caller_id, start, end)
+    result_object[session.id] = Result(session.pk, session.caller_id, start, end)
 
   choices = ChoiceSaved.objects.filter(session_id__in = list(result_object.keys())).order_by("pk")
   for choice in choices:

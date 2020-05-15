@@ -11,7 +11,7 @@
     <th>Recording</th>
   </thead>
   <tbody>
-    {% for session_id, session in dump %}
+    {% for session in dump %}
     <tr>
       <td>{{ session_id }}</td>
       <td>{{ session.start_time }} - {{ session.end_time }}</td>
