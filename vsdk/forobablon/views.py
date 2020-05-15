@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
 
-from vsdk.service_development.models import ChoiceSaved
+from vsdk.service_development.models import ChoiceSaved, CallSession
 
 def results(request):
 
@@ -13,15 +13,17 @@ def results(request):
   test_path2 = settings.MEDIA_URL + "*"
   test_path3 = settings.MEDIA_URL
 
-  all_raw = ChoiceSaved.objects.all().values()
-  print(ChoiceSaved.yes_no_objects.all().values())
+  # all_raw = ChoiceSaved.objects.all().values()
+  all_raw = CallSession.objects.all().values()
+  
+  # print(ChoiceSaved.yes_no_objects.all().values())
 
   all = []
   for item_raw in all_raw:
-    item = item_raw
-    item["call_date"] = item["call_date"].isoformat()
-    all.append(item)
-    print(item)
+    # item = item_raw
+    # item["call_date"] = item["call_date"].isoformat()
+    all.append(str(item_raw))
+    print(item_raw)
 
   obj = {
     "all":all,
