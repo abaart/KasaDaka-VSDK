@@ -1,15 +1,41 @@
 {% extends "base_generic.html" %}
+
+{% block styles %}
+<style>
+  .content {
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+  }
+  ul {
+    margin-top: 50px;
+  }
+  ul.index-list li {
+    font-size: 3em;
+  }
+  ul.index-list li a {
+    text-decoration: none;
+  }
+  ul.index-list li a:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+
 {% block content %}
+<div class="heading">
+  <h1>Foroba Blon Simple Poll System</h1>
+</div>
 
-<ul>
-  {% regroup yes_no_results by call_date__date as objects_by_day %}
-  {% for choice in objects_by_day %}
-    <li>
-      <a href="{{ choice.grouper|date:'Y-m-d' }}">{{ choice.grouper }}</a>
-    </li>
-  {% endfor %}
-</ul>
-
-
-
+<div class="content">
+  <ul class="index-list">
+    {% regroup yes_no_results by call_date__date as objects_by_day %}
+    {% for choice in objects_by_day %}
+      <li>
+        <a href="{{ choice.grouper|date:'Y-m-d' }}">{{ choice.grouper }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

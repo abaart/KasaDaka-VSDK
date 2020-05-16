@@ -1,24 +1,73 @@
 {% extends "base_generic.html" %}
+
+{% block styles %}
+<style>
+  .chart ul {
+    list-style-type: none;
+  }
+  .chart li {
+    height: 80px;
+    margin: 50px;
+    padding: 0 15px;
+  }
+  .chart li:before {
+    margin-left: -80px;
+    margin-right: 50px;
+    font-size: 3em;
+  }
+  .chart li#chart_yes:before {
+    content: "\2713";
+  }
+  .chart li#chart_no:before {
+    content: "\00D7";
+  }
+  .chart li span {
+    line-height: 80px;
+    font-size: 3em;
+  }
+  .chart li span.chart-li-count {
+    float: right;
+  }
+  #chart_yes {
+    background-color: #1C9177;
+  }
+  #chart_no {
+    background-color: #EA4733;
+  }
+  .recordings li {
+    margin: 10px 0;
+    font-size: 2em;
+  }
+  .recordings li audio {
+    display: inline-table;
+    vertical-align: middle;
+  }
+</style>
+{% endblock %}
+
+
 {% block content%}
-
 <div class="heading">
-  <h1>{{ poll_date }}&#10003;&#10060;</h1>
+  <h1>{{ poll_date }}</h1>
 </div>
 
+<div class="content">
+  <div class="chart">
+    <ul>
+      <li id="chart_yes" style="width: {{ yes_percentage }}%"><span>Yes</span><span class="chart-li-count">{{ yes_count }}</span></li>
+      <li id="chart_no" style="width: {{ no_percentage }}%"><span>No</span><span class="chart-li-count">{{ no_count }}</span></li>
+    </ul>
+  </div>
 
+  {% if recordings %}
+  <h2>Recordings</h2>
 
-
-<div class="chart">
-  <ul>
-    <li id="chart_yes" style="width: {{ yes_percentage }}%"><span>Yes</span><span class="chart-li-count">{{ yes_count }}</span></li>
-    <li id="chart_no" style="width: {{ no_percentage }}%"><span>No</span><span class="chart-li-count">{{ no_count }}</span></li>
+  <ul class="recordings">
+    {% for recording in recordings %}
+      <li>{{ recording.audio_file_player|safe }}</li>
+    {% endfor %}
   </ul>
+  {% endif %}
+
 </div>
-
-<ul>
-  {% for recording in recordings %}
-    <li>{{ recording.audio_file_player|safe }}</li>
-  {% endfor %}
-</ul>
-
 {% endblock %}

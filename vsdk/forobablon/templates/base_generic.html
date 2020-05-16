@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 
 	<head>
@@ -11,7 +10,6 @@
 			* {
 				font: normal 1em sans-serif;
 				color: white;
-				list-style: none;
 			}
 			body {
 				background-color: black;
@@ -27,28 +25,14 @@
 			}
 			h1 {
 				font-size: 4em;
-				line-height: 0px;
+				margin-bottom: 15px;
 			}
-
-			.chart li {
-				height: 80px;
-				margin: 50px;
-				padding: 0 15px;
-			}
-			.chart li span {
-				line-height: 80px;
-    		font-size: 3em;
-			}
-			.chart li span.chart-li-count {
-				float: right;
-			}
-			#chart_yes {
-				background-color: #1C9177;
-			}
-			#chart_no {
-				background-color: #EA4733;
+			h2 {
+				font-size: 3em;
 			}
 		</style>
+
+		{% block styles %}{% endblock %}
 	</head>
 
 
