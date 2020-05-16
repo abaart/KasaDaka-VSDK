@@ -27,12 +27,14 @@ def results(request, date):
   context = {
     'poll_date': parse_date(date),
     'yes_count': yes_count,
-    'yes_percentage': yes_count * 100 / total_count,
     'no_count': no_count,
-    'no_percentage': no_count * 100 / total_count,
     'total_count': total_count,
     'recordings': sui,
   }
+
+  if total_count > 0:
+    context['yes_percentage'] = yes_count * 100 / total_count
+    context['no_percentage'] = no_count * 100 / total_count
 
   return render(request, 'results.html', context=context)
 
