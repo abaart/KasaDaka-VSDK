@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-16 22:52+0200\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: vsdk/forobablon/templates/results-index.html:39
+msgid "Click on one of the dates below to see the results of that day's poll."
+msgstr ""
+"Klicken Sie auf eines der untenstehenden Daten, um die Ergebnisse der "
+"Umfrage dieses Tages zu sehen."
+
+#: vsdk/forobablon/templates/results.html:79
+msgid "Yes"
+msgstr "Ja"
+
+#: vsdk/forobablon/templates/results.html:80
+msgid "No"
+msgstr "Nein"
+
+#: vsdk/forobablon/templates/results.html:85
+msgid "Recordings"
+msgstr "Aufnahmen"
+
+#: vsdk/forobablon/templates/results.html:94
+msgid "No data"
+msgstr "Keine Daten"

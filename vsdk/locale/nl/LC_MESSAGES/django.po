@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+
+#: vsdk/forobablon/templates/results-index.html:39
+msgid "Click on one of the dates below to see the results of that day's poll."
+msgstr "Klik op een van de onderstaande data om de resultaten van de enquête van die dag te zien."
+
+#: vsdk/forobablon/templates/results.html:79
+msgid "Yes"
+msgstr "Ja"
+
+#: vsdk/forobablon/templates/results.html:80
+msgid "No"
+msgstr "Geen"
+
+#: vsdk/forobablon/templates/results.html:85
+msgid "Recordings"
+msgstr "Opnames"
+
+#: vsdk/forobablon/templates/results.html:94
+msgid "No data"
+msgstr "Geen gegevens"

@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,13 +12,18 @@
 				font: normal 1em sans-serif;
 				color: white;
 			}
+			html, body {
+				height: 100%;
+			}
 			body {
 				background-color: black;
 			}
 			.main {
+				min-height: 100%;
 				display: grid;
     		grid-template-columns: 90%;
     		justify-content: center;
+				grid-template-rows: auto 1fr auto;
 			}
 			.heading {
 				margin-top: 15px;
@@ -30,6 +36,17 @@
 			h2 {
 				font-size: 3em;
 			}
+			footer {
+				display: grid;
+    		justify-content: center;
+				margin: 25px;
+			}
+			button.lang-button {
+				display: inline-block;
+				background: none;
+				border: none;
+				cursor: pointer;
+			}
 		</style>
 
 		{% block styles %}{% endblock %}
@@ -38,7 +55,30 @@
 
 	<body>
 		<div class="main">
-			{% block content %}{% endblock %}
+			<header>
+				{% block header %}{% endblock %}
+			</header>
+
+			<content>
+				{% block content %}{% endblock %}
+			</content>
+
+			<footer>
+				<div class="lang-select">
+					{% get_current_language as LANGUAGE_CODE %}
+					{% get_available_languages as LANGUAGES %}
+					{% get_language_info_list for LANGUAGES as languages %}
+			
+					{% for language in languages %}
+						<form action="{% url 'set_language' %}" method="post" id="form_{{ language.code }}" style="display:inline!important;">
+						{% csrf_token %}
+							<input name="next" type="hidden" value="{{ redirect_to }}" />
+							<input name="language" type="hidden" value="{{ language.code }}" />
+						</form>
+						<button class="lang-button" type="submit" form="form_{{ language.code }}" value="Submit">[{{ language.code }}]</button>
+					{% endfor %}
+				</div>
+			</footer>
 		</div>
 	</body>
 

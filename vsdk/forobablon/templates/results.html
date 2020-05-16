@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+{% load i18n %}
 
 {% block styles %}
 <style>
@@ -63,23 +64,26 @@
 {% endblock %}
 
 
-{% block content%}
+{% block header %}
 <div class="heading">
   <a href="/forobablon/results">&#x21a9;&#xFE0E;</a>
   <h1>{{ poll_date }}</h1>
 </div>
+{% endblock %}
 
+
+{% block content%}
 <div class="content">
   {% if total_count %}
     <div class="chart">
       <ul>
-        <li id="chart_yes" style="width: {{ yes_percentage }}%"><span>Yes</span><span class="chart-li-count">{{ yes_count }}</span></li>
-        <li id="chart_no" style="width: {{ no_percentage }}%"><span>No</span><span class="chart-li-count">{{ no_count }}</span></li>
+        <li id="chart_yes" style="width: {{ yes_percentage }}%"><span>{% trans "Yes"%}</span><span class="chart-li-count">{{ yes_count }}</span></li>
+        <li id="chart_no" style="width: {{ no_percentage }}%"><span>{% trans "No"%}</span><span class="chart-li-count">{{ no_count }}</span></li>
       </ul>
     </div>
 
     {% if recordings %}
-    <h2>Recordings</h2>
+    <h2>{% trans "Recordings"%}</h2>
 
     <ul class="recordings">
       {% for recording in recordings %}
@@ -88,7 +92,7 @@
     </ul>
     {% endif %}
   {% else %}
-  <h2>No data ...</h2>
+  <h2>{% trans "No data"%} ...</h2>
   {% endif %}
 
 </div>

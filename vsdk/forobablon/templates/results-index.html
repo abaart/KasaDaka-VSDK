@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+{% load i18n %}
 
 {% block styles %}
 <style>
@@ -26,12 +27,17 @@
 {% endblock %}
 
 
-{% block content %}
+{% block header %}
 <div class="heading">
   <h1>Foroba Blon Simple Poll System</h1>
 </div>
+{% endblock %}
 
-<p class="description">Click on one of the dates below to see the results of that day's poll.</p>
+
+{% block content %}
+<div>
+  <p class="description">{% blocktrans %}Click on one of the dates below to see the results of that day's poll.{% endblocktrans %}</p>
+</div>
 
 <div class="content">
   <ul class="index-list">

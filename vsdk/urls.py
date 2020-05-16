@@ -18,14 +18,19 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 
 admin.site.site_header = _("KasaDaka Voice Services")
 
 urlpatterns = [
     url(r'^', admin.site.urls),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^vxml/', include('vsdk.service_development.urls')),
-    url(r'^forobablon/', include('vsdk.forobablon.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
+    url(r'^forobablon/', include('vsdk.forobablon.urls')),
+)
 
 #if not settings.DEBUG:
 #        urlpatterns += urlpatterns('',
