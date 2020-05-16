@@ -2,6 +2,17 @@
 
 {% block styles %}
 <style>
+  div.heading h1 {
+    display: inline-block;
+  }
+  div.heading a {
+    text-decoration: none;
+    font-size: 4em;
+    margin-right: 25px;
+  }
+  div.heading a:hover {
+    font-weight: bold;
+  }
   .chart ul {
     list-style-type: none;
   }
@@ -48,6 +59,7 @@
 
 {% block content%}
 <div class="heading">
+  <a href="/forobablon/results">&larrhk;</a>
   <h1>{{ poll_date }}</h1>
 </div>
 
