@@ -77,8 +77,16 @@
   {% if total_count %}
     <div class="chart">
       <ul>
-        <li id="chart_yes" style="width: {{ yes_percentage }}%"><span>{% trans "Yes"%}</span><span class="chart-li-count">{{ yes_count }}</span></li>
-        <li id="chart_no" style="width: {{ no_percentage }}%"><span>{% trans "No"%}</span><span class="chart-li-count">{{ no_count }}</span></li>
+        <li id="chart_yes" 
+              {% language "en" %}style="width: {{ yes_percentage }}%">{% endlanguage %}
+              <span>{% trans "Yes"%}</span>
+              <span class="chart-li-count">{{ yes_count }}</span>
+        </li>
+        <li id="chart_no" 
+              {% language "en" %}style="width: {{ no_percentage }}%">{% endlanguage %}
+              <span>{% trans "No"%}</span>
+              <span class="chart-li-count">{{ no_count }}</span>
+        </li>
       </ul>
     </div>
 
