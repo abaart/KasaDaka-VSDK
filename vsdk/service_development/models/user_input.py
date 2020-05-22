@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
+from django.utils.safestring import mark_safe
 
 from django.utils import timezone
 from . import CallSession, VoiceService
@@ -42,7 +43,7 @@ class SpokenUserInput(models.Model):
         if self.audio:
             file_url = settings.MEDIA_URL + str(self.audio)
             player_string = str('<audio src="%s" controls>'  % (file_url) + ugettext('Your browser does not support the audio element.') + '</audio>')
-            return player_string
+            return mark_safe(player_string)
 
     audio_file_player.allow_tags = True
     audio_file_player.short_description = _('Audio file player')
