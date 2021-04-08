@@ -12,7 +12,7 @@ colorama==0.4.3
 coverage==5.0.4
 cryptography==3.3.2
 dj-database-url==0.5.0
-Django==3.1.6
+Django==3.1.8
 django-model-utils==4.0.0
 django-phonenumber-field==4.0.0
 django-storages==1.9.1
